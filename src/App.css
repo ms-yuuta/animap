@@ -68,6 +68,22 @@
   margin: 0 0.2rem;
 }
 
+.pink {
+  background: pink;
+}
+
+.lightblue {
+  background-color: lightblue;
+}
+
+.yellow {
+  background-color: yellow;
+}
+
+.springgreen {
+  background-color: springgreen;
+}
+
 
 /* -------------main-------------- */
 

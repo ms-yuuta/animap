@@ -1,4 +1,5 @@
 import "../../App.css";
+import { List } from "./List";
 export const Scroll = (props) => {
   const handleDisplay = (e) => {
     console.log(e);
@@ -11,18 +12,8 @@ export const Scroll = (props) => {
   return (
     <div className="scroll">
       <ul className="list horizontal xScrollContent">
-        {props.workList.map((item) => {
-          return (
-            <li key={item} className="work circle small bgWhite lightShadow">
-              <p className="paragraph">
-                {item}
-                <span className="span"> </span>
-                <span onClick={handleDisplay} className="delete">
-                  ×
-                </span>
-              </p>
-            </li>
-          );
+        {props.workList.map((item, index) => {
+          return <List handleDisplay={handleDisplay} item={item} index ={index}/>;
         })}
       </ul>
     </div>
