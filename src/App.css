@@ -1,38 +1,167 @@
-.App {
-  text-align: center;
+/* ------------container-------------- */
+.container {
+  height: 100vh;
+  color: rgb(75, 75, 75);
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* -----------header----------- */
+.header {
+  position: fixed;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 110px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.search {
+  position: absolute;
+  top: 15px;
+  left: 240px;
+  z-index: 2;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.lightShadow {
+  box-shadow: 0.2px 0.5px 1px 0.03px rgb(72, 72, 72);
+}
+
+
+.scroll {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+
+  overflow-x: scroll;
+  overflow-y: hidden;
+  width: 100%;
+  height: 45px;
+}
+
+.xScrollContent {
+  width: 300%;
+}
+
+.horizontal {
+  display: flex;
+  margin: 0;
+}
+
+.circle {
+  border: 1px solid #fff;
+  border-radius: 1rem;
+  padding: 5px 0.7rem;
+}
+
+.delete {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.delete:hover {
+  color: #ff9f9f;
+  cursor: pointer;
+}
+
+.paragraph {
+  margin: 0;
+}
+
+.span {
+  margin: 0 0.2rem;
+}
+
+
+/* -------------main-------------- */
+
+.main {
+  position: relative;
+  z-index: 0;
   display: flex;
   flex-direction: column;
+  height: 100%;
+}
+
+/* --------------modal-------------- */
+
+.overlay {
+  /*　画面全体を覆う設定　*/
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+
+  /*　画面の中央に要素を表示させる設定　*/
+  display: flex;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.content {
+  width: 80%;
+  max-height: 80%;
+  padding: 1em;
+  background: #fff;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.right {
+  margin-left: 1rem;
+}
+.verticalScroll {
+  overflow-y: scroll;
+  max-height: 60vh;
+}
+
+.yScrollContent {
+  max-height: 200vh;
+}
+
+.text {
+  height: 25px;
+  font-size: 1rem;
+  border-radius: 0.7rem;
+}
+
+.text:focus {
+  border: 1px solid #ff9f9f;
+  outline: 0;
+}
+
+
+/* --------------共通css---------------- */
+
+.btn {
+  padding: 1px 15px;
+  height: 2rem;
+  background-color: #fff;
+  border: 1px solid #fff;
+  border-radius: 0.8rem;
+  box-shadow: 1px 1.2px 2px 1.2px rgb(126, 126, 126);
+}
+
+.btn:hover,
+.btn:hover,
+.btn:active {
+  border: 1px solid #ff9f9f;
+  color: #ff9f9f;
+  cursor: pointer;
+}
+
+.small {
+  font-size: 0.8rem;
+}
+
+.list {
+  list-style-type: none;
+  padding-left: 20px;
+}
+
+.work {
+  vertical-align: middle;
+  margin-right: 0.5rem;
+}
+
+.bgWhite {
+  background-color: #fff;
 }
