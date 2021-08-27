@@ -6,7 +6,7 @@ export const DisplaySeichi = (props) => {
   const [index, setIndex] = useState(null);
 
   const divStyle = useMemo(() => {
-    const colors = ["white", "pink", "lightblue", "yellow"];
+    const colors = ["white", "pink", "lightblue", "yellow", "springgreen"];
     return { backgroundColor: colors[index], fontSize: "3px" };
   }, [index]);
 
@@ -18,7 +18,8 @@ export const DisplaySeichi = (props) => {
     case 0:
     case 1:
     case 2:
-    case 3: {
+    case 3:
+    case 4: {
       return (
         <InfoWindow position={props.position} key={props.item.id}>
           <div style={divStyle}>
