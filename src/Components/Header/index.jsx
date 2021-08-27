@@ -9,11 +9,13 @@ export const Header = (props) => {
   }, []);
 
   return (
-    <header className="header">
-      <button onClick={handleDisplay} className="btn search">
-        Search
-      </button>
-      <Scroll workList={props.workList} setWorkList={props.setWorkList}/>
+    <header>
+      <div className="header">
+        <button onClick={handleDisplay} className="btn search">
+          Search
+        </button>
+      </div>
+      <Scroll workList={props.workList} setWorkList={props.setWorkList} />
     </header>
   );
 };
