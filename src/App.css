@@ -58,7 +58,7 @@
 }
 
 .delete:hover {
-  color: #ff9f9f;
+  color: royalblue;
   cursor: pointer;
 }
 
@@ -124,8 +124,13 @@
 }
 
 .text:focus {
-  border: 1px solid #ff9f9f;
+  border: 1px solid royalblue;
   outline: 0;
+}
+
+.candidates:hover {
+  color: royalblue;
+  cursor: pointer;
 }
 
 
@@ -143,9 +148,9 @@
 .btn:hover,
 .btn:hover,
 .btn:active {
-  border: 1px solid #ff9f9f;
-  color: #ff9f9f;
-  cursor: pointer;
+  border: 1px solid royalblue;
+  color: royalblue;
+  cursor: royalblue;
 }
 
 .small {

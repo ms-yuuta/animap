@@ -17,7 +17,7 @@ export const Candidates = (props) => {
       <ul className="list">
         {data?.map((item) => {
           return props.regex?.test(item.work) ? (
-            <li key={item.work} onClick={props.handleAddAnime} className="work">
+            <li key={item.work} onClick={props.handleAddAnime} className="work candidates">
               {item.work}
             </li>
           ) : null;
