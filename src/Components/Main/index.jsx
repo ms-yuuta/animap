@@ -12,7 +12,7 @@ export const Main = (props) => {
     };
 
     const center = {
-      lat: 35.69575,
+      lat: 38.2,
       lng: 139.77521,
     };
 
