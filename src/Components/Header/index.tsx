@@ -1,10 +1,17 @@
 import "../../App.css";
 import { useCallback } from "react";
 import { Scroll } from "./Scroll";
+import React from "react";
 
-export const Header = (props) => {
+type Props = {
+  workList: string[]
+  setIsShow: React.Dispatch<React.SetStateAction<boolean>>
+  setWorkList: React.Dispatch<React.SetStateAction<string[]>>
+}
+
+export const Header: React.FC<Props> = (props) => {
   const handleDisplay = useCallback(() => {
-    props.setIsShow((prevIsShow) => !prevIsShow);
+    props.setIsShow((prevIsShow: boolean): boolean => !prevIsShow);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

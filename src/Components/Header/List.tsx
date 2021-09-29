@@ -1,6 +1,14 @@
 import "../../App.css";
 import cc from "classcat";
-export const List = (props) => {
+import React from "react";
+
+type Props = {
+  handleDisplay: (e: any) => void;
+  item: string;
+  index: number;
+};
+
+export const List: React.VFC<Props> = (props) => {
   console.log(props.index);
   return (
     <li key={props.item} className="work circle small bgWhite lightShadow">

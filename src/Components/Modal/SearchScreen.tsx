@@ -3,7 +3,11 @@ import { SearchBox } from "./SearchBox";
 import { Candidates } from "./Candidates";
 import { useSerachAnime } from "../../hooks/useSearchAnime";
 
-export const SearchScreen = (props) => {
+type Props = {
+  setWorkList: any
+}
+
+export const SearchScreen: React.VFC<Props> = (props) => {
   const { regex, text, handleChange, handleClick, handleAddAnime } =
     useSerachAnime(props.setWorkList);
 
