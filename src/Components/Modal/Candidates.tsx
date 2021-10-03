@@ -1,7 +1,12 @@
 import "../../App.css";
 import { useWorks } from "../../hooks/useFetchArray";
 
-export const Candidates = (props) => {
+type Props = {
+  regex: any;
+  handleAddAnime: any;
+};
+
+export const Candidates: React.VFC<Props> = (props) => {
   const { data, error, isLoading } = useWorks();
 
   if (isLoading) {
@@ -15,9 +20,13 @@ export const Candidates = (props) => {
   return (
     <div className="yScrollContent">
       <ul className="list">
-        {data?.map((item) => {
+        {data?.map((item: { work: string }) => {
           return props.regex?.test(item.work) ? (
-            <li key={item.work} onClick={props.handleAddAnime} className="work candidates">
+            <li
+              key={item.work}
+              onClick={props.handleAddAnime}
+              className="work candidates"
+            >
               {item.work}
             </li>
           ) : null;

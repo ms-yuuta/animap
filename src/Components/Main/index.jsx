@@ -3,8 +3,7 @@ import { useMemo } from "react";
 import "../../App.css";
 import { GoogleMapComponent } from "./GoogleMapComponent";
 
-export const Main = (props) => {
-
+export const Main = () => {
   const mapSettings = useMemo(() => {
     const containerStyle = {
       height: "100vh",
@@ -28,7 +27,7 @@ export const Main = (props) => {
           center={mapSettings.center}
           zoom={6}
         >
-          <GoogleMapComponent workList={props.workList} />
+          <GoogleMapComponent />
         </GoogleMap>
       </LoadScript>
     </main>
