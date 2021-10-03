@@ -1,15 +1,33 @@
 import "../../App.css";
 import cc from "classcat";
-import React from "react";
+import React, { useCallback } from "react";
+import { SetterOrUpdater, useSetRecoilState } from "recoil";
+import { workListState } from "../../atoms/workListAtom";
 
 type Props = {
-  handleDisplay: (e: any) => void;
   item: string;
   index: number;
 };
 
 export const List: React.VFC<Props> = (props) => {
   console.log(props.index);
+
+  const setWorkListValue: SetterOrUpdater<string[]> =
+    useSetRecoilState(workListState);
+
+  const handleDisplay = useCallback(
+    (e: any): void => {
+      console.log(e);
+      setWorkListValue((prevArray: string[]) => {
+        return prevArray.filter(
+          (item: string) =>
+            item !== e.target.previousSibling.previousSibling.textContent
+        );
+      });
+    },
+    [setWorkListValue]
+  );
+
   return (
     <li key={props.item} className="work circle small bgWhite lightShadow">
       <p
@@ -25,7 +43,7 @@ export const List: React.VFC<Props> = (props) => {
       >
         {props.item}
         <span className="span"> </span>
-        <span onClick={props.handleDisplay} className="delete">
+        <span onClick={handleDisplay} className="delete">
           ×
         </span>
       </p>

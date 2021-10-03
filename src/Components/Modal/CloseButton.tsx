@@ -1,15 +1,14 @@
 import "../../App.css";
 import { useCallback } from "react";
+import { SetterOrUpdater, useSetRecoilState } from "recoil";
+import { isShowState } from "../../atoms/isShowAtom";
 
-type Props = {
-  setIsShow: any;
-}
+export const CloseButton: React.VFC = () => {
+  const setIsShow: SetterOrUpdater<boolean> = useSetRecoilState(isShowState);
 
-export const CloseButton: React.VFC<Props> = (props) => {
   const handleDisplay = useCallback(() => {
-    props.setIsShow((prevIsShow: boolean): boolean => !prevIsShow);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    setIsShow((prevIsShow: boolean): boolean => !prevIsShow);
+  }, [setIsShow]);
 
   return (
     <button onClick={handleDisplay} className="btn">

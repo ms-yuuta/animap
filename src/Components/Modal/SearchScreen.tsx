@@ -2,14 +2,14 @@ import "../../App.css";
 import { SearchBox } from "./SearchBox";
 import { Candidates } from "./Candidates";
 import { useSerachAnime } from "../../hooks/useSearchAnime";
+import { SetterOrUpdater, useSetRecoilState } from "recoil";
+import { workListState } from "../../atoms/workListAtom";
 
-type Props = {
-  setWorkList: any
-}
-
-export const SearchScreen: React.VFC<Props> = (props) => {
+export const SearchScreen: React.VFC = () => {
+  const setWorkListValue: SetterOrUpdater<string[]> =
+    useSetRecoilState(workListState);
   const { regex, text, handleChange, handleClick, handleAddAnime } =
-    useSerachAnime(props.setWorkList);
+    useSerachAnime(setWorkListValue);
 
   return (
     <div>

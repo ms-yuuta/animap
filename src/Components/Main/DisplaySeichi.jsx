@@ -1,9 +1,12 @@
 import "../../App.css";
 import { InfoWindow } from "@react-google-maps/api";
 import { useEffect, useMemo, useState } from "react";
+import { useRecoilValue } from "recoil";
+import { workListState } from "../../atoms/workListAtom";
 
 export const DisplaySeichi = (props) => {
   const [index, setIndex] = useState(null);
+  const workListValue = useRecoilValue(workListState);
 
   const divStyle = useMemo(() => {
     const colors = ["white", "pink", "lightblue", "yellow", "springgreen"];
@@ -11,8 +14,8 @@ export const DisplaySeichi = (props) => {
   }, [index]);
 
   useEffect(() => {
-    setIndex(props.array.indexOf(props.item.work));
-  }, [props.array, props.item]);
+    setIndex(workListValue.indexOf(props.item.work));
+  }, [workListValue, props.item]);
 
   switch (index) {
     case 0:

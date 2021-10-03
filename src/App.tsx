@@ -1,28 +1,18 @@
 import "./App.css";
-import { useState } from "react";
 import { Header } from "./Components/Header";
-import { Modal } from "./Components/Modal/index";
-import { Main } from "./Components/Main/index";
+import { Modal } from "./Components/Modal";
+import { Main } from "./Components/Main";
+import { useRecoilValue } from "recoil";
+import { isShowState } from "./atoms/isShowAtom";
 
 const App = () => {
-  const [workList, setWorkList] = useState<string[]>([]);
-  const [isShow, setIsShow] = useState(false);
+  const isShow: boolean = useRecoilValue(isShowState);
 
   return (
     <div className="container">
-      <Header
-        workList={workList}
-        setIsShow={setIsShow}
-        setWorkList={setWorkList}
-      />
-      <Main workList={workList} />
-      {isShow ? (
-        <Modal
-          isShow={isShow}
-          setIsShow={setIsShow}
-          setWorkList={setWorkList}
-        />
-      ) : null}
+      <Header />
+      <Main />
+      {isShow ? <Modal /> : null}
     </div>
   );
 };
