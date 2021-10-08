@@ -1,5 +1,4 @@
 import { useRecoilValue } from "recoil";
-import "../../App.css";
 import { workListState } from "../../atoms/workListAtom";
 import { useSeichi } from "../../hooks/useFetchArray";
 import { DisplaySeichi } from "./DisplaySeichi";

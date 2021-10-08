@@ -1,4 +1,3 @@
-import "../../App.css";
 import { InfoWindow } from "@react-google-maps/api";
 import { useEffect, useMemo, useState } from "react";
 import { useRecoilValue } from "recoil";
