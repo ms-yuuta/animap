@@ -1,19 +1,19 @@
-import "./App.css";
 import { Header } from "./Components/Header";
-import { Modal } from "./Components/Modal";
+import { ModalForSearch } from "./Components/Modal";
 import { Main } from "./Components/Main";
 import { useRecoilValue } from "recoil";
 import { isShowState } from "./atoms/isShowAtom";
+import { Box } from "@mui/system";
 
 const App = () => {
   const isShow: boolean = useRecoilValue(isShowState);
 
   return (
-    <div className="container">
+    <Box sx={{ color: "rgb(75,75,75)" }}>
       <Header />
       <Main />
-      {isShow ? <Modal /> : null}
-    </div>
+      {isShow ? <ModalForSearch /> : null}
+    </Box>
   );
 };
 
