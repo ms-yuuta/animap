@@ -1,4 +1,4 @@
-import "../../App.css";
+import { Button, TextField, Stack } from "@mui/material";
 
 type Props = {
   text: string;
@@ -10,17 +10,20 @@ type Props = {
 export const SearchBox: React.VFC<Props> = (props) => {
   return (
     <div>
-      <input
-        type="text"
-        value={props.text}
-        onChange={props.handleChange}
-        onKeyPress={props.handleAddAnime}
-        className="text"
-        autoFocus={true}
-      ></input>
-      <button onClick={props.handleClick} className="btn right">
-        保存
-      </button>
+      <Stack direction="row" spacing={2}>
+        <TextField
+          variant="outlined"
+          size="small"
+          type="text"
+          autoFocus={true}
+          color="primary"
+          value={props.text}
+          onChange={props.handleChange}
+        />
+        <Button variant="outlined" onClick={props.handleClick}>
+          保存
+        </Button>
+      </Stack>
     </div>
   );
 };

@@ -1,6 +1,5 @@
-import "../../App.css";
 import { SearchBox } from "./SearchBox";
-import { Candidates } from "./Candidates";
+import { CandidatesLists } from "./CandidatesLists";
 import { useSerachAnime } from "../../hooks/useSearchAnime";
 import { SetterOrUpdater, useSetRecoilState } from "recoil";
 import { workListState } from "../../atoms/workListAtom";
@@ -19,9 +18,7 @@ export const SearchScreen: React.VFC = () => {
         handleClick={handleClick}
         handleAddAnime={handleAddAnime}
       />
-      <div className="verticalScroll">
-        <Candidates regex={regex} handleAddAnime={handleAddAnime} />
-      </div>
+        <CandidatesLists regex={regex} handleAddAnime={handleAddAnime} />
     </div>
   );
 };

@@ -1,7 +1,7 @@
-import "../../App.css";
 import { useCallback } from "react";
 import { SetterOrUpdater, useSetRecoilState } from "recoil";
 import { isShowState } from "../../atoms/isShowAtom";
+import { Button } from "@mui/material";
 
 export const CloseButton: React.VFC = () => {
   const setIsShow: SetterOrUpdater<boolean> = useSetRecoilState(isShowState);
@@ -11,8 +11,8 @@ export const CloseButton: React.VFC = () => {
   }, [setIsShow]);
 
   return (
-    <button onClick={handleDisplay} className="btn">
+    <Button size="medium" variant="outlined" onClick={handleDisplay}>
       close
-    </button>
+    </Button>
   );
 };
