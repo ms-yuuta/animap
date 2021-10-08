@@ -1,6 +1,5 @@
 import { GoogleMap, LoadScript } from "@react-google-maps/api";
 import { useMemo } from "react";
-import "../../App.css";
 import { GoogleMapComponent } from "./GoogleMapComponent";
 
 export const Main = () => {
@@ -20,7 +19,7 @@ export const Main = () => {
 
 
   return (
-    <main className="main">
+    <main>
       <LoadScript googleMapsApiKey={process.env.REACT_APP_GOOGLE_MAP_API_KEY}>
         <GoogleMap
           mapContainerStyle={mapSettings.containerStyle}
