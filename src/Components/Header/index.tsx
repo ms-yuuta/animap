@@ -20,6 +20,8 @@ export const Header: React.FC = () => {
 
   const boxStyle = {
     position: "absolute",
+    bgcolor: "background.paper",
+    borderRadius: 1,
     top: 0,
     left: "15rem",
     zIndex: "tooltip",
@@ -36,8 +38,8 @@ export const Header: React.FC = () => {
   return (
     <header>
       <Box mt={1.6} sx={boxStyle}>
-        <Button variant="contained" color="primary" onClick={handleDisplay}>
-          Search
+        <Button variant="outlined" onClick={handleDisplay}>
+          Search...
         </Button>
       </Box>
       <Stack direction="row" spacing={0} sx={stackStyle}>

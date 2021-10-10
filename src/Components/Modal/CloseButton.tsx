@@ -12,7 +12,7 @@ export const CloseButton: React.VFC = () => {
 
   return (
     <Button size="medium" variant="outlined" onClick={handleDisplay}>
-      close
+      CLOSE
     </Button>
   );
 };
