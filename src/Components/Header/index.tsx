@@ -1,39 +1,33 @@
-import { useCallback } from "react";
 import { Item } from "./Item";
 import React from "react";
-import { SetterOrUpdater, useSetRecoilState, useRecoilValue } from "recoil";
 import { workListState } from "../../atoms/workListAtom";
-import { isShowState } from "../../atoms/isShowAtom";
 import { Button, Box, Stack } from "@mui/material";
+import { useHandleDisplay } from "../../hooks/useHandleDisplay";
+import { useRecoilValue } from "recoil";
 
 export const Header: React.FC = () => {
-  const stackStyle = {
-    overflow: "auto",
-    py: 0,
-    position: "absolute",
-    top: 60,
-    height: 50,
-    maxWidth: "100%",
-    zIndex: "appBar",
-    px: 2,
-  } as const;
+  const workListValue = useRecoilValue(workListState);
+  const handleDisplay = useHandleDisplay();
 
   const boxStyle = {
+    display: "inline-block",
     position: "absolute",
-    bgcolor: "background.paper",
-    borderRadius: 1,
     top: 0,
     left: "15rem",
     zIndex: "tooltip",
-    display: "inline-block",
+    bgcolor: "background.paper",
+    borderRadius: 1,
   } as const;
-
-  const setIsShow: SetterOrUpdater<boolean> = useSetRecoilState(isShowState);
-  const workListValue = useRecoilValue(workListState);
-
-  const handleDisplay = useCallback(() => {
-    setIsShow((prevIsShow: boolean): boolean => !prevIsShow);
-  }, [setIsShow]);
+  const stackStyle = {
+    height: 50,
+    maxWidth: "100%",
+    py: 0,
+    px: 2,
+    position: "absolute",
+    top: 60,
+    zIndex: "appBar",
+    overflow: "auto",
+  } as const;
 
   return (
     <header>
@@ -42,7 +36,7 @@ export const Header: React.FC = () => {
           Search...
         </Button>
       </Box>
-      <Stack direction="row" spacing={0} sx={stackStyle}>
+      <Stack direction="row" spacing={2} sx={stackStyle}>
         {workListValue.map((item: string, i: number) => {
           return <Item item={item} index={i} />;
         })}

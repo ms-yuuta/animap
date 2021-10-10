@@ -1,31 +1,25 @@
-import * as React from "react";
 import { CloseButton } from "./CloseButton";
 import { SearchScreen } from "./SearchScreen";
 import { Box, Modal } from "@mui/material";
-import { useRecoilState } from "recoil";
-import { isShowState } from "../../atoms/isShowAtom";
+import { useHandleDisplay } from "../../hooks/useHandleDisplay";
 
 export const ModalForSearch: React.VFC = () => {
+  const handleDisplay = useHandleDisplay();
   const style = {
+    minWidth: 300,
+    p: 4,
     position: "absolute" as "absolute",
     top: "50%",
     left: "50%",
     transform: "translate(-50%, -50%)",
-    minWidth: 300,
     bgcolor: "background.paper",
     boxShadow: 24,
-    p: 4,
   };
-
-  const [isShow, setIsShow] = useRecoilState(isShowState);
-  const handleDisplay = React.useCallback(() => {
-    setIsShow((prevIsShow) => !prevIsShow);
-  }, [setIsShow]);
 
   return (
     <div>
       <Modal
-        open={isShow}
+        open={true}
         onClose={handleDisplay}
         // aria-labelledby="modal-modal-title"
         // aria-describedby="modal-modal-description"
