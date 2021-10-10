@@ -4,7 +4,6 @@ type Props = {
   text: string;
   handleChange: (e: React.ChangeEvent<HTMLInputElement>) => () => void;
   handleClick: (e: any) => () => void;
-  handleAddAnime: any;
 };
 
 export const SearchBox: React.VFC<Props> = (props) => {

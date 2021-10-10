@@ -9,7 +9,7 @@ const App = () => {
   const isShow: boolean = useRecoilValue(isShowState);
 
   return (
-    <Box sx={{ color: "rgb(75,75,75)" }}>
+    <Box>
       <Header />
       <Main />
       {isShow ? <ModalForSearch /> : null}

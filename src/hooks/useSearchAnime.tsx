@@ -5,7 +5,6 @@ type AnimeInfo = {
   text: string;
   handleChange: any;
   handleClick: any;
-  handleAddAnime: (e: any) => void;
 };
 
 export const useSerachAnime = (
@@ -30,24 +29,13 @@ export const useSerachAnime = (
     }
   }, [text]);
 
-  const handleClick = useCallback(() => {
-    setWorkList((prevArray: string[]) => [...prevArray, text]);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [text]);
-
-  const handleAddAnime = useCallback(
-    (e: React.KeyboardEvent<HTMLInputElement> | any) => {
-      if (e.charCode === 13) {
-        setWorkList((prevArray: string[]) => [...prevArray, text]);
-      } else if (e.type === "click") {
-        setWorkList((prevArray: string[]) => [
-          ...prevArray,
-          e.target.outerText,
-        ]);
-      }
+  const handleClick = useCallback(
+    (title?: string, e?: React.KeyboardEvent<HTMLInputElement>) => {
+      setWorkList((prevArray: string[]) => {
+        return title ? [...prevArray, title] : [...prevArray, text];
+      });
     },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [text]
+    [text, setWorkList]
   );
 
   return {
@@ -55,6 +43,5 @@ export const useSerachAnime = (
     text,
     handleChange,
     handleClick,
-    handleAddAnime,
   };
 };

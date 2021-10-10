@@ -3,10 +3,10 @@ import { List, ListItem, ListItemButton, ListItemText } from "@mui/material";
 
 type Props = {
   regex: any;
-  handleAddAnime: (e: any) => void;
+  handleClick: (title: string) => void;
 };
 
-export const CandidatesLists: React.VFC<Props> = (props) => {
+export const CandidatesList: React.VFC<Props> = (props) => {
   const { data, error, isLoading } = useWorks();
 
   if (isLoading) {
@@ -22,7 +22,7 @@ export const CandidatesLists: React.VFC<Props> = (props) => {
       {data?.map((item: { work: string }) => {
         return props.regex?.test(item.work) ? (
           <ListItem disablePadding key={item.work}>
-            <ListItemButton onClick={props.handleAddAnime}>
+            <ListItemButton onClick={() => props.handleClick(item.work)}>
               <ListItemText primary={item.work} />
             </ListItemButton>
           </ListItem>

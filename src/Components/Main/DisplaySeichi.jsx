@@ -22,8 +22,9 @@ export const DisplaySeichi = (props) => {
     case 2:
     case 3:
     case 4: {
+      const position = { lat: props.item.latitude, lng: props.item.longitude };
       return (
-        <InfoWindow position={props.position} key={props.item.id}>
+        <InfoWindow position={position} key={props.item.id}>
           <div style={divStyle}>
             <h1>{props.item.place}</h1>
           </div>

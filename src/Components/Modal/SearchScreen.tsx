@@ -1,5 +1,5 @@
 import { SearchBox } from "./SearchBox";
-import { CandidatesLists } from "./CandidatesLists";
+import { CandidatesList } from "./CandidatesList";
 import { useSerachAnime } from "../../hooks/useSearchAnime";
 import { SetterOrUpdater, useSetRecoilState } from "recoil";
 import { workListState } from "../../atoms/workListAtom";
@@ -7,7 +7,7 @@ import { workListState } from "../../atoms/workListAtom";
 export const SearchScreen: React.VFC = () => {
   const setWorkListValue: SetterOrUpdater<string[]> =
     useSetRecoilState(workListState);
-  const { regex, text, handleChange, handleClick, handleAddAnime } =
+  const { regex, text, handleChange, handleClick } =
     useSerachAnime(setWorkListValue);
 
   return (
@@ -16,9 +16,8 @@ export const SearchScreen: React.VFC = () => {
         text={text}
         handleChange={handleChange}
         handleClick={handleClick}
-        handleAddAnime={handleAddAnime}
       />
-        <CandidatesLists regex={regex} handleAddAnime={handleAddAnime} />
+      <CandidatesList regex={regex} handleClick={handleClick} />
     </div>
   );
 };

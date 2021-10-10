@@ -17,17 +17,9 @@ export const GoogleMapComponent = () => {
   return (
     <div>
       {data?.map((item) => {
-        const position = {
-          lat: item.latitude,
-          lng: item.longitude,
-        };
         return workListValue.length > 0 ? (
           <div key={item.id}>
-            <DisplaySeichi
-              position={position}
-              item={item}
-              array={workListValue}
-            />
+            <DisplaySeichi item={item} array={workListValue} />
           </div>
         ) : null;
       })}
