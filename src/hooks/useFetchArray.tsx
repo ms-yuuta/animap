@@ -1,4 +1,4 @@
-import useSWR from "swr";
+import useSWRImmutable from "swr/immutable";
 
 type Asynchronous = {
   data: any;
@@ -9,17 +9,7 @@ type Asynchronous = {
 type FetchArray = () => Asynchronous;
 
 const useFetchArray = (url: string): Asynchronous => {
-  const fetcher = async (url: string) => {
-    const response = await fetch(url);
-    if (!response.ok) {
-      throw new Error("データの取得ができなかったので、表示ができません");
-    }
-    const json = await response.json();
-    return json;
-  };
-
-  const { data, error } = useSWR(url, fetcher);
-
+  const { data, error } = useSWRImmutable(url);
   return { data, error, isLoading: !data && !error };
 };
 
