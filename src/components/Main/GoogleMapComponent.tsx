@@ -16,7 +16,7 @@ export const GoogleMapComponent = () => {
   }
   return (
     <div>
-      {data?.map((item: any) => {
+      {data?.map((item) => {
         return workListValue.length > 0 ? (
           <div key={item.id}>
             <DisplaySeichi item={item} array={workListValue} />

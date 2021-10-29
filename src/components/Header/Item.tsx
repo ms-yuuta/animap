@@ -28,7 +28,7 @@ export const Item = (props: { item: string; index: number }) => {
   const handleDelete = useCallback(
     (i: number) => {
       setWorkListValue((prevList) => {
-        return prevList.filter((item, index) => index !== i);
+        return prevList.filter((_, index) => index !== i);
       });
     },
     [setWorkListValue]

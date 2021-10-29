@@ -18,6 +18,7 @@ export const Header: React.FC = () => {
     bgcolor: "background.paper",
     borderRadius: 1,
   } as const;
+  
   const stackStyle = {
     height: 50,
     maxWidth: "100%",

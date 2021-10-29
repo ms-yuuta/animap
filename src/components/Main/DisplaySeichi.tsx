@@ -3,9 +3,10 @@ import { useEffect, useMemo, useState } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { markerSeichiState } from "../../atoms/markerSeichiAtom";
 import { workListState } from "../../atoms/workListAtom";
+import { Seichi } from "../../model";
 
 type Props = {
-  item: any;
+  item: Seichi;
   array: string[];
 };
 
@@ -39,10 +40,10 @@ export const DisplaySeichi: React.VFC<Props> = (props) => {
           cursor={props.item.place}
           
           onClick={() => {
-            setMarker(props.item);
+            setMarker(props.item.place);
           }}
         >
-          {selectedMarker && selectedMarker == props.item && (
+          {selectedMarker && selectedMarker == props.item.place && (
             <InfoWindow
               onCloseClick={() => {
                 setMarker("");
