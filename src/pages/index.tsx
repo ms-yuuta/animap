@@ -5,29 +5,40 @@ import { Main } from "../Components/Main";
 import { useRecoilValue } from "recoil";
 import { isShowState } from "../atoms/isShowAtom";
 import { Box } from "@mui/system";
+import { SWRConfig } from "swr";
+import { Fallback, Seichi } from "../model";
 
-// export const getStaticProps = async () => {
-//   const markers = [
-//     {
-//       id: 1,
-//       name: "東京タワー",
-//       lat: 35.658,
-//       lng: 139.74,
-//     },
-//   ];
+export const getStaticProps = async (): Promise<{
+  props: { fallback: Fallback };
+}> => {
+  const SEICHI_API_URL = "https://jsondata.okiba.me/v1/json/VrDJ8210827043712";
+  const seichi = await fetch(SEICHI_API_URL);
+  const seichiData: Seichi = await seichi.json();
 
-//   return {
-//     props: { markers },
-//   };
-// };
+  const TITLE_API_URL = "https://jsondata.okiba.me/v1/json/yJlau210827043212";
+  const title = await fetch(TITLE_API_URL);
+  const titleData = await title.json();
 
-const App: NextPage = () => {
+  return {
+    props: {
+      fallback: {
+        [SEICHI_API_URL]: seichiData,
+        [TITLE_API_URL]: titleData,
+      },
+    },
+  };
+};
+
+const App: NextPage<{ fallback: Fallback }> = (props) => {
+  const { fallback } = props;
   const isShow: boolean = useRecoilValue(isShowState);
   return (
     <Box>
-      <Header />
-      <Main />
-      {isShow ? <ModalForSearch /> : null}
+      <SWRConfig value={{ fallback }}>
+        <Header />
+        <Main />
+        {isShow ? <ModalForSearch /> : null}
+      </SWRConfig>
     </Box>
   );
 };
