@@ -1,7 +1,7 @@
-import { CloseButton } from "./CloseButton";
-import { SearchScreen } from "./SearchScreen";
 import { Box, Modal } from "@mui/material";
-import { useHandleDisplay } from "../../hooks/useHandleDisplay";
+import { CloseButton } from "Components/Modal/CloseButton";
+import { SearchScreen } from "Components/Modal/SearchScreen";
+import { useHandleDisplay } from "hooks/useHandleDisplay";
 
 export const ModalForSearch: React.VFC = () => {
   const handleDisplay = useHandleDisplay();

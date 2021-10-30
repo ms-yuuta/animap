@@ -1,4 +1,4 @@
-import { useWorks } from "../../hooks/useFetchArray";
+import { useWorks } from "hooks/useFetchArray";
 import { List, ListItem, ListItemButton, ListItemText } from "@mui/material";
 
 type Props = {

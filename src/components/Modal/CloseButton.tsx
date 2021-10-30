@@ -1,5 +1,5 @@
 import { Button } from "@mui/material";
-import { useHandleDisplay } from "../../hooks/useHandleDisplay";
+import { useHandleDisplay } from "hooks/useHandleDisplay";
 
 export const CloseButton: React.VFC = () => {
   const handleDisplay = useHandleDisplay();

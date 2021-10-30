@@ -1,5 +1,5 @@
 import useSWRImmutable from "swr/immutable";
-import { AsyncData, SeichiDate, TitleData } from "../model";
+import { AsyncData, SeichiDate, TitleData } from "model";
 
 type FetchSeichiArray = () => SeichiDate;
 type FetchTitleArray = () => TitleData;

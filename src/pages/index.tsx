@@ -1,12 +1,12 @@
 import type { NextPage } from "next";
-import { Header } from "../Components/Header";
-import { ModalForSearch } from "../Components/Modal";
-import { Main } from "../Components/Main";
 import { useRecoilValue } from "recoil";
-import { isShowState } from "../atoms/isShowAtom";
 import { Box } from "@mui/system";
 import { SWRConfig } from "swr";
-import { Fallback, Seichi } from "../model";
+import { Header } from "Components/Header";
+import { ModalForSearch } from "Components/Modal";
+import { Main } from "Components/Main";
+import { isShowState } from "atoms/isShowAtom";
+import { Fallback, Seichi } from "model";
 
 export const getStaticProps = async (): Promise<{
   props: { fallback: Fallback };

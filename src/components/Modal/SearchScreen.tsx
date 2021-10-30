@@ -1,8 +1,8 @@
 import { SearchBox } from "./SearchBox";
 import { CandidatesList } from "./CandidatesList";
-import { useSerachAnime } from "../../hooks/useSearchAnime";
 import { SetterOrUpdater, useSetRecoilState } from "recoil";
-import { workListState } from "../../atoms/workListAtom";
+import { useSerachAnime } from "hooks/useSearchAnime";
+import { workListState } from "atoms/workListAtom";
 
 export const SearchScreen: React.VFC = () => {
   const setWorkListValue: SetterOrUpdater<string[]> =

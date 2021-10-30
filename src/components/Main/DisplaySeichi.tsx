@@ -1,9 +1,9 @@
 import { InfoWindow, Marker } from "@react-google-maps/api";
 import { useEffect, useMemo, useState } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { markerSeichiState } from "../../atoms/markerSeichiAtom";
-import { workListState } from "../../atoms/workListAtom";
-import { Seichi } from "../../model";
+import { markerSeichiState } from "atoms/markerSeichiAtom";
+import { workListState } from "atoms/workListAtom";
+import { Seichi } from "model";
 
 type Props = {
   item: Seichi;
