@@ -1,12 +1,8 @@
-# AniMap
+# [AniMap](https://animap.vercel.app/)
 ## You can search "SEICHI"
 "SEICHI" refers to places that are dear to the hearts of fans, such as places where the anime was set, places where the characters' names originated, or places of the same name.
 
 ## Detail:
-
-### [Animap](https://animap.vercel.app/) Site
-
-
 ### WHO
 People who are interested in "SEICHI".
 
