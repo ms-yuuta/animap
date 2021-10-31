@@ -1,6 +1,6 @@
 import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
 import { useMemo } from "react";
-import { GoogleMapComponent } from "Components/Main/GoogleMapComponent";
+import { GoogleMapComponent } from "components/Main/GoogleMapComponent";
 
 export const Main = () => {
   const mapSettings = useMemo(() => {

@@ -2,9 +2,9 @@ import type { NextPage } from "next";
 import { useRecoilValue } from "recoil";
 import { Box } from "@mui/system";
 import { SWRConfig } from "swr";
-import { Header } from "Components/Header";
-import { ModalForSearch } from "Components/Modal";
-import { Main } from "Components/Main";
+import { Header } from "components/Header";
+import { ModalForSearch } from "components/Modal";
+import { Main } from "components/Main";
 import { isShowState } from "atoms/isShowAtom";
 import { Fallback, Seichi } from "model";
 

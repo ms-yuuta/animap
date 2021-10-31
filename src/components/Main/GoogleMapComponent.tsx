@@ -1,7 +1,7 @@
 import { useRecoilValue } from "recoil";
 import { workListState } from "atoms/workListAtom";
 import { useSeichi } from "hooks/useFetchArray";
-import { DisplaySeichi } from "Components/Main/DisplaySeichi";
+import { DisplaySeichi } from "components/Main/DisplaySeichi";
 
 export const GoogleMapComponent = () => {
   const { data, error, isLoading } = useSeichi();
