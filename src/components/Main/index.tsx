@@ -19,7 +19,7 @@ export const Main = () => {
 
   return (
     <main>
-      <LoadScript googleMapsApiKey={process.env.REACT_APP_GOOGLE_MAP_API_KEY}>
+      <LoadScript googleMapsApiKey={process.env.NEXT_PUBLIC_GOOGLE_MAP_API_KEY}>
         <GoogleMap
           mapContainerStyle={mapSettings.containerStyle}
           center={mapSettings.center}
