@@ -20,9 +20,26 @@ Because it is displayed on a map, you can see where "SEICHI" is at a glance.
 #### API
 - googleMap
 
-## You need Google-Api-key
+## 開発環境を作る
 
-## Available Scripts
+### 開発用サーバの立ち上げよう！
+ソースコードをcloneしよう！
+
+```sh
+$ git clone https://github.com/ms-yuuta/animap.git
+```
+
+```sh
+$ cd animap
+```
+Google Maps APIのkeyの取得しよう！
+
+- [Google Maps Platform](https://mapsplatform.google.com/)
+- [keyの取得方法(参考：ねんでブログ)](https://nendeb.com/276)
+
+.envに`NEXT_PUBLIC_GOOGLE_MAP_API_KEY=[API_KEY]`を設定！
+
+## スクリプトの実行
 
 In the project directory, you can run:
 
