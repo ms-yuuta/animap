@@ -15,16 +15,14 @@ export const DisplaySeichi: React.VFC<Props> = (props) => {
   const [selectedMarker, setMarker] = useRecoilState(markerSeichiState);
   const workListValue = useRecoilValue(workListState);
 
-  const divStyle = useMemo(() => {
-    const colors = ["white", "pink", "lightblue", "yellow", "springgreen"];
-    return index === null
-      ? {}
-      : { backgroundColor: colors[index], fontSize: "3px" };
-  }, [index]);
-
   useEffect(() => {
     setIndex(workListValue.indexOf(props.item.work));
   }, [workListValue, props.item]);
+
+  const markerColor = useMemo(() => {
+    const colors = ["pink", "blue", "yellow", "green", "purple"];
+    return index === null ? "" : colors[index];
+  }, [index]);
 
   switch (index) {
     case 0:
@@ -38,7 +36,7 @@ export const DisplaySeichi: React.VFC<Props> = (props) => {
           key={props.item.id}
           position={position}
           cursor={props.item.place}
-          
+          icon={`https://maps.google.com/mapfiles/ms/icons/${markerColor}-dot.png`}
           onClick={() => {
             setMarker(props.item.place);
           }}
@@ -49,10 +47,10 @@ export const DisplaySeichi: React.VFC<Props> = (props) => {
                 setMarker("");
               }}
             >
-              <div style={divStyle}>
+              <div>
                 {/* <Link href={"/seichi/" + props.item.id}>
                 </Link> */}
-                  {props.item.place}
+                <h5 style={{margin : 0}}>{props.item.place}</h5>
               </div>
             </InfoWindow>
           )}

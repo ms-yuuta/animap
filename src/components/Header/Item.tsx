@@ -9,15 +9,15 @@ export const Item = (props: { item: string; index: number }) => {
   const chipBgColor = useMemo(() => {
     switch (props.index) {
       case 0:
-        return "white";
-      case 1:
         return "pink";
-      case 2:
+      case 1:
         return "lightblue";
-      case 3:
+      case 2:
         return "yellow";
-      case 4:
+      case 3:
         return "springgreen";
+      case 4:
+        return "purple";
       default:
         return "white";
     }
