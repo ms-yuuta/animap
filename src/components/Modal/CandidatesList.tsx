@@ -1,9 +1,9 @@
-import { useWorks } from "../../hooks/useFetchArray";
+import { useWorks } from "hooks/useFetchArray";
 import { List, ListItem, ListItemButton, ListItemText } from "@mui/material";
 
 type Props = {
-  regex: any;
-  handleClick: (title: string) => void;
+  regex: RegExp | undefined;
+  handleClick: (title?: string) => void;
 };
 
 export const CandidatesList: React.VFC<Props> = (props) => {
@@ -19,7 +19,7 @@ export const CandidatesList: React.VFC<Props> = (props) => {
 
   return (
     <List sx={{ py: 2, overflow: "auto", maxHeight: "55vh" }}>
-      {data?.map((item: { work: string }) => {
+      {data?.map((item => {
         return props.regex?.test(item.work) ? (
           <ListItem disablePadding key={item.work}>
             <ListItemButton onClick={() => props.handleClick(item.work)}>
@@ -27,7 +27,7 @@ export const CandidatesList: React.VFC<Props> = (props) => {
             </ListItemButton>
           </ListItem>
         ) : null;
-      })}
+      }))}
     </List>
   );
 };

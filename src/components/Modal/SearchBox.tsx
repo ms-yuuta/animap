@@ -2,8 +2,8 @@ import { Button, TextField, Stack } from "@mui/material";
 
 type Props = {
   text: string;
-  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => () => void;
-  handleClick: (e: any) => () => void;
+  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  handleClick: () => void;
 };
 
 export const SearchBox: React.VFC<Props> = (props) => {

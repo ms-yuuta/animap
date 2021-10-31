@@ -1,8 +1,8 @@
-import { Item } from "./Item";
 import React from "react";
-import { workListState } from "../../atoms/workListAtom";
+import { Item } from "components/Header/Item";
 import { Button, Box, Stack } from "@mui/material";
-import { useHandleDisplay } from "../../hooks/useHandleDisplay";
+import { useHandleDisplay } from "hooks/useHandleDisplay";
+import { workListState } from "atoms/workListAtom";
 import { useRecoilValue } from "recoil";
 
 export const Header: React.FC = () => {
@@ -18,6 +18,7 @@ export const Header: React.FC = () => {
     bgcolor: "background.paper",
     borderRadius: 1,
   } as const;
+  
   const stackStyle = {
     height: 50,
     maxWidth: "100%",
@@ -38,7 +39,7 @@ export const Header: React.FC = () => {
       </Box>
       <Stack direction="row" spacing={2} sx={stackStyle}>
         {workListValue.map((item: string, i: number) => {
-          return <Item item={item} index={i} />;
+          return <Item item={item} index={i} key={item} />;
         })}
       </Stack>
     </header>

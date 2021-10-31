@@ -1,12 +1,12 @@
-import { GoogleMap, LoadScript } from "@react-google-maps/api";
+import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
 import { useMemo } from "react";
-import { GoogleMapComponent } from "./GoogleMapComponent";
+import { GoogleMapComponent } from "components/Main/GoogleMapComponent";
 
 export const Main = () => {
   const mapSettings = useMemo(() => {
     const containerStyle = {
-      height: "100vh",
       width: "100%",
+      height: "100vh",
     };
 
     const center = {

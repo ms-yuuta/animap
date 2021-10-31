@@ -1,7 +1,7 @@
 import React, { useCallback, useMemo } from "react";
 import { ListItem } from "@mui/material";
 import { SetterOrUpdater, useSetRecoilState } from "recoil";
-import { workListState } from "../../atoms/workListAtom";
+import { workListState } from "atoms/workListAtom";
 import { Chip } from "@mui/material";
 import { Theme } from "@mui/material/styles";
 
@@ -28,7 +28,7 @@ export const Item = (props: { item: string; index: number }) => {
   const handleDelete = useCallback(
     (i: number) => {
       setWorkListValue((prevList) => {
-        return prevList.filter((item, index) => index !== i);
+        return prevList.filter((_, index) => index !== i);
       });
     },
     [setWorkListValue]
