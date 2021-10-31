@@ -33,7 +33,7 @@ const App: NextPage<{ fallback: Fallback }> = (props) => {
   const { fallback } = props;
   const isShow: boolean = useRecoilValue(isShowState);
   return (
-    <Box>
+    <Box height="100vh" width="100%">
       <SWRConfig value={{ fallback }}>
         <Header />
         <Main />
