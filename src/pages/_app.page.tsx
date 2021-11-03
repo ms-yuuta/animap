@@ -4,15 +4,7 @@ import { RecoilRoot } from "recoil";
 import { ThemeProvider } from "@mui/material";
 import { theme } from "theme";
 import { SWRConfig } from "swr";
-
-const fetcher = async (url: string) => {
-  const response = await fetch(url);
-  if (!response.ok) {
-    throw new Error("データの取得ができなかったので、表示ができません");
-  }
-  const json = await response.json();
-  return json;
-};
+import { fetcher } from "./_app.hooks";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
