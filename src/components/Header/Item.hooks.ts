@@ -1,5 +1,5 @@
 import { titleListState } from "atoms/titleListState";
-import { useCallback } from "react";
+import { useCallback, useMemo } from "react";
 import { SetterOrUpdater, useSetRecoilState } from "recoil";
 
 export const useDeleteChip = () => {
@@ -15,4 +15,26 @@ export const useDeleteChip = () => {
   );
 
   return handleDelete;
+}
+
+
+export const useChipBgColor = (index: number) => {
+  const chipBgColor = useMemo(() => {
+    switch (index) {
+      case 0:
+        return "pink";
+      case 1:
+        return "lightblue";
+      case 2:
+        return "yellow";
+      case 3:
+        return "springgreen";
+      case 4:
+        return "purple";
+      default:
+        return "white";
+    }
+  }, [index]);
+
+  return chipBgColor
 }

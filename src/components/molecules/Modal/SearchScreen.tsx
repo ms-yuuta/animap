@@ -1,8 +1,8 @@
 import { SearchBox } from "./SearchBox";
 import { CandidatesList } from "./CandidatesList";
 import { SetterOrUpdater, useSetRecoilState } from "recoil";
-import { useSerachAnime } from "hooks/useSearchAnime";
 import { titleListState } from "atoms/titleListState";
+import { useSerachAnime } from "./modal.hooks";
 
 export const SearchScreen: React.VFC = () => {
   const setTitleList: SetterOrUpdater<string[]> =

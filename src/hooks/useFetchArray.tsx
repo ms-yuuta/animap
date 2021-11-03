@@ -9,10 +9,10 @@ const useFetchArray = (url: string): AsyncData => {
   return { data, error, isLoading: !data && !error };
 };
 
-export const useSeichi: FetchSeichiArray = () => {
+export const useFetchSeichi: FetchSeichiArray = () => {
   return useFetchArray("https://jsondata.okiba.me/v1/json/VrDJ8210827043712");
 };
 
-export const useWorks: FetchTitleArray = () => {
+export const useFetchTitleList: FetchTitleArray = () => {
   return useFetchArray("https://jsondata.okiba.me/v1/json/yJlau210827043212");
 };

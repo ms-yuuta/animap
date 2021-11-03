@@ -2,26 +2,10 @@ import React, { useMemo } from "react";
 import { ListItem } from "@mui/material";
 import { Chip } from "@mui/material";
 import { Theme } from "@mui/material/styles";
-import { useDeleteChip } from "hooks/useDeleteChip";
+import { useChipBgColor, useDeleteChip } from "./Item.hooks";
 
 export const Item = (props: { title: string; index: number }) => {
-  const chipBgColor = useMemo(() => {
-    switch (props.index) {
-      case 0:
-        return "pink";
-      case 1:
-        return "lightblue";
-      case 2:
-        return "yellow";
-      case 3:
-        return "springgreen";
-      case 4:
-        return "purple";
-      default:
-        return "white";
-    }
-  }, [props.index]);
-
+  const chipBgColor = useChipBgColor(props.index)
   const handleDelete = useDeleteChip();
 
   return (

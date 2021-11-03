@@ -4,24 +4,22 @@ import { useRecoilState, useRecoilValue } from "recoil";
 import { markerSeichiState } from "atoms/markerSeichiAtom";
 import { titleListState } from "atoms/titleListState";
 import { Seichi } from "model";
+import { useMarkerColor } from "./map.hooks";
 
 type Props = {
   item: Seichi;
 };
 
 export const DisplaySeichi: React.VFC<Props> = (props) => {
-  const [index, setIndex] = useState<number | null>(null);
+  const [index, setIndex] = useState<number>(-1);
   const [selectedMarker, setMarker] = useRecoilState(markerSeichiState);
   const titleList = useRecoilValue(titleListState);
+  const markerColor = useMarkerColor(index);
 
   useEffect(() => {
     setIndex(titleList.indexOf(props.item.work));
   }, [titleList, props.item]);
 
-  const markerColor = useMemo(() => {
-    const colors = ["pink", "blue", "yellow", "green", "purple"];
-    return index === null ? "" : colors[index];
-  }, [index]);
 
   switch (index) {
     case 0:

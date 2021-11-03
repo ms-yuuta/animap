@@ -1,10 +1,10 @@
 import { useRecoilValue } from "recoil";
 import { titleListState } from "atoms/titleListState";
-import { useSeichi } from "hooks/useFetchArray";
-import { DisplaySeichi } from "components/Main/DisplaySeichi";
+import { useFetchSeichi } from "hooks/useFetchArray";
+import { DisplaySeichi } from "components/Map/DisplaySeichi";
 
 export const GoogleMapComponent = () => {
-  const { data, error, isLoading } = useSeichi();
+  const { data, error, isLoading } = useFetchSeichi();
   const titleList = useRecoilValue(titleListState);
 
   if (isLoading) {

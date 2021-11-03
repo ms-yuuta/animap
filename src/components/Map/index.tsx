@@ -1,21 +1,9 @@
 import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
-import { useMemo } from "react";
-import { GoogleMapComponent } from "components/Main/GoogleMapComponent";
+import { GoogleMapComponent } from "components/Map/GoogleMapComponent";
+import { useMapSettings } from "./map.hooks";
 
-export const Main = () => {
-  const mapSettings = useMemo(() => {
-    const containerStyle = {
-      width: "100%",
-      height: "100vh",
-    };
-
-    const center = {
-      lat: 38.2,
-      lng: 139.77521,
-    };
-
-    return { containerStyle, center };
-  }, []);
+export const Map = () => {
+  const mapSettings = useMapSettings();
 
   return (
     <main>
