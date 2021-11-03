@@ -2,44 +2,45 @@ import React from "react";
 import { Item } from "components/Header/Item";
 import { Button, Box, Stack } from "@mui/material";
 import { useHandleDisplay } from "hooks/useHandleDisplay";
-import { workListState } from "atoms/workListAtom";
+import { titleListState } from "atoms/titleListState";
 import { useRecoilValue } from "recoil";
 
-export const Header: React.FC = () => {
-  const workListValue = useRecoilValue(workListState);
-  const handleDisplay = useHandleDisplay();
+const boxStyle = {
+  display: "inline-block",
+  position: "absolute",
+  top: 0,
+  left: "15rem",
+  zIndex: "tooltip",
+  bgcolor: "background.paper",
+  marginTop: 1.6,
+  borderRadius: 1,
+} as const;
 
-  const boxStyle = {
-    display: "inline-block",
-    position: "absolute",
-    top: 0,
-    left: "15rem",
-    zIndex: "tooltip",
-    bgcolor: "background.paper",
-    borderRadius: 1,
-  } as const;
-  
-  const stackStyle = {
-    height: 50,
-    maxWidth: "100%",
-    py: 0,
-    px: 2,
-    position: "absolute",
-    top: 60,
-    zIndex: "appBar",
-    overflow: "auto",
-  } as const;
+const stackStyle = {
+  height: 50,
+  maxWidth: "100%",
+  py: 0,
+  px: 2,
+  position: "absolute",
+  top: 60,
+  zIndex: "appBar",
+  overflow: "auto",
+} as const;
+
+export const Header: React.FC = () => {
+  const titleList = useRecoilValue(titleListState);
+  const handleDisplay = useHandleDisplay();
 
   return (
     <header>
-      <Box mt={1.6} sx={boxStyle}>
+      <Box sx={boxStyle}>
         <Button variant="outlined" onClick={handleDisplay}>
           Search...
         </Button>
       </Box>
       <Stack direction="row" spacing={2} sx={stackStyle}>
-        {workListValue.map((item: string, i: number) => {
-          return <Item item={item} index={i} key={item} />;
+        {titleList.map((title: string, i: number) => {
+          return <Item title={title} index={i} key={title} />;
         })}
       </Stack>
     </header>

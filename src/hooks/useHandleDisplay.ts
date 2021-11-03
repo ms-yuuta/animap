@@ -1,11 +1,11 @@
 import { useCallback } from "react";
 import { SetterOrUpdater, useSetRecoilState } from "recoil";
-import { isShowState } from "atoms/isShowAtom";
+import { isModalOpenState } from "atoms/isModalOpenState";
 
 export const useHandleDisplay = () => {
-  const setIsShow: SetterOrUpdater<boolean> = useSetRecoilState(isShowState);
+  const setIsOpen: SetterOrUpdater<boolean> = useSetRecoilState(isModalOpenState);
   const handleDisplay = useCallback(() => {
-    setIsShow((prevIsShow: boolean) => !prevIsShow);
-  }, [setIsShow]);
+    setIsOpen((prevIsShow: boolean) => !prevIsShow);
+  }, [setIsOpen]);
   return handleDisplay
 };

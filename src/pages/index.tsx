@@ -5,7 +5,7 @@ import { SWRConfig } from "swr";
 import { Header } from "components/Header";
 import { ModalForSearch } from "components/Modal";
 import { Main } from "components/Main";
-import { isShowState } from "atoms/isShowAtom";
+import { isModalOpenState } from "atoms/isModalOpenState";
 import { Fallback, Seichi } from "model";
 
 export const getStaticProps = async (): Promise<{
@@ -31,13 +31,13 @@ export const getStaticProps = async (): Promise<{
 
 const App: NextPage<{ fallback: Fallback }> = (props) => {
   const { fallback } = props;
-  const isShow: boolean = useRecoilValue(isShowState);
+  const isOpen: boolean = useRecoilValue(isModalOpenState);
   return (
     <Box height="100vh" width="100%">
       <SWRConfig value={{ fallback }}>
         <Header />
         <Main />
-        {isShow ? <ModalForSearch /> : null}
+        {isOpen ? <ModalForSearch /> : null}
       </SWRConfig>
     </Box>
   );
