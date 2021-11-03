@@ -1,11 +1,11 @@
 import { useRecoilValue } from "recoil";
-import { workListState } from "atoms/workListAtom";
+import { titleListState } from "atoms/titleListState";
 import { useSeichi } from "hooks/useFetchArray";
 import { DisplaySeichi } from "components/Main/DisplaySeichi";
 
 export const GoogleMapComponent = () => {
   const { data, error, isLoading } = useSeichi();
-  const workListValue = useRecoilValue(workListState);
+  const titleList = useRecoilValue(titleListState);
 
   if (isLoading) {
     return <h2>Now Loading....</h2>;
@@ -17,9 +17,9 @@ export const GoogleMapComponent = () => {
   return (
     <div>
       {data?.map((item) => {
-        return workListValue.length > 0 ? (
+        return titleList.length > 0 ? (
           <div key={item.id}>
-            <DisplaySeichi item={item} array={workListValue} />
+            <DisplaySeichi item={item} />
           </div>
         ) : null;
       })}
