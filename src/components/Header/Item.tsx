@@ -1,11 +1,10 @@
-import React, { useCallback, useMemo } from "react";
+import React, { useMemo } from "react";
 import { ListItem } from "@mui/material";
-import { SetterOrUpdater, useSetRecoilState } from "recoil";
-import { workListState } from "atoms/workListAtom";
 import { Chip } from "@mui/material";
 import { Theme } from "@mui/material/styles";
+import { useDeleteChip } from "hooks/useDeleteChip";
 
-export const Item = (props: { item: string; index: number }) => {
+export const Item = (props: { title: string; index: number }) => {
   const chipBgColor = useMemo(() => {
     switch (props.index) {
       case 0:
@@ -23,21 +22,12 @@ export const Item = (props: { item: string; index: number }) => {
     }
   }, [props.index]);
 
-  const setWorkListValue: SetterOrUpdater<string[]> =
-    useSetRecoilState(workListState);
-  const handleDelete = useCallback(
-    (i: number) => {
-      setWorkListValue((prevList) => {
-        return prevList.filter((_, index) => index !== i);
-      });
-    },
-    [setWorkListValue]
-  );
+  const handleDelete = useDeleteChip();
 
   return (
-    <ListItem key={props.item} sx={{ p: 0 }}>
+    <ListItem key={props.title} sx={{ p: 0 }}>
       <Chip
-        label={props.item}
+        label={props.title}
         onDelete={() => {
           handleDelete(props.index);
         }}
