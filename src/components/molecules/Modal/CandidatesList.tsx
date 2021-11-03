@@ -1,4 +1,4 @@
-import { useWorks } from "hooks/useFetchArray";
+import { useFetchTitleList } from "hooks/useFetchArray";
 import { List, ListItem, ListItemButton, ListItemText } from "@mui/material";
 
 type Props = {
@@ -7,7 +7,7 @@ type Props = {
 };
 
 export const CandidatesList: React.VFC<Props> = (props) => {
-  const { data, error, isLoading } = useWorks();
+  const { data, error, isLoading } = useFetchTitleList();
 
   if (isLoading) {
     return <h2>Now Loading....</h2>;

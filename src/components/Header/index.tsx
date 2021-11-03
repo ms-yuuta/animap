@@ -4,6 +4,8 @@ import { Button, Box, Stack } from "@mui/material";
 import { useHandleDisplay } from "hooks/useHandleDisplay";
 import { titleListState } from "atoms/titleListState";
 import { useRecoilValue } from "recoil";
+import { ModalForSearch } from "components/molecules/Modal";
+import { isModalOpenState } from "atoms/isModalOpenState";
 
 const boxStyle = {
   display: "inline-block",
@@ -28,6 +30,7 @@ const stackStyle = {
 } as const;
 
 export const Header: React.FC = () => {
+  const isOpen: boolean = useRecoilValue(isModalOpenState);
   const titleList = useRecoilValue(titleListState);
   const handleDisplay = useHandleDisplay();
 
@@ -43,6 +46,7 @@ export const Header: React.FC = () => {
           return <Item title={title} index={i} key={title} />;
         })}
       </Stack>
+      {isOpen ? <ModalForSearch /> : null}
     </header>
   );
 };
