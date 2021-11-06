@@ -9,10 +9,13 @@ type Props = {
 
 export const ModalForSearch: VFC<Props> = (props) => {
   const style = {
-    minWidth: 300,
+    maxWidth: 500,
+    width: "50%",
+    minWidth: 230,
+    maxHeight: "70%",
     p: 4,
     position: "absolute" as "absolute",
-    top: "50%",
+    top: "54%",
     left: "50%",
     transform: "translate(-50%, -50%)",
     bgcolor: "background.paper",
@@ -20,20 +23,18 @@ export const ModalForSearch: VFC<Props> = (props) => {
   };
 
   return (
-    <div>
-      <Modal
-        open={true}
-        onClose={props.handleDisplay}
-        // aria-labelledby="modal-modal-title"
-        // aria-describedby="modal-modal-description"
-      >
-        <Box sx={style}>
-          {props.children}
-          <Button size="medium" variant="outlined" onClick={props.handleDisplay}>
-            CLOSE
-          </Button>
-        </Box>
-      </Modal>
-    </div>
+    <Modal
+      open={true}
+      onClose={props.handleDisplay}
+      // aria-labelledby="modal-modal-title"
+      // aria-describedby="modal-modal-description"
+    >
+      <Box sx={style}>
+        {props.children}
+        <Button size="medium" variant="outlined" onClick={props.handleDisplay}>
+          CLOSE
+        </Button>
+      </Box>
+    </Modal>
   );
 };

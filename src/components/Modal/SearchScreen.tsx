@@ -1,4 +1,5 @@
 import { Button, Stack, TextField } from "@mui/material";
+import { Box } from "@mui/system";
 import React, { VFC } from "react";
 import { CandidatesList } from "./CandidatesList";
 import { useSearchAnime } from "./useSearchAnime.hooks";
@@ -25,7 +26,9 @@ export const SearchScreen: VFC<Props> = (props) => {
           保存
         </Button>
       </Stack>
-      <CandidatesList regex={regex} handleClick={handleClick} />
+      <Box py={2}>
+        <CandidatesList regex={regex} handleClick={handleClick} />
+      </Box>
     </div>
   );
 };

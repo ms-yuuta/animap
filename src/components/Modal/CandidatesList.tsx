@@ -18,7 +18,7 @@ export const CandidatesList: React.VFC<Props> = (props) => {
   }
 
   return (
-    <List sx={{ py: 2, overflow: "auto", maxHeight: "55vh" }}>
+    <List disablePadding sx={{ overflow: "auto", maxHeight: "50vh" }}>
       {data?.map((item => {
         return props.regex?.test(item.work) ? (
           <ListItem disablePadding key={item.work}>
