@@ -1,8 +1,12 @@
-import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
-import { GoogleMapComponent } from "components/Map/GoogleMapComponent";
+import { GoogleMap, LoadScript } from "@react-google-maps/api";
+import { VFC } from "react";
 import { useMapSettings } from "./map.hooks";
 
-export const Map = () => {
+type Props = {
+  GoogleMapComponent: JSX.Element;
+}
+
+export const Map: VFC<Props> = (props) => {
   const mapSettings = useMapSettings();
 
   return (
@@ -13,7 +17,7 @@ export const Map = () => {
           center={mapSettings.center}
           zoom={6}
         >
-          <GoogleMapComponent />
+          {props.GoogleMapComponent}
         </GoogleMap>
       </LoadScript>
     </main>
