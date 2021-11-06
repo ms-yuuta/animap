@@ -1,5 +1,6 @@
 import { Box } from "@mui/system";
 import { ReactNode, VFC } from "react";
+import { LayoutErrorBoundary } from "./LayoutErrorBoundary";
 
 type Props = {
   children: ReactNode;
@@ -8,7 +9,9 @@ type Props = {
 export const Layout: VFC<Props> = ({ children }) => {
   return (
     <Box height="100vh" width="100%">
-      <main>{children}</main>
+      <main>
+        <LayoutErrorBoundary>{children}</LayoutErrorBoundary>
+      </main>
     </Box>
   );
 };
