@@ -7,7 +7,7 @@ type AnimeInfo = {
   handleClick: (title?: string) => void;
 };
 
-export const useSerachAnime = (
+export const useSearchAnime = (
   setWorkList: React.Dispatch<React.SetStateAction<string[]>>
 ): AnimeInfo => {
   const [text, setText] = useState("");

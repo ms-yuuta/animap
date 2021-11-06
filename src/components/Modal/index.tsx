@@ -1,10 +1,13 @@
-import { Box, Modal } from "@mui/material";
-import { CloseButton } from "components/molecules/Modal/CloseButton";
-import { SearchScreen } from "components/molecules/Modal/SearchScreen";
-import { useHandleDisplay } from "hooks/useHandleDisplay";
+import { Box, Button, Modal } from "@mui/material";
+import { VFC } from "react";
 
-export const ModalForSearch: React.VFC = () => {
-  const handleDisplay = useHandleDisplay();
+type Props = {
+  setIsShow: React.Dispatch<React.SetStateAction<boolean>>;
+  children: JSX.Element;
+  handleDisplay: () => void;
+};
+
+export const ModalForSearch: VFC<Props> = (props) => {
   const style = {
     minWidth: 300,
     p: 4,
@@ -20,13 +23,15 @@ export const ModalForSearch: React.VFC = () => {
     <div>
       <Modal
         open={true}
-        onClose={handleDisplay}
+        onClose={props.handleDisplay}
         // aria-labelledby="modal-modal-title"
         // aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <SearchScreen />
-          <CloseButton />
+          {props.children}
+          <Button size="medium" variant="outlined" onClick={props.handleDisplay}>
+            CLOSE
+          </Button>
         </Box>
       </Modal>
     </div>

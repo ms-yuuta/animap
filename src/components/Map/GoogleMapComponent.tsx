@@ -1,11 +1,8 @@
-import { useRecoilValue } from "recoil";
-import { titleListState } from "atoms/titleListState";
 import { useFetchSeichi } from "hooks/useFetchArray";
-import { DisplaySeichi } from "components/Map/DisplaySeichi";
+import { SeichiMarker } from "components/Map/SeichiMarker";
 
-export const GoogleMapComponent = () => {
+export const GoogleMapComponent = (props: { titleList: string[] }) => {
   const { data, error, isLoading } = useFetchSeichi();
-  const titleList = useRecoilValue(titleListState);
 
   if (isLoading) {
     return <h2>Now Loading....</h2>;
@@ -17,9 +14,9 @@ export const GoogleMapComponent = () => {
   return (
     <div>
       {data?.map((item) => {
-        return titleList.length > 0 ? (
+        return props.titleList.length > 0 ? (
           <div key={item.id}>
-            <DisplaySeichi item={item} />
+            <SeichiMarker titleList={props.titleList} item={item} />
           </div>
         ) : null;
       })}

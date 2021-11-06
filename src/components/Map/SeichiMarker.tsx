@@ -1,24 +1,21 @@
 import { InfoWindow, Marker } from "@react-google-maps/api";
-import { useEffect, useMemo, useState } from "react";
-import { useRecoilState, useRecoilValue } from "recoil";
-import { markerSeichiState } from "atoms/markerSeichiAtom";
-import { titleListState } from "atoms/titleListState";
+import { useEffect, useState } from "react";
 import { Seichi } from "model";
 import { useMarkerColor } from "./map.hooks";
 
 type Props = {
   item: Seichi;
+  titleList: string[];
 };
 
-export const DisplaySeichi: React.VFC<Props> = (props) => {
+export const SeichiMarker: React.VFC<Props> = (props) => {
   const [index, setIndex] = useState<number>(-1);
-  const [selectedMarker, setMarker] = useRecoilState(markerSeichiState);
-  const titleList = useRecoilValue(titleListState);
+  const [selectedMarker, setMarker] = useState("");
   const markerColor = useMarkerColor(index);
 
   useEffect(() => {
-    setIndex(titleList.indexOf(props.item.work));
-  }, [titleList, props.item]);
+    setIndex(props.titleList.indexOf(props.item.work));
+  }, [props]);
 
 
   switch (index) {
