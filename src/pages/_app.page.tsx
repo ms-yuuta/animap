@@ -1,7 +1,7 @@
 import "styles/globals.css";
 import type { AppProps } from "next/app";
 import { ThemeProvider } from "@mui/material";
-import { theme } from "theme";
+import { theme } from "styles/theme";
 import { SWRConfig } from "swr";
 import { fetcher } from "./_app.hooks";
 
