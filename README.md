@@ -14,6 +14,12 @@ Because it is displayed on a map, you can see where "SEICHI" is at a glance.
 - Multiple anime titles can be selected.
 - It uses google maps, so you can also use street view.
 
+### HOW
+- Next.js
+- SWR
+- Material-UI
+
+状態管理ライブラリRecoilからReact Hooksに変更し、パフォーマンスの改善。
 
 ## 開発環境を作る
 
