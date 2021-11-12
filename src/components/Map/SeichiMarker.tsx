@@ -17,7 +17,6 @@ export const SeichiMarker: React.VFC<Props> = (props) => {
     setIndex(props.titleList.indexOf(props.item.work));
   }, [props]);
 
-
   switch (index) {
     case 0:
     case 1:
@@ -31,20 +30,15 @@ export const SeichiMarker: React.VFC<Props> = (props) => {
           position={position}
           cursor={props.item.place}
           icon={`https://maps.google.com/mapfiles/ms/icons/${markerColor}-dot.png`}
-          onClick={() => {
-            setMarker(props.item.place);
-          }}
+          onClick={() => setMarker(props.item.place)}
+          onMouseOver={() => setMarker(props.item.place)}
+          onMouseOut={() => setMarker("")}
         >
           {selectedMarker && selectedMarker == props.item.place && (
-            <InfoWindow
-              onCloseClick={() => {
-                setMarker("");
-              }}
-            >
+            <InfoWindow onCloseClick={() => setMarker("")}>
               <div>
-                {/* <Link href={"/seichi/" + props.item.id}>
-                </Link> */}
-                <h5 style={{margin : 0}}>{props.item.place}</h5>
+                {/* <Link href={"/seichi/" + props.item.id}></Link> */}
+                <h5 style={{ margin: 0 }}>{props.item.place}</h5>
               </div>
             </InfoWindow>
           )}
