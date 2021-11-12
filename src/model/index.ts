@@ -14,16 +14,14 @@ export type Fallback = {
   [url: string]: Seichi | Title;
 };
 
-export type SeichiDate = {
-  data: Seichi[];
-  error: any;
+export type FetchFunc<T> = (url: string) => {
+  data: T[] | undefined;
+  error: Error | undefined;
   isLoading: boolean;
-}
+};
 
-export type TitleData = {
-  data: Title[];
-  error: any;
+export type FetchData<T> = () => {
+  data: T[] | undefined;
+  error: Error | undefined;
   isLoading: boolean;
-}
-
-export type AsyncData = SeichiDate & TitleData
+};
