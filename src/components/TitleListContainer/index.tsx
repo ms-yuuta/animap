@@ -1,13 +1,14 @@
-import React, { useCallback, VFC } from "react";
+import React, { VFC } from "react";
 import { Box, Button, Chip, Stack, Theme } from "@mui/material";
 import { TitleChip } from "./Chip";
 import { useChipBgColor, useDeleteChip } from "./chip.hooks";
+import SearchIcon from "@mui/icons-material/Search";
 
 const boxStyle = {
   display: "inline-block",
   position: "absolute",
   top: 0,
-  left: "15rem",
+  left: "14rem",
   zIndex: "tooltip",
   bgcolor: "background.paper",
   marginTop: 1.6,
@@ -39,7 +40,7 @@ export const TitleListContainer: VFC<Props> = (props) => {
   return (
     <div>
       <Box sx={boxStyle}>
-        <Button variant="outlined" onClick={props.handleDisplay}>
+        <Button variant="outlined" startIcon={<SearchIcon />} onClick={props.handleDisplay}>
           Search...
         </Button>
       </Box>

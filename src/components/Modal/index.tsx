@@ -19,6 +19,7 @@ export const ModalForSearch: VFC<Props> = (props) => {
     left: "50%",
     transform: "translate(-50%, -50%)",
     bgcolor: "background.paper",
+    borderRadius: 1,
     boxShadow: 24,
   };
 
