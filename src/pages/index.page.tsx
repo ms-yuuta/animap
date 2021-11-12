@@ -2,7 +2,7 @@ import type { NextPage } from "next";
 import { SWRConfig } from "swr";
 import { Fallback } from "model";
 import { getStaticProps } from "./index.hooks";
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useHandleDisplay } from "hooks/useHandleDisplay";
 import { Layout } from "Layout";
 import { TitleListContainer } from "components/TitleListContainer";
@@ -19,6 +19,19 @@ export const App: NextPage<{ fallback: Fallback }> = (props) => {
   const [isShow, setIsShow] = useState(false);
   const handleDisplay = useHandleDisplay(setIsShow);
 
+  const handleKeyDown = useCallback(
+    (ev: KeyboardEvent) => {
+      if (ev.key === "k" && (ev.ctrlKey || ev.metaKey)) {
+        handleDisplay();
+      }
+    },
+    [handleDisplay]
+  );
+
+  useEffect(() => {
+    document.addEventListener("keydown", handleKeyDown);
+  }, [handleKeyDown]);
+
   return (
     <SWRConfig value={{ fallback }}>
       <Layout>
@@ -29,7 +42,7 @@ export const App: NextPage<{ fallback: Fallback }> = (props) => {
           titleList={titleList}
         >
           <ModalForSearch setIsShow={setIsShow} handleDisplay={handleDisplay}>
-            <SearchScreen setTitleList={setTitleList} />
+            <SearchScreen setTitleList={setTitleList} setIsShow={setIsShow}/>
           </ModalForSearch>
         </TitleListContainer>
 
