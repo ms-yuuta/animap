@@ -1,3 +1,4 @@
+import { useHandleDisplay } from "hooks/useHandleDisplay";
 import React, { useCallback, useEffect, useState } from "react";
 
 type AnimeInfo = {
@@ -8,17 +9,16 @@ type AnimeInfo = {
 };
 
 export const useSearchAnime = (
-  setWorkList: React.Dispatch<React.SetStateAction<string[]>>
+  setWorkList: React.Dispatch<React.SetStateAction<string[]>>,
+  setIsShow: React.Dispatch<React.SetStateAction<boolean>>
 ): AnimeInfo => {
   const [text, setText] = useState("");
   const [regex, setRegex] = useState<RegExp | undefined>(undefined);
 
-  const handleChange = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>): void => {
-      setText(e.target.value);
-    },
-    []
-  );
+  const handleDisplay = useHandleDisplay(setIsShow);
+  const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>): void => {
+    setText(e.target.value);
+  }, []);
 
   // 検索エンジン
   useEffect(() => {
@@ -34,8 +34,9 @@ export const useSearchAnime = (
       setWorkList((prevArray: string[]) => {
         return title ? [...prevArray, title] : [...prevArray, text];
       });
+      handleDisplay();
     },
-    [text, setWorkList]
+    [text, setWorkList, handleDisplay]
   );
 
   return {
