@@ -4,7 +4,7 @@ import { Fallback } from "model";
 import { getStaticProps } from "./map.hooks";
 import { useCallback, useEffect, useState } from "react";
 import { useHandleDisplay } from "hooks/useHandleDisplay";
-import { Layout } from "Layout";
+import { MapLayout } from "Layout";
 import { TitleListContainer } from "components/TitleListContainer";
 import { ModalForSearch } from "components/Modal";
 import { SearchScreen } from "components/Modal/SearchScreen";
@@ -34,7 +34,7 @@ export const App: NextPage<{ fallback: Fallback }> = (props) => {
 
   return (
     <SWRConfig value={{ fallback }}>
-      <Layout>
+      <MapLayout>
         <TitleListContainer
           isShow={isShow}
           setTitleList={setTitleList}
@@ -42,12 +42,12 @@ export const App: NextPage<{ fallback: Fallback }> = (props) => {
           titleList={titleList}
         >
           <ModalForSearch setIsShow={setIsShow} handleDisplay={handleDisplay}>
-            <SearchScreen setTitleList={setTitleList} setIsShow={setIsShow}/>
+            <SearchScreen setTitleList={setTitleList} setIsShow={setIsShow} />
           </ModalForSearch>
         </TitleListContainer>
 
         <Map GoogleMapComponent={<GoogleMapComponent titleList={titleList} />} />
-      </Layout>
+      </MapLayout>
     </SWRConfig>
   );
 };
