@@ -2,10 +2,9 @@ import { Html, Head, Main, NextScript } from "next/document";
 
 const MyDocument = () => {
   const url = "https://animap.vercel.app/";
-  const title = "AniMap";
+  const title = "アニメ聖地AniMap";
   const description =
-    "AniMap is a tool for visualizing and analyzing the dynamics of an animated graph.";
-
+    "アニメ聖地AniMapは全国のアニメ聖地を地図上にマッピングするアプリケーションである。試練は、最新の聖地情報を反映させることと、聖地巡礼を普及するすることである。";
   return (
     <Html lang="ja-JP">
       <Head>
@@ -14,6 +13,7 @@ const MyDocument = () => {
         <meta property="og:type" content="website" />
         <meta property="og:title" content={title} />
         <meta property="og:url" content={url} />
+        <meta property="og:description" content={description} />
         <meta property="og:site_name" content={title} />
       </Head>
       <body>
