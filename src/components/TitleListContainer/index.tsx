@@ -1,8 +1,9 @@
 import React, { VFC } from "react";
-import { Box, Button, Chip, Stack, Theme } from "@mui/material";
+import { Box, Button, Chip, Stack, Theme, IconButton } from "@mui/material";
 import { TitleChip } from "./Chip";
 import { useChipBgColor, useDeleteChip } from "./chip.hooks";
 import SearchIcon from "@mui/icons-material/Search";
+import AddLocationAltIcon from "@mui/icons-material/AddLocationAlt";
 
 const boxStyle = {
   display: "inline-block",
@@ -14,6 +15,20 @@ const boxStyle = {
   marginTop: 1.6,
   borderRadius: 1,
 } as const;
+
+const IconStyle = {
+  display: "inline-block",
+  position: "absolute",
+  top: 0,
+  right: "10px",
+  zIndex: "tooltip",
+  bgcolor: "background.paper",
+  marginTop: 1.0,
+  borderRadius: 0,
+  ":hover": {
+    bgcolor: "background.paper",
+  },
+};
 
 const stackStyle = {
   height: 50,
@@ -44,6 +59,9 @@ export const TitleListContainer: VFC<Props> = (props) => {
           Search...
         </Button>
       </Box>
+      <IconButton sx={IconStyle} onClick={props.handleDisplay}>
+        <AddLocationAltIcon />
+      </IconButton>
       <Stack direction="row" spacing={2} sx={stackStyle}>
         {props.titleList.map((title: string, i: number) => {
           return (
