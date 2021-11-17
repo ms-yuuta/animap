@@ -1,7 +1,7 @@
 import { useFetchSeichi } from "hooks/useFetchArray";
 import { SeichiMarker } from "components/Map/SeichiMarker";
 
-export const GoogleMapComponent = (props: { titleList: string[] }) => {
+export const GoogleMapComponent = (props: { userTitleList: string[] }) => {
   const { data, error, isLoading } = useFetchSeichi();
 
   if (isLoading) {
@@ -14,9 +14,9 @@ export const GoogleMapComponent = (props: { titleList: string[] }) => {
   return (
     <div>
       {data?.map((item) => {
-        return props.titleList.length > 0 ? (
+        return props.userTitleList.length > 0 ? (
           <div key={item.id}>
-            <SeichiMarker titleList={props.titleList} item={item} />
+            <SeichiMarker userTitleList={props.userTitleList} item={item} />
           </div>
         ) : null;
       })}

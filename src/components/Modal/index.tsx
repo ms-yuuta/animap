@@ -30,12 +30,7 @@ export const ModalForSearch: VFC<Props> = (props) => {
       // aria-labelledby="modal-modal-title"
       // aria-describedby="modal-modal-description"
     >
-      <Box sx={style}>
-        {props.children}
-        <Button size="medium" variant="outlined" onClick={props.handleDisplay}>
-          CLOSE
-        </Button>
-      </Box>
+      <Box sx={style}>{props.children}</Box>
     </Modal>
   );
 };

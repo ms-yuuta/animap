@@ -10,12 +10,13 @@ import { ModalForSearch } from "components/Modal";
 import { SearchScreen } from "components/Modal/SearchScreen";
 import { Map } from "components/Map";
 import { GoogleMapComponent } from "components/Map/GoogleMapComponent";
+import { Button } from "@mui/material";
 
 export { getStaticProps };
 
 export const App: NextPage<{ fallback: Fallback }> = (props) => {
   const { fallback } = props;
-  const [titleList, setTitleList] = useState<string[]>([]);
+  const [userTitleList, setUserTitleList] = useState<string[]>([]);
   const [isShow, setIsShow] = useState(false);
   const handleDisplay = useHandleDisplay(setIsShow);
   useHandleKeyEvent(setIsShow);
@@ -25,16 +26,21 @@ export const App: NextPage<{ fallback: Fallback }> = (props) => {
       <MapLayout>
         <TitleListContainer
           isShow={isShow}
-          setTitleList={setTitleList}
+          setUserTitleList={setUserTitleList}
           handleDisplay={handleDisplay}
-          titleList={titleList}
+          userTitleList={userTitleList}
         >
           <ModalForSearch setIsShow={setIsShow} handleDisplay={handleDisplay}>
-            <SearchScreen setTitleList={setTitleList} setIsShow={setIsShow} />
+            <div>
+              <SearchScreen setUserTitleList={setUserTitleList} setIsShow={setIsShow} />
+              <Button size="medium" variant="outlined" onClick={handleDisplay}>
+                CLOSE
+              </Button>
+            </div>
           </ModalForSearch>
         </TitleListContainer>
 
-        <Map GoogleMapComponent={<GoogleMapComponent titleList={titleList} />} />
+        <Map GoogleMapComponent={<GoogleMapComponent userTitleList={userTitleList} />} />
       </MapLayout>
     </SWRConfig>
   );

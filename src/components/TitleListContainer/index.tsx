@@ -1,6 +1,5 @@
 import React, { VFC } from "react";
-import { Box, Button, Chip, Stack, Theme, IconButton } from "@mui/material";
-import { TitleChip } from "./Chip";
+import { Box, Button, Chip, Stack, Theme, IconButton, ListItem } from "@mui/material";
 import { useChipBgColor, useDeleteChip } from "./chip.hooks";
 import SearchIcon from "@mui/icons-material/Search";
 import AddLocationAltIcon from "@mui/icons-material/AddLocationAlt";
@@ -45,13 +44,14 @@ type Props = {
   isShow: boolean;
   children: JSX.Element;
   handleDisplay: () => void;
-  titleList: string[];
-  setTitleList: React.Dispatch<React.SetStateAction<string[]>>;
+  userTitleList: string[];
+  setUserTitleList: React.Dispatch<React.SetStateAction<string[]>>;
 };
 
 export const TitleListContainer: VFC<Props> = (props) => {
-  const handleDelete = useDeleteChip(props.setTitleList);
+  const handleDelete = useDeleteChip(props.setUserTitleList);
   const chipBgColor = useChipBgColor();
+
   return (
     <div>
       <Box sx={boxStyle}>
@@ -63,27 +63,22 @@ export const TitleListContainer: VFC<Props> = (props) => {
         <AddLocationAltIcon />
       </IconButton>
       <Stack direction="row" spacing={2} sx={stackStyle}>
-        {props.titleList.map((title: string, i: number) => {
+        {props.userTitleList.map((title: string, i: number) => {
           return (
-            <TitleChip
-              key={title}
-              chip={
-                <Chip
-                  label={title}
-                  onDelete={() => {
-                    handleDelete(i);
-                  }}
-                  sx={{
-                    boxShadow: 2,
-                    bgcolor: (theme: Theme) => chipBgColor(i),
-                  }}
-                />
-              }
-            />
+            <ListItem sx={{ p: 0 }} key={title}>
+              <Chip
+                label={title}
+                onDelete={() => handleDelete(i)}
+                sx={{
+                  boxShadow: 2,
+                  bgcolor: (theme: Theme) => chipBgColor(i),
+                }}
+              />
+            </ListItem>
           );
         })}
       </Stack>
-      {props.isShow ? props.children : null}
+      {props.isShow && props.children}
     </div>
   );
 };
