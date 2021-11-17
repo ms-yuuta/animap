@@ -2,8 +2,8 @@ import type { NextPage } from "next";
 import { SWRConfig } from "swr";
 import { Fallback } from "model";
 import { getStaticProps } from "./map.hooks";
-import { useCallback, useEffect, useState } from "react";
-import { useHandleDisplay } from "hooks/useHandleDisplay";
+import { useState } from "react";
+import { useHandleDisplay, useHandleKeyEvent } from "hooks/useHandler";
 import { MapLayout } from "Layout";
 import { TitleListContainer } from "components/TitleListContainer";
 import { ModalForSearch } from "components/Modal";
@@ -18,19 +18,7 @@ export const App: NextPage<{ fallback: Fallback }> = (props) => {
   const [titleList, setTitleList] = useState<string[]>([]);
   const [isShow, setIsShow] = useState(false);
   const handleDisplay = useHandleDisplay(setIsShow);
-
-  const handleKeyDown = useCallback(
-    (ev: KeyboardEvent) => {
-      if (ev.key === "k" && (ev.ctrlKey || ev.metaKey)) {
-        handleDisplay();
-      }
-    },
-    [handleDisplay]
-  );
-
-  useEffect(() => {
-    document.addEventListener("keydown", handleKeyDown);
-  }, [handleKeyDown]);
+  useHandleKeyEvent(setIsShow);
 
   return (
     <SWRConfig value={{ fallback }}>

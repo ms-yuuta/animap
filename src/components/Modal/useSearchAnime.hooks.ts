@@ -1,4 +1,4 @@
-import { useHandleDisplay } from "hooks/useHandleDisplay";
+import { useHandleDisplay } from "hooks/useHandler";
 import React, { useCallback, useEffect, useState } from "react";
 
 type AnimeInfo = {

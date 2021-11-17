@@ -4,14 +4,15 @@ import { useState } from "react";
 import { Button } from "@mui/material";
 import AddLocationAltIcon from "@mui/icons-material/AddLocationAlt";
 import { GoogleFormModal } from "components/GoogleFormModal/GoogleFormModal";
-import { useHandleDisplay } from "hooks/useHandleDisplay";
-import { Layout } from "Layout";
+import { useHandleDisplay } from "hooks/useHandler";
+import { HomeLayout } from "Layout";
 import Link from "next/link";
 import Image from "next/image";
 
 const boxStyle = {
   position: "relative",
   maxWidth: "1000px",
+  maxHeight: "500px",
   mx: "auto",
   ":hover": { cursor: "pointer", opacity: 0.8 },
 };
@@ -21,7 +22,7 @@ export const App: NextPage = () => {
   const handleDisplay = useHandleDisplay(setIsShowForm);
 
   return (
-    <Layout>
+    <HomeLayout>
       <Box sx={{ maxHeight: "100vh", px: 10, pt: 15, pb: 4, alignItems: "center" }}>
         <Link href="/map" passHref>
           <Box sx={boxStyle}>
@@ -38,7 +39,7 @@ export const App: NextPage = () => {
         </Box>
         {isShowForm && <GoogleFormModal handleDisplay={handleDisplay} />}
       </Box>
-    </Layout>
+    </HomeLayout>
   );
 };
 
