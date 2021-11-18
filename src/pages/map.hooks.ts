@@ -1,4 +1,6 @@
 import { Fallback, Seichi } from "model";
+import { useCallback, useEffect } from "react";
+import toast from "react-hot-toast";
 
 export const getStaticProps = async (): Promise<{
   props: { fallback: Fallback };
@@ -19,4 +21,17 @@ export const getStaticProps = async (): Promise<{
       },
     },
   };
+};
+
+export const useDisplayWelcomeToast = () => {
+  const notify = useCallback(() => {
+    toast("やっほー！ 上のボタンからアニメタイトルを検索してみて！", {
+      style: { position: "relative", top: "40px" },
+      icon: "👏",
+    });
+  }, []);
+
+  useEffect(() => {
+    notify();
+  }, [notify]);
 };

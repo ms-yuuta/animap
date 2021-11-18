@@ -8,6 +8,7 @@ import { useHandleDisplay } from "hooks/useHandler";
 import { HomeLayout } from "Layout";
 import Link from "next/link";
 import Image from "next/image";
+import { useDisplayLoadingToast } from "./index.hooks";
 
 const boxStyle = {
   position: "relative",
@@ -20,14 +21,23 @@ const boxStyle = {
 export const App: NextPage = () => {
   const [isShowForm, setIsShowForm] = useState(false);
   const handleDisplay = useHandleDisplay(setIsShowForm);
-
+  const notify = useDisplayLoadingToast();
+  
   return (
     <HomeLayout>
       <Box sx={{ maxHeight: "100vh", px: 10, pt: 15, pb: 4, alignItems: "center" }}>
         <Link href="/map" passHref>
-          <Box sx={boxStyle}>
-            <Image src="/Aincrad.png" width={1000} height={500} alt="Aincrad" objectFit="contain" />
-          </Box>
+          <a onClick={notify}>
+            <Box sx={boxStyle}>
+              <Image
+                src="/Aincrad.png"
+                width={1000}
+                height={500}
+                alt="Aincrad"
+                objectFit="contain"
+              />
+            </Box>
+          </a>
         </Link>
         <Box maxWidth="1000px" mx="auto">
           <section>

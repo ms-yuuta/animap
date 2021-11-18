@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
 import { SWRConfig } from "swr";
 import { Fallback } from "model";
-import { getStaticProps } from "./map.hooks";
+import { getStaticProps, useDisplayWelcomeToast } from "./map.hooks";
 import { useState } from "react";
 import { useHandleDisplay, useHandleKeyEvent } from "hooks/useHandler";
 import { MapLayout } from "Layout";
@@ -20,6 +20,7 @@ export const App: NextPage<{ fallback: Fallback }> = (props) => {
   const [isShow, setIsShow] = useState(false);
   const handleDisplay = useHandleDisplay(setIsShow);
   useHandleKeyEvent(setIsShow);
+  useDisplayWelcomeToast();
 
   return (
     <SWRConfig value={{ fallback }}>
@@ -39,7 +40,6 @@ export const App: NextPage<{ fallback: Fallback }> = (props) => {
             </div>
           </ModalForSearch>
         </TitleListContainer>
-
         <Map GoogleMapComponent={<GoogleMapComponent userTitleList={userTitleList} />} />
       </MapLayout>
     </SWRConfig>
