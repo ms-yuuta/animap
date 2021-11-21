@@ -2,7 +2,7 @@ import { useCallback, useEffect } from "react";
 import toast from "react-hot-toast";
 
 export const useDisplayLoadingToast = () => {
-  const notify = useCallback(() => toast.loading("Loading...", { position: "top-right" }), []);
+  const loadingNotify = useCallback(() => toast.loading("Loading...", { position: "top-right" }), []);
 
   useEffect(() => {
     return () => {
@@ -10,5 +10,10 @@ export const useDisplayLoadingToast = () => {
     };
   }, []);
 
-  return notify;
-}
+  return loadingNotify;
+};
+
+export const useDisplayMove = () => {
+  const moveNotify = useCallback(() => toast("View AniMap!!"), []);
+  return moveNotify;
+};
