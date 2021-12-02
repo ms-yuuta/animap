@@ -21,7 +21,7 @@ export const CandidatesList: React.VFC<Props> = (props) => {
     <List disablePadding sx={{ overflow: "auto", maxHeight: "50vh" }}>
       {data?.map((item => {
         return props.regex?.test(item.work) ? (
-          <ListItem disablePadding key={item.work}>
+          <ListItem disablePadding key={item.work_id}>
             <ListItemButton onClick={() => props.handleClick(item.work)}>
               <ListItemText primary={item.work} />
             </ListItemButton>

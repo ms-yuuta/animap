@@ -15,7 +15,7 @@ export const GoogleMapComponent = (props: { titleList: string[] }) => {
     <div>
       {data?.map((item) => {
         return props.titleList.length > 0 ? (
-          <div key={item.id}>
+          <div key={`${item.place}-${item.id}`}>
             <SeichiMarker titleList={props.titleList} item={item} />
           </div>
         ) : null;

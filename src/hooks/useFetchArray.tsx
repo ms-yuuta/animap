@@ -7,9 +7,9 @@ const useFetchArray: FetchFunc<any> = (url) => {
 };
 
 export const useFetchSeichi: FetchData<Seichi> = () => {
-  return useFetchArray("https://jsondata.okiba.me/v1/json/VrDJ8210827043712");
+  return useFetchArray(`${process.env.NEXT_PUBLIC_API_URL}?sheet=seichiList`);
 };
 
 export const useFetchTitleList: FetchData<Title> = () => {
-  return useFetchArray("https://jsondata.okiba.me/v1/json/yJlau210827043212");
+  return useFetchArray(`${process.env.NEXT_PUBLIC_API_URL}?sheet=workList`);
 };
