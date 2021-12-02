@@ -27,11 +27,6 @@ export const getStaticProps = async (): Promise<{
   };
 };
 
-export const useDisplayMove = () => {
-  const moveNotify = useCallback(() => toast("View AniMap!!"), []);
-  return moveNotify;
-};
-
 export const useDisplayWelcomeToast = () => {
   const notify = useCallback(() => {
     toast("やほー！ 上のボタンからアニメタイトルを検索してみて！", {
