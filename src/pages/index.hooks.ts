@@ -1,6 +1,10 @@
-import { Fallback, Seichi, Title } from "model";
+import { Seichi, Title } from "model";
 import { useCallback, useEffect } from "react";
 import toast from "react-hot-toast";
+
+export type Fallback = {
+  [url: string]: Seichi | Title;
+};
 
 export const getStaticProps = async (): Promise<{
   props: { fallback: Fallback };
