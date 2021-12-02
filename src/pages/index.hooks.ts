@@ -1,15 +1,15 @@
-import { Fallback, Seichi } from "model";
+import { Fallback, Seichi, Title } from "model";
 
 export const getStaticProps = async (): Promise<{
   props: { fallback: Fallback };
 }> => {
-  const SEICHI_API_URL = "https://jsondata.okiba.me/v1/json/VrDJ8210827043712";
+  const SEICHI_API_URL = `${process.env.NEXT_PUBLIC_API_URL}?sheet=seichiList`;
   const seichi = await fetch(SEICHI_API_URL);
   const seichiData: Seichi = await seichi.json();
 
-  const TITLE_API_URL = "https://jsondata.okiba.me/v1/json/yJlau210827043212";
+  const TITLE_API_URL = `${process.env.NEXT_PUBLIC_API_URL}?sheet=workList`;
   const title = await fetch(TITLE_API_URL);
-  const titleData = await title.json();
+  const titleData: Title = await title.json();
 
   return {
     props: {

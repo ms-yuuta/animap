@@ -23,10 +23,10 @@ export const SeichiMarker: React.VFC<Props> = (props) => {
     case 2:
     case 3:
     case 4: {
-      const position = { lat: props.item.latitude, lng: props.item.longitude };
+      const position = { lat: parseFloat(props.item.latitude), lng: parseFloat(props.item.longitude) };
       return (
         <Marker
-          key={props.item.id}
+          key={`${props.item.place}-${props.item.id}`}
           position={position}
           cursor={props.item.place}
           icon={`https://maps.google.com/mapfiles/ms/icons/${markerColor}-dot.png`}

@@ -1,12 +1,16 @@
 export type Seichi = {
-  id: number;
+  id: string;
   work: string;
+  work_id: string;
   place: string;
-  latitude: number;
-  longitude: number;
+  prefecture: string;
+  address: string;
+  latitude: string;
+  longitude: string;
 };
 
 export type Title = {
+  work_id: string;
   work: string;
 };
 
