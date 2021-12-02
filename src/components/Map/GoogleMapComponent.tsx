@@ -1,10 +1,13 @@
-import { useFetchSeichi } from "hooks/useFetchArray";
 import { SeichiMarker } from "components/Map/SeichiMarker";
+import { Seichi } from "model";
+import useSWRImmutable from "swr/immutable";
 
 export const GoogleMapComponent = (props: { titleList: string[] }) => {
-  const { data, error, isLoading } = useFetchSeichi();
+  const { data, error } = useSWRImmutable<Seichi[], Error>(
+    "https://jsondata.okiba.me/v1/json/VrDJ8210827043712"
+  );
 
-  if (isLoading) {
+  if (!data && !error) {
     return <h2>Now Loading....</h2>;
   }
 

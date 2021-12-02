@@ -1,5 +1,6 @@
-import { useFetchTitleList } from "hooks/useFetchArray";
+import useSWRImmutable from "swr/immutable";
 import { List, ListItem, ListItemButton, ListItemText } from "@mui/material";
+import { Title } from "model";
 
 type Props = {
   regex: RegExp | undefined;
@@ -7,9 +8,11 @@ type Props = {
 };
 
 export const CandidatesList: React.VFC<Props> = (props) => {
-  const { data, error, isLoading } = useFetchTitleList();
+  const { data, error } = useSWRImmutable<Title[], Error>(
+    "https://jsondata.okiba.me/v1/json/yJlau210827043212"
+  );
 
-  if (isLoading) {
+  if (!data && !error) {
     return <h2>Now Loading....</h2>;
   }
 
@@ -19,7 +22,7 @@ export const CandidatesList: React.VFC<Props> = (props) => {
 
   return (
     <List disablePadding sx={{ overflow: "auto", maxHeight: "50vh" }}>
-      {data?.map((item => {
+      {data?.map((item) => {
         return props.regex?.test(item.work) ? (
           <ListItem disablePadding key={item.work}>
             <ListItemButton onClick={() => props.handleClick(item.work)}>
@@ -27,7 +30,7 @@ export const CandidatesList: React.VFC<Props> = (props) => {
             </ListItemButton>
           </ListItem>
         ) : null;
-      }))}
+      })}
     </List>
   );
 };
