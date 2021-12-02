@@ -1,9 +1,9 @@
 import type { NextPage } from "next";
 import { SWRConfig } from "swr";
-import { Fallback } from "model";
+import { Fallback } from "./index.hooks";
 import { getStaticProps } from "./index.hooks";
-import { useCallback, useEffect, useState } from "react";
-import { useHandleDisplay } from "hooks/useHandleDisplay";
+import { useState } from "react";
+import { useHandleDisplay, useHandleKeyDown } from "hooks/useHandler";
 import { Layout } from "Layout";
 import { TitleListContainer } from "components/TitleListContainer";
 import { ModalForSearch } from "components/Modal";
@@ -18,20 +18,8 @@ export const App: NextPage<{ fallback: Fallback }> = (props) => {
   const [titleList, setTitleList] = useState<string[]>([]);
   const [isShow, setIsShow] = useState(false);
   const handleDisplay = useHandleDisplay(setIsShow);
-
-  const handleKeyDown = useCallback(
-    (ev: KeyboardEvent) => {
-      if (ev.key === "k" && (ev.ctrlKey || ev.metaKey)) {
-        handleDisplay();
-      }
-    },
-    [handleDisplay]
-  );
-
-  useEffect(() => {
-    document.addEventListener("keydown", handleKeyDown);
-  }, [handleKeyDown]);
-
+  useHandleKeyDown(setIsShow);
+ 
   return (
     <SWRConfig value={{ fallback }}>
       <Layout>
@@ -45,7 +33,6 @@ export const App: NextPage<{ fallback: Fallback }> = (props) => {
             <SearchScreen setTitleList={setTitleList} setIsShow={setIsShow}/>
           </ModalForSearch>
         </TitleListContainer>
-
         <Map GoogleMapComponent={<GoogleMapComponent titleList={titleList} />} />
       </Layout>
     </SWRConfig>
