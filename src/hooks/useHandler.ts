@@ -4,10 +4,11 @@ export const useHandleDisplay = (setIsShow: React.Dispatch<React.SetStateAction<
   const handleDisplay = useCallback(() => {
     setIsShow((prevIsShow: boolean) => !prevIsShow);
   }, [setIsShow]);
+
   return handleDisplay;
 };
 
-export const useHandleKeyDown = (setIsShow: React.Dispatch<React.SetStateAction<boolean>>) => {
+export const useHandleKeyEvent = (setIsShow: React.Dispatch<React.SetStateAction<boolean>>) => {
   const handleDisplay = useHandleDisplay(setIsShow);
   const handleKeyDown = useCallback(
     (ev: KeyboardEvent) => {

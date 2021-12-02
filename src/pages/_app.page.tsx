@@ -12,7 +12,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       <ThemeProvider theme={theme}>
         <div>
           <Component {...pageProps} />
-          <Toaster toastOptions={{ duration: 4000, style: { border: "1px solid #26a69a" } }} />
+          <Toaster toastOptions={{ duration: 4000, style: { border: "1px solid #3460AB" } }} />
         </div>
       </ThemeProvider>
     </SWRConfig>

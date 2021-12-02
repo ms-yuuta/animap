@@ -5,12 +5,12 @@ import { CandidatesList } from "./CandidatesList";
 import { useSearchAnime } from "./useSearchAnime.hooks";
 
 type Props = {
-  setTitleList: React.Dispatch<React.SetStateAction<string[]>>;
+  setUserTitleList: React.Dispatch<React.SetStateAction<string[]>>;
   setIsShow: React.Dispatch<React.SetStateAction<boolean>>
 };
 
 export const SearchScreen: VFC<Props> = (props) => {
-  const { handleChange, handleClick, text, regex } = useSearchAnime(props.setTitleList, props.setIsShow);
+  const { handleChange, handleClick, text, regex } = useSearchAnime(props.setUserTitleList, props.setIsShow);
   return (
     <div>
       <Stack direction="row" spacing={2}>

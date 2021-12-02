@@ -6,7 +6,7 @@ type Props = {
   children: ReactNode;
 };
 
-export const Layout: VFC<Props> = ({ children }) => {
+export const MapLayout: VFC<Props> = ({ children }) => {
   return (
     <Box height="100vh" width="100%">
       <main>
