@@ -29,7 +29,7 @@ export const getStaticProps = async (): Promise<{
 
 export const useDisplayWelcomeToast = () => {
   const notify = useCallback(() => {
-    toast("やほー！　上のボタンからアニメタイトルを検索してみて！", {
+    toast("やほー！ 上のボタンからアニメタイトルを検索してみて！", {
       style: { position: "relative", top: "40px" },
       icon: "👏",
     });

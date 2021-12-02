@@ -20,7 +20,7 @@ export const App: NextPage<{ fallback: Fallback }> = (props) => {
   const handleDisplay = useHandleDisplay(setIsShow);
   useHandleKeyDown(setIsShow);
   useDisplayWelcomeToast();
- 
+
   return (
     <SWRConfig value={{ fallback }}>
       <Layout>
