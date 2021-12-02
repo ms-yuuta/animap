@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
 import { SWRConfig } from "swr";
+import { getStaticProps, useDisplayWelcomeToast } from "./index.hooks";
 import { Fallback } from "./index.hooks";
-import { getStaticProps } from "./index.hooks";
 import { useState } from "react";
 import { useHandleDisplay, useHandleKeyDown } from "hooks/useHandler";
 import { Layout } from "Layout";
@@ -19,6 +19,7 @@ export const App: NextPage<{ fallback: Fallback }> = (props) => {
   const [isShow, setIsShow] = useState(false);
   const handleDisplay = useHandleDisplay(setIsShow);
   useHandleKeyDown(setIsShow);
+  useDisplayWelcomeToast();
  
   return (
     <SWRConfig value={{ fallback }}>
@@ -30,7 +31,7 @@ export const App: NextPage<{ fallback: Fallback }> = (props) => {
           titleList={titleList}
         >
           <ModalForSearch setIsShow={setIsShow} handleDisplay={handleDisplay}>
-            <SearchScreen setTitleList={setTitleList} setIsShow={setIsShow}/>
+            <SearchScreen setTitleList={setTitleList} setIsShow={setIsShow} />
           </ModalForSearch>
         </TitleListContainer>
         <Map GoogleMapComponent={<GoogleMapComponent titleList={titleList} />} />

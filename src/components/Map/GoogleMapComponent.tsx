@@ -4,7 +4,7 @@ import useSWRImmutable from "swr/immutable";
 
 export const GoogleMapComponent = (props: { titleList: string[] }) => {
   const { data, error } = useSWRImmutable<Seichi[], Error>(
-    "https://jsondata.okiba.me/v1/json/VrDJ8210827043712"
+    `${process.env.NEXT_PUBLIC_API_URL}?sheet=seichiList`
   );
 
   if (!data && !error) {
@@ -18,7 +18,7 @@ export const GoogleMapComponent = (props: { titleList: string[] }) => {
     <div>
       {data?.map((item) => {
         return props.titleList.length > 0 ? (
-          <div key={item.id}>
+          <div key={`${item.place}-${item.id}`}>
             <SeichiMarker titleList={props.titleList} item={item} />
           </div>
         ) : null;

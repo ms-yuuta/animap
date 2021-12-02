@@ -27,6 +27,6 @@ export const useMarkerColor =(index: number) => {
   }, [index]);
 
   return markerColor;
-}  
+}
 
   

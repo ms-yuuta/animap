@@ -9,7 +9,7 @@ type Props = {
 
 export const CandidatesList: React.VFC<Props> = (props) => {
   const { data, error } = useSWRImmutable<Title[], Error>(
-    "https://jsondata.okiba.me/v1/json/yJlau210827043212"
+    `${process.env.NEXT_PUBLIC_API_URL}?sheet=workList`
   );
 
   if (!data && !error) {
@@ -24,7 +24,7 @@ export const CandidatesList: React.VFC<Props> = (props) => {
     <List disablePadding sx={{ overflow: "auto", maxHeight: "50vh" }}>
       {data?.map((item) => {
         return props.regex?.test(item.work) ? (
-          <ListItem disablePadding key={item.work}>
+          <ListItem disablePadding key={item.work_id}>
             <ListItemButton onClick={() => props.handleClick(item.work)}>
               <ListItemText primary={item.work} />
             </ListItemButton>
