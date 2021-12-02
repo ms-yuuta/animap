@@ -1,4 +1,8 @@
-import { Fallback, Seichi } from "model";
+import { Seichi, Title } from "model";
+
+export type Fallback = {
+  [url: string]: Seichi | Title;
+};
 
 export const getStaticProps = async (): Promise<{
   props: { fallback: Fallback };

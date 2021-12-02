@@ -7,28 +7,28 @@ type Props = {
   handleDisplay: () => void;
 };
 
-export const ModalForSearch: VFC<Props> = (props) => {
-  const style = {
-    maxWidth: 500,
-    width: "50%",
-    minWidth: 230,
-    maxHeight: "70%",
-    p: 4,
-    position: "absolute" as "absolute",
-    top: "54%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
-    bgcolor: "background.paper",
-    borderRadius: 1,
-    boxShadow: 24,
-  };
+const style = {
+  maxWidth: 500,
+  width: "50%",
+  minWidth: 230,
+  maxHeight: "70%",
+  p: 4,
+  position: "absolute" as "absolute",
+  top: "54%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  bgcolor: "background.paper",
+  borderRadius: 1,
+  boxShadow: 24,
+};
 
+export const ModalForSearch: VFC<Props> = (props) => {
   return (
     <Modal
       open={true}
       onClose={props.handleDisplay}
-      // aria-labelledby="modal-modal-title"
-      // aria-describedby="modal-modal-description"
+      aria-labelledby="seichi-modal"
+      aria-describedby="modal-search-seichi"
     >
       <Box sx={style}>
         {props.children}
