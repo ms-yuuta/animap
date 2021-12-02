@@ -9,7 +9,7 @@ type Props = {
 
 export const CandidatesList: React.VFC<Props> = (props) => {
   const { data, error } = useSWRImmutable<Title[], Error>(
-    "https://jsondata.okiba.me/v1/json/yJlau210827043212"
+    `${process.env.NEXT_PUBLIC_API_URL}?sheet=workList`
   );
 
   if (!data && !error) {

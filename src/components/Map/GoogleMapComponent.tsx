@@ -4,7 +4,7 @@ import useSWRImmutable from "swr/immutable";
 
 export const GoogleMapComponent = (props: { titleList: string[] }) => {
   const { data, error } = useSWRImmutable<Seichi[], Error>(
-    "https://jsondata.okiba.me/v1/json/VrDJ8210827043712"
+    `${process.env.NEXT_PUBLIC_API_URL}?sheet=seichiList`
   );
 
   if (!data && !error) {
