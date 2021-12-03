@@ -1,8 +1,10 @@
-import React, { VFC } from "react";
+import React, { useState, VFC } from "react";
 import { Box, Button, Chip, Stack, Theme, IconButton, ListItem } from "@mui/material";
 import { useChipBgColor, useDeleteChip } from "./chip.hooks";
 import SearchIcon from "@mui/icons-material/Search";
 import AddLocationAltIcon from "@mui/icons-material/AddLocationAlt";
+import { useHandleDisplay } from "hooks/useHandler";
+import { GoogleFormModal } from "components/GoogleFormModal/GoogleFormModal";
 
 const boxStyle = {
   display: "inline-block",
@@ -51,6 +53,8 @@ type Props = {
 export const TitleListContainer: VFC<Props> = (props) => {
   const handleDelete = useDeleteChip(props.setUserTitleList);
   const chipBgColor = useChipBgColor();
+  const [isFormOpen, setIsFromOpen] = useState(false);
+  const handleFormShow = useHandleDisplay(setIsFromOpen);
 
   return (
     <div>
@@ -59,9 +63,10 @@ export const TitleListContainer: VFC<Props> = (props) => {
           Search...
         </Button>
       </Box>
-      <IconButton sx={IconStyle} onClick={props.handleDisplay}>
+      <IconButton sx={IconStyle} onClick={handleFormShow}>
         <AddLocationAltIcon />
       </IconButton>
+      {isFormOpen && <GoogleFormModal handleClose={handleFormShow} />}
       <Stack direction="row" spacing={2} sx={stackStyle}>
         {props.userTitleList.map((title: string, i: number) => {
           return (
