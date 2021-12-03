@@ -30,11 +30,11 @@ export const SeichiMarker: React.VFC<Props> = (props) => {
           position={position}
           cursor={props.item.place}
           icon={`https://maps.google.com/mapfiles/ms/icons/${markerColor}-dot.png`}
-          onClick={() => setMarker(props.item.place)}
-          onMouseOver={() => setMarker(props.item.place)}
+          onClick={() => setMarker(props.item.id)}
+          onMouseOver={() => setMarker(props.item.id)}
           onMouseOut={() => setMarker("")}
         >
-          {selectedMarker && selectedMarker == props.item.place && (
+          {selectedMarker && selectedMarker == props.item.id && (
             <InfoWindow onCloseClick={() => setMarker("")}>
               <div>
                 {/* <Link href={"/seichi/" + props.item.id}></Link> */}

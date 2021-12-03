@@ -1,9 +1,9 @@
 import { SeichiMarker } from "components/Map/SeichiMarker";
 import { Seichi } from "model";
-import useSWRImmutable from "swr/immutable";
+import useSWR from "swr";
 
 export const GoogleMapComponent = (props: { userTitleList: string[] }) => {
-  const { data, error } = useSWRImmutable<Seichi[], Error>(
+  const { data, error } = useSWR<Seichi[], Error>(
     `${process.env.NEXT_PUBLIC_API_URL}?sheet=seichiList`
   );
 
@@ -18,7 +18,7 @@ export const GoogleMapComponent = (props: { userTitleList: string[] }) => {
     <div>
       {data?.map((item) => {
         return props.userTitleList.length > 0 ? (
-          <div key={item.id}>
+          <div key={`${item.place}-${item.id}`}>
             <SeichiMarker userTitleList={props.userTitleList} item={item} />
           </div>
         ) : null;
