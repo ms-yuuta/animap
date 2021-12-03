@@ -5,7 +5,7 @@ import { useMarkerColor } from "./map.hooks";
 
 type Props = {
   item: Seichi;
-  titleList: string[];
+  userTitleList: string[];
 };
 
 export const SeichiMarker: React.VFC<Props> = (props) => {
@@ -14,7 +14,7 @@ export const SeichiMarker: React.VFC<Props> = (props) => {
   const markerColor = useMarkerColor(index);
 
   useEffect(() => {
-    setIndex(props.titleList.indexOf(props.item.work));
+    setIndex(props.userTitleList.indexOf(props.item.work));
   }, [props]);
 
   switch (index) {
