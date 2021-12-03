@@ -1,4 +1,5 @@
 import { Seichi, Title } from "model";
+import { GetStaticProps } from "next";
 import { useCallback, useEffect } from "react";
 import toast from "react-hot-toast";
 
@@ -6,9 +7,11 @@ export type Fallback = {
   [url: string]: Seichi | Title;
 };
 
-export const getStaticProps = async (): Promise<{
-  props: { fallback: Fallback };
-}> => {
+type Props = {
+  fallback: { [url: string]: Seichi | Title };
+};
+
+export const getStaticProps: GetStaticProps<Props> = async () => {
   const SEICHI_API_URL = `${process.env.NEXT_PUBLIC_API_URL}?sheet=seichiList`;
   const seichi = await fetch(SEICHI_API_URL);
   const seichiData: Seichi = await seichi.json();
@@ -24,6 +27,7 @@ export const getStaticProps = async (): Promise<{
         [TITLE_API_URL]: titleData,
       },
     },
+    revalidate: 10,
   };
 };
 

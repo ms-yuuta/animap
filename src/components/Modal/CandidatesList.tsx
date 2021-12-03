@@ -1,4 +1,4 @@
-import useSWR from "swr";
+import useSWRImmutable from "swr/immutable";
 import { List, ListItem, ListItemButton, ListItemText } from "@mui/material";
 import { Title } from "model";
 
@@ -8,7 +8,7 @@ type Props = {
 };
 
 export const CandidatesList: React.VFC<Props> = (props) => {
-  const { data, error } = useSWR<Title[], Error>(
+  const { data, error } = useSWRImmutable<Title[], Error>(
     `${process.env.NEXT_PUBLIC_API_URL}?sheet=workList`
   );
 

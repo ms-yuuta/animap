@@ -1,9 +1,9 @@
 import { SeichiMarker } from "components/Map/SeichiMarker";
 import { Seichi } from "model";
-import useSWR from "swr";
+import useSWRImmutable from "swr/immutable";
 
 export const GoogleMapComponent = (props: { userTitleList: string[] }) => {
-  const { data, error } = useSWR<Seichi[], Error>(
+  const { data, error } = useSWRImmutable<Seichi[], Error>(
     `${process.env.NEXT_PUBLIC_API_URL}?sheet=seichiList`
   );
 
