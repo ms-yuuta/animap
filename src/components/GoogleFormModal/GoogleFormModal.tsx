@@ -18,12 +18,12 @@ const style = {
 };
 
 type Props = {
-  handleDisplay: () => void;
+  handleClose: () => void;
 };
 
 export const GoogleFormModal: VFC<Props> = (props) => {
   return (
-    <Modal open={true} onClose={props.handleDisplay}>
+    <Modal open={true} onClose={props.handleClose}>
       <Box sx={style}>
         <iframe
           src="https://docs.google.com/forms/d/e/1FAIpQLSfKB1qmh6uJ1jaUKl-3cy9NSFoB0O2vHDEtM8F4hjlOR8-EkQ/viewform?embedded=true"
