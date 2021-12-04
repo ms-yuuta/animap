@@ -12,11 +12,11 @@ type Props = {
 };
 
 export const getStaticProps: GetStaticProps<Props> = async () => {
-  const SEICHI_API_URL = `${process.env.NEXT_PUBLIC_API_URL}?sheet=seichiList`;
+  const SEICHI_API_URL = `${process.env.NEXT_PUBLIC_API_URL}?type=seichiList`;
   const seichi = await fetch(SEICHI_API_URL);
   const seichiData: Seichi = await seichi.json();
 
-  const TITLE_API_URL = `${process.env.NEXT_PUBLIC_API_URL}?sheet=workList`;
+  const TITLE_API_URL = `${process.env.NEXT_PUBLIC_API_URL}?type=workList`;
   const title = await fetch(TITLE_API_URL);
   const titleData: Title = await title.json();
 

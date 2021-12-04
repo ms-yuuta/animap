@@ -4,7 +4,7 @@ import useSWRImmutable from "swr/immutable";
 
 export const GoogleMapComponent = (props: { userTitleList: string[] }) => {
   const { data, error } = useSWRImmutable<Seichi[], Error>(
-    `${process.env.NEXT_PUBLIC_API_URL}?sheet=seichiList`
+    `${process.env.NEXT_PUBLIC_API_URL}?type=seichiList`
   );
 
   if (!data && !error) {
