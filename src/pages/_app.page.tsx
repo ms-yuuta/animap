@@ -8,7 +8,14 @@ import { Toaster } from "react-hot-toast";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <SWRConfig value={{ fetcher }}>
+    <SWRConfig
+      value={{
+        refreshInterval: 5000,
+        fetcher,
+        revalidateOnFocus: false,
+        revalidateOnReconnect: false,
+      }}
+    >
       <ThemeProvider theme={theme}>
         <div>
           <Component {...pageProps} />
