@@ -5,8 +5,19 @@ type AnimeInfo = {
   regex: RegExp | undefined;
   text: string;
   handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  handleClick: (title?: string) => void;
+  handleClick: (title: string) => void;
 };
+
+export const addHistoryList = async (title: string) => {
+  // const title = e.target.value;
+  const localList = localStorage.getItem("HistoryList");
+  if(localList) {
+    const newData = localList + `,${title}`;
+    localStorage.setItem("HistoryList", newData);
+  } else {
+    localStorage.setItem("HistoryList", title);
+  }
+}
 
 export const useSearchAnime = (
   setUserTitleList: React.Dispatch<React.SetStateAction<string[]>>,
@@ -26,13 +37,14 @@ export const useSearchAnime = (
   }, [text]);
 
   const handleClick = useCallback(
-    (title?: string) => {
+    (title: string) => {
       setUserTitleList((prevArray: string[]) => {
-        return title ? [...prevArray, title] : [...prevArray, text];
+        return [...prevArray, title];
       });
       handleDisplay();
+      addHistoryList(title);
     },
-    [text, setUserTitleList, handleDisplay]
+    [setUserTitleList, handleDisplay]
   );
 
   return {
@@ -42,3 +54,4 @@ export const useSearchAnime = (
     handleClick,
   };
 };
+

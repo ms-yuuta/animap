@@ -1,31 +1,44 @@
-import { Button, Stack, TextField } from "@mui/material";
+import { Button, InputAdornment, Stack, TextField } from "@mui/material";
 import { Box } from "@mui/system";
 import React, { VFC } from "react";
 import { CandidatesList } from "./CandidatesList";
 import { useSearchAnime } from "./useSearchAnime.hooks";
+import SearchIcon from "@mui/icons-material/Search";
 
 type Props = {
   setUserTitleList: React.Dispatch<React.SetStateAction<string[]>>;
-  setIsShow: React.Dispatch<React.SetStateAction<boolean>>
+  setIsShow: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export const SearchScreen: VFC<Props> = (props) => {
-  const { handleChange, handleClick, text, regex } = useSearchAnime(props.setUserTitleList, props.setIsShow);
+  const { handleChange, handleClick, text, regex } = useSearchAnime(
+    props.setUserTitleList,
+    props.setIsShow
+  );
   return (
     <div>
       <Stack direction="row" spacing={2}>
         <TextField
           variant="outlined"
+          placeholder="Search Anime..." 
+          fullWidth
           size="small"
           type="text"
           autoFocus={true}
           color="primary"
           value={text}
           onChange={handleChange}
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <SearchIcon />
+              </InputAdornment>
+            ),
+          }}
         />
-        <Button variant="outlined" onClick={() => handleClick()}>
+        {/* <Button variant="outlined" onClick={() => handleClick()}>
           保存
-        </Button>
+        </Button> */}
       </Stack>
       <Box py={2}>
         <CandidatesList regex={regex} handleClick={handleClick} />
