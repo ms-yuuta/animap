@@ -53,8 +53,8 @@ type Props = {
 export const TitleListContainer: VFC<Props> = (props) => {
   const handleDelete = useDeleteChip(props.setUserTitleList);
   const chipBgColor = useChipBgColor();
-  const [isFormOpen, setIsFromOpen] = useState(false);
-  const handleFormShow = useHandleDisplay(setIsFromOpen);
+  // const [isFormOpen, setIsFromOpen] = useState(false);
+  // const handleFormShow = useHandleDisplay(setIsFromOpen);
 
   return (
     <div>
@@ -63,10 +63,16 @@ export const TitleListContainer: VFC<Props> = (props) => {
           Search...
         </Button>
       </Box>
-      <IconButton sx={IconStyle} onClick={handleFormShow}>
+
+      <IconButton
+        sx={IconStyle}
+        // onClick={handleFormShow}
+        href="https://docs.google.com/forms/d/e/1FAIpQLSfKB1qmh6uJ1jaUKl-3cy9NSFoB0O2vHDEtM8F4hjlOR8-EkQ/viewform?usp=sf_link"
+        target="_blank"
+      >
         <AddLocationAltIcon />
       </IconButton>
-      {isFormOpen && <GoogleFormModal handleClose={handleFormShow} />}
+      {/* {isFormOpen && <GoogleFormModal handleClose={handleFormShow} />} */}
       <Stack direction="row" spacing={2} sx={stackStyle}>
         {props.userTitleList.map((title: string, i: number) => {
           return (

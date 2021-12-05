@@ -1,4 +1,4 @@
-import { GoogleMap, LoadScript, useLoadScript } from "@react-google-maps/api";
+import { GoogleMap, useLoadScript } from "@react-google-maps/api";
 import { VFC } from "react";
 import { useMapSettings } from "./map.hooks";
 
