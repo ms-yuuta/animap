@@ -1,10 +1,11 @@
-import "styles/globals.css";
 import type { AppProps } from "next/app";
+import { SWRConfig } from "swr";
+import { Toaster } from "react-hot-toast";
 import { ThemeProvider } from "@mui/material";
 import { theme } from "styles/theme";
-import { SWRConfig } from "swr";
+
+import "styles/globals.css";
 import { fetcher } from "./_app.hooks";
-import { Toaster } from "react-hot-toast";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (

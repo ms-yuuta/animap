@@ -1,5 +1,5 @@
-import { Box } from "@mui/system";
 import { ReactNode, VFC } from "react";
+import { Box } from "@mui/system";
 import { LayoutErrorBoundary } from "./LayoutErrorBoundary";
 
 type Props = {

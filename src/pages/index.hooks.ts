@@ -1,7 +1,7 @@
-import { Seichi, Title } from "model";
-import { GetStaticProps } from "next";
 import { useCallback, useEffect } from "react";
+import { GetStaticProps } from "next";
 import toast from "react-hot-toast";
+import { Seichi, Title } from "model";
 
 export type Fallback = {
   [url: string]: Seichi | Title;

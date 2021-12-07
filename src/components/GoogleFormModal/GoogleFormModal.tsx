@@ -1,6 +1,6 @@
-import { Box } from "@mui/system";
 import { VFC } from "react";
 import { Modal } from "@mui/material";
+import { Box } from "@mui/system";
 
 const style = {
   maxWidth: 500,

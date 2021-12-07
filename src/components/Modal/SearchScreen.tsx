@@ -1,9 +1,10 @@
-import { Button, InputAdornment, Stack, TextField } from "@mui/material";
-import { Box } from "@mui/system";
 import React, { VFC } from "react";
+import { InputAdornment, Stack, TextField } from "@mui/material";
+import { Box } from "@mui/system";
+
+import SearchIcon from "@mui/icons-material/Search";
 import { CandidatesList } from "./CandidatesList";
 import { useSearchAnime } from "./useSearchAnime.hooks";
-import SearchIcon from "@mui/icons-material/Search";
 
 type Props = {
   setUserTitleList: React.Dispatch<React.SetStateAction<string[]>>;

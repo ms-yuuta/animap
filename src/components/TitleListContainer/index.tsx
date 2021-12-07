@@ -1,10 +1,11 @@
 import React, { useState, VFC } from "react";
 import { Box, Button, Chip, Stack, Theme, IconButton, ListItem } from "@mui/material";
-import { useChipBgColor, useDeleteChip } from "./chip.hooks";
 import SearchIcon from "@mui/icons-material/Search";
 import AddLocationAltIcon from "@mui/icons-material/AddLocationAlt";
+
 import { useHandleDisplay } from "hooks/useHandler";
 import { GoogleFormModal } from "components/GoogleFormModal/GoogleFormModal";
+import { useChipBgColor, useDeleteChip } from "./chip.hooks";
 
 const boxStyle = {
   display: "inline-block",

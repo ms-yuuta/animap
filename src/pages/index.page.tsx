@@ -1,15 +1,16 @@
+import { useState } from "react";
 import type { NextPage } from "next";
 import { SWRConfig } from "swr";
-import { getStaticProps, useDisplayWelcomeToast } from "./index.hooks";
+
 import { Fallback } from "./index.hooks";
-import { useState } from "react";
+import { getStaticProps, useDisplayWelcomeToast } from "./index.hooks";
 import { useHandleDisplay, useHandleKeyEvent } from "hooks/useHandler";
+
 import { MapLayout } from "Layout";
 import { TitleListContainer } from "components/TitleListContainer";
-import { ModalForSearch } from "components/Modal";
-import { SearchScreen } from "components/Modal/SearchScreen";
-import { Map } from "components/Map";
-import { GoogleMapComponent } from "components/Map/GoogleMapComponent";
+import { ModalForSearch, SearchScreen } from "components/Modal";
+import { Map, GoogleMapComponent } from "components/Map";
+
 
 export { getStaticProps };
 

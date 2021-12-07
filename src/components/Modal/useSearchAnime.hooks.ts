@@ -1,5 +1,5 @@
-import { useHandleDisplay } from "hooks/useHandler";
 import React, { useCallback, useEffect, useState } from "react";
+import { useHandleDisplay } from "hooks/useHandler";
 
 type AnimeInfo = {
   regex: RegExp | undefined;
