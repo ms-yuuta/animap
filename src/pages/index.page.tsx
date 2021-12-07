@@ -9,8 +9,7 @@ import { useHandleDisplay, useHandleKeyEvent } from "hooks/useHandler";
 import { MapLayout } from "Layout";
 import { TitleListContainer } from "components/TitleChipListContainer";
 import { ModalForSearch, SearchScreen } from "components/Modal";
-import { Map, GoogleMapComponent } from "components/Map";
-
+import { Map as GoogleMap, MapContent } from "components/Map";
 
 export { getStaticProps };
 
@@ -35,7 +34,7 @@ export const App: NextPage<{ fallback: Fallback }> = (props) => {
             <SearchScreen setUserTitleList={setTitleList} setIsShow={setIsShow} />
           </ModalForSearch>
         </TitleListContainer>
-        <Map GoogleMapComponent={<GoogleMapComponent userTitleList={titleList} />} />
+        <GoogleMap MapContent={<MapContent userTitleList={titleList} />} />
       </MapLayout>
     </SWRConfig>
   );

@@ -5,14 +5,14 @@ import { List, ListSubheader } from "@mui/material";
 import { Title } from "model";
 import { handleDelete } from "hooks/useHandler";
 import { ListItemComponent } from "components/ListItem/ListItem";
-import { useDefaultList, useEffectStorage } from "./titleList.hooks";
+import { useDefaultList, useEffectStorage } from "./TitleList.hooks";
 
 type Props = {
   regex: RegExp | undefined;
   handleClick: (title: string, setState: React.Dispatch<React.SetStateAction<string[]>>) => void;
 };
 
-export const CandidatesList: React.VFC<Props> = (props) => {
+export const TitleList: React.VFC<Props> = (props) => {
   const { data, error } = useSWRImmutable<Title[], Error>(
     `${process.env.NEXT_PUBLIC_API_URL}?type=workList`
   );

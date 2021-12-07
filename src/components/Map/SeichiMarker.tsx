@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { InfoWindow, Marker } from "@react-google-maps/api";
 import { Seichi } from "model";
-import { useMarkerColor } from "./map.hooks";
+import { useMarkerColor } from "./GoogleMap.hooks";
 
 type Props = {
   item: Seichi;

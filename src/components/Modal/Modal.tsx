@@ -1,7 +1,7 @@
-import { VFC } from "react";
+import React, { VFC } from "react";
 import { Box, Button, Modal } from "@mui/material";
 
-type Props = {
+type ModalProps = {
   setIsShow: React.Dispatch<React.SetStateAction<boolean>>;
   children: JSX.Element;
   handleDisplay: () => void;
@@ -22,7 +22,7 @@ const style = {
   boxShadow: 24,
 };
 
-export const ModalForSearch: VFC<Props> = (props) => {
+export const ModalForSearch: VFC<ModalProps> = (props) => {
   return (
     <Modal
       open={true}
@@ -32,5 +32,54 @@ export const ModalForSearch: VFC<Props> = (props) => {
     >
       <Box sx={style}>{props.children}</Box>
     </Modal>
+  );
+};
+
+
+
+import { InputAdornment, Stack, TextField } from "@mui/material";
+import SearchIcon from "@mui/icons-material/Search";
+import { TitleList } from "./TitleList";
+import { useSearchAnime } from "./useSearchAnime.hooks";
+
+type Props = {
+  setUserTitleList: React.Dispatch<React.SetStateAction<string[]>>;
+  setIsShow: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+export const SearchScreen: VFC<Props> = (props) => {
+  const { handleChange, handleClick, text, regex } = useSearchAnime(
+    props.setUserTitleList,
+    props.setIsShow
+  );
+  return (
+    <>
+      <Stack direction="row" spacing={2}>
+        <TextField
+          variant="outlined"
+          placeholder="Search Anime..." 
+          fullWidth
+          size="small"
+          type="text"
+          autoFocus={true}
+          color="primary"
+          value={text}
+          onChange={handleChange}
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <SearchIcon />
+              </InputAdornment>
+            ),
+          }}
+        />
+        {/* <Button variant="outlined" onClick={() => handleClick()}>
+          保存
+        </Button> */}
+      </Stack>
+      <Box py={2}>
+        <TitleList regex={regex} handleClick={handleClick} />
+      </Box>
+    </>
   );
 };
