@@ -9,13 +9,14 @@ type Props = {
 };
 
 export const SeichiMarker: React.VFC<Props> = (props) => {
+  const { item, userTitleList } = props;
   const [index, setIndex] = useState<number>(-1);
   const [selectedMarker, setMarker] = useState("");
   const markerColor = useMarkerColor(index);
 
   useEffect(() => {
-    setIndex(props.userTitleList.indexOf(props.item.work));
-  }, [props]);
+    setIndex(userTitleList.indexOf(item.work));
+  }, [userTitleList, item.work]);
 
   switch (index) {
     case 0:
@@ -23,22 +24,22 @@ export const SeichiMarker: React.VFC<Props> = (props) => {
     case 2:
     case 3:
     case 4: {
-      const position = { lat: parseFloat(props.item.latitude), lng: parseFloat(props.item.longitude) };
+      const position = { lat: parseFloat(item.latitude), lng: parseFloat(item.longitude) };
       return (
         <Marker
-          key={`${props.item.place}-${props.item.id}`}
+          key={`${item.place}-${item.id}`}
           position={position}
-          cursor={props.item.place}
+          cursor={item.place}
           icon={`https://maps.google.com/mapfiles/ms/icons/${markerColor}-dot.png`}
-          onClick={() => setMarker(props.item.id)}
-          onMouseOver={() => setMarker(props.item.id)}
+          onClick={() => setMarker(item.id)}
+          onMouseOver={() => setMarker(item.id)}
           onMouseOut={() => setMarker("")}
         >
-          {selectedMarker && selectedMarker == props.item.id && (
+          {selectedMarker && selectedMarker == item.id && (
             <InfoWindow onCloseClick={() => setMarker("")}>
               <div>
-                {/* <Link href={"/seichi/" + props.item.id}></Link> */}
-                <h5 style={{ margin: 0 }}>{props.item.place}</h5>
+                {/* <Link href={"/seichi/" + item.id}></Link> */}
+                <h5 style={{ margin: 0 }}>{item.place}</h5>
               </div>
             </InfoWindow>
           )}

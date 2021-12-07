@@ -1,14 +1,14 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { useHandleDisplay } from "hooks/useHandler";
+import { handleHistory, useHandleDisplay } from "hooks/useHandler";
 
 type AnimeInfo = {
   regex: RegExp | undefined;
   text: string;
   handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  handleClick: (title: string) => void;
+  handleClick: (title: string, setState: React.Dispatch<React.SetStateAction<string[]>>) => void;
 };
 
-export const addHistoryList = async (title: string) => {
+export const setStorage = async (title: string) => {
   // const title = e.target.value;
   const localList = localStorage.getItem("HistoryList");
   if(localList) {
@@ -37,12 +37,13 @@ export const useSearchAnime = (
   }, [text]);
 
   const handleClick = useCallback(
-    (title: string) => {
+    (title: string, setState: React.Dispatch<React.SetStateAction<string[]>>) => {
       setUserTitleList((prevArray: string[]) => {
         return [...prevArray, title];
       });
       handleDisplay();
-      addHistoryList(title);
+      handleHistory(title, setState);
+      setStorage(title);
     },
     [setUserTitleList, handleDisplay]
   );

@@ -7,7 +7,7 @@ import { getStaticProps, useDisplayWelcomeToast } from "./index.hooks";
 import { useHandleDisplay, useHandleKeyEvent } from "hooks/useHandler";
 
 import { MapLayout } from "Layout";
-import { TitleListContainer } from "components/TitleListContainer";
+import { TitleListContainer } from "components/TitleChipListContainer";
 import { ModalForSearch, SearchScreen } from "components/Modal";
 import { Map, GoogleMapComponent } from "components/Map";
 

@@ -3,7 +3,7 @@ import { InputAdornment, Stack, TextField } from "@mui/material";
 import { Box } from "@mui/system";
 
 import SearchIcon from "@mui/icons-material/Search";
-import { CandidatesList } from "./CandidatesList";
+import { CandidatesList } from "./TitleList";
 import { useSearchAnime } from "./useSearchAnime.hooks";
 
 type Props = {
