@@ -1,4 +1,4 @@
-import React, { VFC } from "react";
+import React, { MouseEventHandler, VFC } from "react";
 import { IconButton, ListItem, ListItemButton, ListItemIcon, ListItemText } from "@mui/material";
 import HistoryIcon from "@mui/icons-material/History";
 import ClearIcon from "@mui/icons-material/Clear";
@@ -7,7 +7,7 @@ import TrendingUpIcon from "@mui/icons-material/TrendingUp";
 type Props = {
   type: string;
   label: string;
-  onClick: (e:React.ChangeEvent<HTMLElement>) => void;
+  onClick: MouseEventHandler<HTMLDivElement>;
   onDelete?: () => void;
 };
 

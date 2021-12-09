@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { MouseEventHandler, useCallback, useEffect, useMemo, useState } from "react";
 import { useHandleDisplay } from "hooks/useHandler";
 
 const addStorage = async (title: string, historyList: string[]) => {
@@ -64,8 +64,8 @@ export const useHandleClick = (
 ) => {
   const handleDisplay = useHandleDisplay(setIsShow);
   const { historyList, setHistoryList, handleSetTitle } = useHandleSetTitle(setUserTitleList);
-  const handleClick = useCallback(
-    (e: React.ChangeEvent<HTMLElement>) => {
+  const handleClick: MouseEventHandler<HTMLDivElement> = useCallback(
+    (e: any) => {
       handleSetTitle(e.target.innerText);
       handleDisplay();
     },
