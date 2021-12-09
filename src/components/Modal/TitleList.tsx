@@ -1,4 +1,4 @@
-import { memo, useState } from "react";
+import { memo, MouseEventHandler, useState } from "react";
 import useSWRImmutable from "swr/immutable";
 import { List, ListSubheader } from "@mui/material";
 
@@ -60,7 +60,7 @@ type DefaultItem = {
 type DefaultProps = {
   historyList: string[];
   setHistoryList: React.Dispatch<React.SetStateAction<string[]>>;
-  handleClick: (e: React.ChangeEvent<HTMLElement>) => void;
+  handleClick: MouseEventHandler<HTMLDivElement>;
 };
 
 export const DefaultList: React.VFC<DefaultProps> = (props) => {
