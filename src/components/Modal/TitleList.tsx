@@ -3,20 +3,21 @@ import useSWRImmutable from "swr/immutable";
 import { List, ListSubheader } from "@mui/material";
 
 import { Title } from "model";
-import { handleDelete } from "hooks/useHandler";
 import { ListItemComponent } from "components/ListItem/ListItem";
-import { useDefaultList, useEffectStorage } from "./TitleList.hooks";
+import { useDefaultList, useEffectStorage, useHandleClick } from "./TitleList.hooks";
 
 type Props = {
   regex: RegExp | undefined;
-  handleClick: (title: string, setState: React.Dispatch<React.SetStateAction<string[]>>) => void;
+  setIsShow: React.Dispatch<React.SetStateAction<boolean>>;
+  setUserTitleList: React.Dispatch<React.SetStateAction<string[]>>;
 };
 
 export const TitleList: React.VFC<Props> = (props) => {
   const { data, error } = useSWRImmutable<Title[], Error>(
     `${process.env.NEXT_PUBLIC_API_URL}?type=workList`
   );
-  const [historyList, setHistoryList] = useState<string[]>([]);
+
+  const clickData = useHandleClick(props.setIsShow, props.setUserTitleList);
 
   if (!data && !error) {
     return <h2>Now Loading....</h2>;
@@ -29,23 +30,19 @@ export const TitleList: React.VFC<Props> = (props) => {
   return (
     <List disablePadding sx={{ overflow: "auto", maxHeight: "50vh" }}>
       {props.regex === undefined ? (
-        <MemorizedDefaultList
-          handleClick={props.handleClick}
-          historyList={historyList}
-          setHistoryList={setHistoryList}
-        />
+        <MemorizedDefaultList {...clickData} />
       ) : (
         <div>
           <ListSubheader color="primary" disableSticky sx={{ height: "36px" }}>
             anime title
           </ListSubheader>
-          {data?.map((item) => {
-            return props.regex?.test(item.work) ? (
+          {data?.map(({ work, work_id }) => {
+            return props.regex?.test(work) ? (
               <ListItemComponent
-                key={item.work_id}
+                key={work_id}
                 type="normal"
-                label={item.work}
-                handleClick={() => props.handleClick(item.work, setHistoryList)}
+                label={work}
+                onClick={clickData.handleClick}
               />
             ) : null;
           })}
@@ -61,32 +58,37 @@ type DefaultItem = {
 };
 
 type DefaultProps = {
-  handleClick: (title: string, setState: any) => void;
   historyList: string[];
   setHistoryList: React.Dispatch<React.SetStateAction<string[]>>;
+  handleClick: (e: React.ChangeEvent<HTMLElement>) => void;
 };
 
-export const DefaultList = (props: DefaultProps) => {
-  const { historyList, handleClick, setHistoryList } = props;
+export const DefaultList: React.VFC<DefaultProps> = (props) => {
+  const { historyList, setHistoryList, handleClick } = props;
   const defaultList = useDefaultList(historyList);
   useEffectStorage(historyList, setHistoryList);
+  const handleDelete = (name: string) => {
+    setHistoryList((prevList: string[]) => prevList.filter((item) => item !== name));
+  };
+
+  console.log(historyList);
 
   return (
     <>
-      {defaultList.map((obj: DefaultItem) => {
+      {defaultList.map(({ label, list }: DefaultItem) => {
         return (
-          <div key={obj.label}>
+          <div key={label}>
             <ListSubheader color="primary" disableSticky sx={{ height: "36px" }}>
-              {obj.label}
+              {label}
             </ListSubheader>
-            {obj["list"].map((title) => {
+            {list.map((title) => {
               return (
                 <ListItemComponent
                   key={title}
-                  type={obj.label}
+                  type={label}
                   label={title}
-                  handleClick={() => handleClick(title, setHistoryList)}
-                  handleDelete={() => handleDelete(title, setHistoryList)}
+                  onClick={handleClick}
+                  onDelete={() => handleDelete(title)}
                 />
               );
             })}

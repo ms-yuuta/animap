@@ -23,15 +23,3 @@ export const useHandleKeyEvent = (setIsShow: React.Dispatch<React.SetStateAction
     document.addEventListener("keydown", handleKeyDown);
   }, [handleKeyDown]);
 };
-
-export const handleHistory = (title: string, setHistoryList: any) => {
-  setHistoryList((prevList: string[]) => {
-    return [...prevList, title];
-  });
-};
-
-export const handleDelete = (title: string, setHistoryList: any) => {
-  setHistoryList((prevList: string[]) => {
-    return prevList.filter((item) => item !== title);
-  });
-};

@@ -35,8 +35,6 @@ export const ModalForSearch: VFC<ModalProps> = (props) => {
   );
 };
 
-
-
 import { InputAdornment, Stack, TextField } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import { TitleList } from "./TitleList";
@@ -48,16 +46,13 @@ type Props = {
 };
 
 export const SearchScreen: VFC<Props> = (props) => {
-  const { handleChange, handleClick, text, regex } = useSearchAnime(
-    props.setUserTitleList,
-    props.setIsShow
-  );
+  const { text, regex, handleChange } = useSearchAnime();
   return (
     <>
       <Stack direction="row" spacing={2}>
         <TextField
           variant="outlined"
-          placeholder="Search Anime..." 
+          placeholder="Search Anime..."
           fullWidth
           size="small"
           type="text"
@@ -78,7 +73,7 @@ export const SearchScreen: VFC<Props> = (props) => {
         </Button> */}
       </Stack>
       <Box py={2}>
-        <TitleList regex={regex} handleClick={handleClick} />
+        <TitleList regex={regex} {...props} />
       </Box>
     </>
   );

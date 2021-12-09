@@ -1,4 +1,4 @@
-import { VFC } from "react";
+import React, { VFC } from "react";
 import { IconButton, ListItem, ListItemButton, ListItemIcon, ListItemText } from "@mui/material";
 import HistoryIcon from "@mui/icons-material/History";
 import ClearIcon from "@mui/icons-material/Clear";
@@ -7,12 +7,12 @@ import TrendingUpIcon from "@mui/icons-material/TrendingUp";
 type Props = {
   type: string;
   label: string;
-  handleClick: () => void;
-  handleDelete?: () => void;
+  onClick: (e:React.ChangeEvent<HTMLElement>) => void;
+  onDelete?: () => void;
 };
 
 export const ListItemComponent: VFC<Props> = (props) => {
-  const { type, label, handleClick } = props;
+  const { type, label, onClick } = props;
   const Icon = { trend: <TrendingUpIcon />, recent: <HistoryIcon /> }[type];
   return (
     <ListItem
@@ -21,13 +21,13 @@ export const ListItemComponent: VFC<Props> = (props) => {
       sx={{ borderRadius: 1, ":hover": { bgcolor: "#9bc0ff" } }}
       secondaryAction={
         type === "normal" ? null : (
-          <IconButton edge="end" aria-label="delete" onClick={props.handleDelete}>
+          <IconButton edge="end" aria-label="delete" onClick={props.onDelete}>
             <ClearIcon />
           </IconButton>
         )
       }
     >
-      <ListItemButton onClick={handleClick}>
+      <ListItemButton onClick={onClick}>
         {Icon === undefined ? null : <ListItemIcon>{Icon}</ListItemIcon>}
         <ListItemText primary={label} />
       </ListItemButton>
