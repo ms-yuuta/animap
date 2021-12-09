@@ -4,7 +4,7 @@ import { List, ListSubheader } from "@mui/material";
 
 import { Title } from "model";
 import { ListItemComponent } from "components/ListItem/ListItem";
-import { useDefaultList, useEffectStorage, useHandleClick } from "./TitleList.hooks";
+import { useDefaultList, useEffectStorage, useHandleClick } from "./titleList.hooks";
 
 type Props = {
   regex: RegExp | undefined;
