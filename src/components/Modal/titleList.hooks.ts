@@ -1,5 +1,14 @@
 import { MouseEventHandler, useCallback, useEffect, useMemo, useState } from "react";
 import { useHandleDisplay } from "hooks/useHandler";
+import useSWRImmutable from "swr/immutable";
+import { Title } from "model";
+
+export const useFetchTitleList = () => {
+  const { data, error } = useSWRImmutable<Title[], Error>(
+    `${process.env.NEXT_PUBLIC_API_URL}?type=workList`
+  );
+  return { data, error };
+};
 
 const addStorage = async (title: string, historyList: string[]) => {
   if (historyList.length > 0) {

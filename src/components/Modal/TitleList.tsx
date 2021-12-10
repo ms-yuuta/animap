@@ -1,10 +1,13 @@
 import { memo, MouseEventHandler, useState } from "react";
-import useSWRImmutable from "swr/immutable";
-import { List, ListSubheader } from "@mui/material";
+import { ListSubheader } from "@mui/material";
 
-import { Title } from "model";
 import { ListItemComponent } from "components/ListItem/ListItem";
-import { useDefaultList, useEffectStorage, useHandleClick } from "./titleList.hooks";
+import {
+  useFetchTitleList,
+  useDefaultList,
+  useEffectStorage,
+  useHandleClick,
+} from "./titleList.hooks";
 
 type Props = {
   regex: RegExp | undefined;
@@ -13,10 +16,7 @@ type Props = {
 };
 
 export const TitleList: React.VFC<Props> = (props) => {
-  const { data, error } = useSWRImmutable<Title[], Error>(
-    `${process.env.NEXT_PUBLIC_API_URL}?type=workList`
-  );
-
+  const { data, error } = useFetchTitleList();
   const clickData = useHandleClick(props.setIsShow, props.setUserTitleList);
 
   if (!data && !error) {
@@ -28,7 +28,7 @@ export const TitleList: React.VFC<Props> = (props) => {
   }
 
   return (
-    <List disablePadding sx={{ overflow: "auto", maxHeight: "50vh" }}>
+    <>
       {props.regex === undefined ? (
         <MemorizedDefaultList {...clickData} />
       ) : (
@@ -48,7 +48,7 @@ export const TitleList: React.VFC<Props> = (props) => {
           })}
         </div>
       )}
-    </List>
+    </>
   );
 };
 
