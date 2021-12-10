@@ -20,7 +20,7 @@ export const ListItemComponent: VFC<Props> = (props) => {
       key={label}
       sx={{ borderRadius: 1, ":hover": { bgcolor: "#9bc0ff" } }}
       secondaryAction={
-        type === "normal" ? null : (
+        type === "normal" || type === "trend" ? null : (
           <IconButton edge="end" aria-label="delete" onClick={props.onDelete}>
             <ClearIcon />
           </IconButton>
