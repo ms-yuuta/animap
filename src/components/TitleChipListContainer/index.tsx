@@ -52,8 +52,7 @@ type Props = {
 };
 
 export const TitleListContainer: VFC<Props> = (props) => {
-  const handleDelete = useDeleteChip(props.setUserTitleList);
-  const chipBgColor = useChipBgColor();
+  const { userTitleList, setUserTitleList } = props;
   const [isFormOpen, setIsFromOpen] = useState(false);
   const handleFormShow = useHandleDisplay(setIsFromOpen);
 
@@ -64,27 +63,40 @@ export const TitleListContainer: VFC<Props> = (props) => {
           Search...
         </Button>
       </Box>
-      <IconButton sx={IconStyle} onClick={handleFormShow}>
-        <AddLocationAltIcon />
-      </IconButton>
+      <Box sx={IconStyle}>
+        <IconButton onClick={handleFormShow}>
+          <AddLocationAltIcon />
+        </IconButton>
+      </Box>
       {isFormOpen && <GoogleFormModal handleClose={handleFormShow} />}
       <Stack direction="row" spacing={2} sx={stackStyle}>
-        {props.userTitleList.map((title: string, i: number) => {
-          return (
-            <ListItem sx={{ p: 0 }} key={title}>
-              <Chip
-                label={title}
-                onDelete={() => handleDelete(i)}
-                sx={{
-                  boxShadow: 2,
-                  bgcolor: (theme: Theme) => chipBgColor(i),
-                }}
-              />
-            </ListItem>
-          );
-        })}
+        <UserTitleList {...{ userTitleList, setUserTitleList }} />
       </Stack>
       {props.isShow && props.children}
     </div>
+  );
+};
+
+type UserTitleListProps = {
+  userTitleList: string[];
+  setUserTitleList: React.Dispatch<React.SetStateAction<string[]>>;
+};
+
+export const UserTitleList: VFC<UserTitleListProps> = (props) => {
+  const handleDelete = useDeleteChip(props.setUserTitleList);
+  const chipBgColor = useChipBgColor();
+
+  return (
+    <>
+      {props.userTitleList.map((title: string, i: number) => (
+        <ListItem sx={{ p: 0 }} key={`${title}-${i}`}>
+          <Chip
+            label={title}
+            onDelete={handleDelete}
+            sx={{ boxShadow: 2, bgcolor: (theme: Theme) => chipBgColor(i) }}
+          />
+        </ListItem>
+      ))}
+    </>
   );
 };
