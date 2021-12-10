@@ -1,4 +1,4 @@
-import { memo, MouseEventHandler, useState } from "react";
+import { memo, MouseEventHandler, useMemo } from "react";
 import { ListSubheader } from "@mui/material";
 
 import { ListItemComponent } from "components/ListItem/ListItem";
@@ -19,6 +19,21 @@ export const TitleList: React.VFC<Props> = (props) => {
   const { data, error } = useFetchTitleList();
   const clickData = useHandleClick(props.setIsShow, props.setUserTitleList);
 
+  const candidateList = useMemo(
+    () =>
+      data?.map(({ work, work_id }) => {
+        return props.regex?.test(work) ? (
+          <ListItemComponent
+            key={work_id}
+            type="normal"
+            label={work}
+            onClick={clickData.handleClick}
+          />
+        ) : null;
+      }),
+    [data, clickData.handleClick, props.regex]
+  );
+
   if (!data && !error) {
     return <h2>Now Loading....</h2>;
   }
@@ -28,27 +43,7 @@ export const TitleList: React.VFC<Props> = (props) => {
   }
 
   return (
-    <>
-      {props.regex === undefined ? (
-        <MemorizedDefaultList {...clickData} />
-      ) : (
-        <div>
-          <ListSubheader color="primary" disableSticky sx={{ height: "36px" }}>
-            anime title
-          </ListSubheader>
-          {data?.map(({ work, work_id }) => {
-            return props.regex?.test(work) ? (
-              <ListItemComponent
-                key={work_id}
-                type="normal"
-                label={work}
-                onClick={clickData.handleClick}
-              />
-            ) : null;
-          })}
-        </div>
-      )}
-    </>
+    <>{props.regex === undefined ? <MemorizedDefaultList {...clickData} /> : { candidateList }}</>
   );
 };
 
