@@ -4,8 +4,8 @@ import SearchIcon from "@mui/icons-material/Search";
 import AddLocationAltIcon from "@mui/icons-material/AddLocationAlt";
 
 import { useHandleDisplay } from "hooks/useHandler";
-import { GoogleFormModal } from "components/GoogleFormModal/GoogleFormModal";
 import { useChipBgColor, useDeleteChip } from "./chip.hooks";
+import { AniMapModal as AddSeichiInfoModal } from "components/Modal";
 
 const boxStyle = {
   display: "inline-block",
@@ -68,7 +68,11 @@ export const TitleListContainer: VFC<Props> = (props) => {
           <AddLocationAltIcon />
         </IconButton>
       </Box>
-      {isFormOpen && <GoogleFormModal handleClose={handleFormShow} />}
+      {isFormOpen && (
+        <AddSeichiInfoModal onClose={handleFormShow}>
+          <GuideToGoogleForm />
+        </AddSeichiInfoModal>
+      )}
       <Stack direction="row" spacing={2} sx={stackStyle}>
         <UserTitleList {...{ userTitleList, setUserTitleList }} />
       </Stack>
@@ -97,6 +101,21 @@ export const UserTitleList: VFC<UserTitleListProps> = (props) => {
           />
         </ListItem>
       ))}
+    </>
+  );
+};
+
+const GuideToGoogleForm = () => {
+  return (
+    <>
+      <h3>おぉ！、お主はAniMapの完成のために、聖地情報を提供してくれるのじゃな！？</h3>
+      <Button
+        variant="outlined"
+        target="_blank"
+        href="https://docs.google.com/forms/d/e/1FAIpQLSfKB1qmh6uJ1jaUKl-3cy9NSFoB0O2vHDEtM8F4hjlOR8-EkQ/viewform?usp=sf_link"
+      >
+        もちろん！！
+      </Button>
     </>
   );
 };
