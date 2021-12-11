@@ -1,6 +1,6 @@
 export type Seichi = {
   id: string;
-  work: string;
+  title: string;
   work_id?: string;
   place: string;
   prefecture?: string;

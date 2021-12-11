@@ -1,6 +1,6 @@
-import { VFC } from "react";
+import { useMemo, VFC } from "react";
 import { GoogleMap, LoadScript, useLoadScript } from "@react-google-maps/api";
-import { useMapSettings } from "./GoogleMap.hooks";
+import { useMapSettings, useMarkerColor } from "./GoogleMap.hooks";
 
 type Props = {
   userTitleList: string[];
@@ -32,7 +32,13 @@ import { SeichiMarker } from "components/Map/SeichiMarker";
 import { useFetchSeichiData } from "./GoogleMap.hooks";
 
 export const MapContent = (props: { userTitleList: string[] }) => {
+  const { userTitleList } = props;
+  const divideMarkerColor = useMarkerColor(userTitleList);
   const { data, error } = useFetchSeichiData();
+  const userSeichiData = useMemo(
+    () => data?.filter(({ title }) => userTitleList.includes(title)),
+    [userTitleList, data]
+  );
 
   if (!data && !error) {
     return <h2>Now Loading....</h2>;
@@ -43,14 +49,11 @@ export const MapContent = (props: { userTitleList: string[] }) => {
   }
   return (
     <>
-      {props.userTitleList.length > 0
-        ? data?.map((item) => (
-            <SeichiMarker
-              key={`${item.place}-${item.id}`}
-              userTitleList={props.userTitleList}
-              item={item}
-            />
-          ))
+      {userTitleList.length > 0
+        ? userSeichiData?.map((seichi) => {
+            const color = divideMarkerColor(seichi.title);
+            return <SeichiMarker key={seichi.id} {...{ seichi, color }} />;
+          })
         : null}
     </>
   );
