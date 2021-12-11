@@ -3,7 +3,7 @@ import { GoogleMap, LoadScript, useLoadScript } from "@react-google-maps/api";
 import { useMapSettings } from "./GoogleMap.hooks";
 
 type Props = {
-  MapContent: JSX.Element;
+  userTitleList: string[];
 };
 
 export const Map: VFC<Props> = (props) => {
@@ -22,21 +22,17 @@ export const Map: VFC<Props> = (props) => {
         center={mapSettings.center}
         zoom={6}
       >
-        {props.MapContent}
+        <MapContent {...props} />
       </GoogleMap>
     </main>
   );
 };
 
-
-import useSWRImmutable from "swr/immutable";
-import { Seichi } from "model";
 import { SeichiMarker } from "components/Map/SeichiMarker";
+import { useFetchSeichiData } from "./GoogleMap.hooks";
 
 export const MapContent = (props: { userTitleList: string[] }) => {
-  const { data, error } = useSWRImmutable<Seichi[], Error>(
-    `${process.env.NEXT_PUBLIC_API_URL}?type=seichiList`
-  );
+  const { data, error } = useFetchSeichiData();
 
   if (!data && !error) {
     return <h2>Now Loading....</h2>;
@@ -47,13 +43,15 @@ export const MapContent = (props: { userTitleList: string[] }) => {
   }
   return (
     <>
-      {data?.map((item) => {
-        return props.userTitleList.length > 0 ? (
-          <div key={`${item.place}-${item.id}`}>
-            <SeichiMarker userTitleList={props.userTitleList} item={item} />
-          </div>
-        ) : null;
-      })}
+      {props.userTitleList.length > 0
+        ? data?.map((item) => (
+            <SeichiMarker
+              key={`${item.place}-${item.id}`}
+              userTitleList={props.userTitleList}
+              item={item}
+            />
+          ))
+        : null}
     </>
   );
 };

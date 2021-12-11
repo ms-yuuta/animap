@@ -8,14 +8,14 @@ import { useHandleDisplay, useHandleKeyEvent } from "hooks/useHandler";
 
 import { MapLayout } from "Layout";
 import { TitleListContainer } from "components/TitleChipListContainer";
-import { ModalForSearch, SearchScreen } from "components/Modal";
-import { Map as GoogleMap, MapContent } from "components/Map";
+import { SearchAnimeTitleModal, SearchScreen } from "components/Modal";
+import { Map as GoogleMap } from "components/Map";
 
 export { getStaticProps };
 
 export const App: NextPage<{ fallback: Fallback }> = (props) => {
   const { fallback } = props;
-  const [titleList, setTitleList] = useState<string[]>([]);
+  const [userTitleList, setUserTitleList] = useState<string[]>([]);
   const [isShow, setIsShow] = useState(false);
   const handleDisplay = useHandleDisplay(setIsShow);
   useHandleKeyEvent(setIsShow);
@@ -24,17 +24,12 @@ export const App: NextPage<{ fallback: Fallback }> = (props) => {
   return (
     <SWRConfig value={{ fallback }}>
       <MapLayout>
-        <TitleListContainer
-          isShow={isShow}
-          setUserTitleList={setTitleList}
-          handleDisplay={handleDisplay}
-          userTitleList={titleList}
-        >
-          <ModalForSearch setIsShow={setIsShow} handleDisplay={handleDisplay}>
-            <SearchScreen setUserTitleList={setTitleList} setIsShow={setIsShow} />
-          </ModalForSearch>
+        <TitleListContainer {...{ isShow, setUserTitleList, handleDisplay, userTitleList }}>
+          <SearchAnimeTitleModal setIsShow={setIsShow} handleDisplay={handleDisplay}>
+            <SearchScreen setUserTitleList={setUserTitleList} setIsShow={setIsShow} />
+          </SearchAnimeTitleModal>
         </TitleListContainer>
-        <GoogleMap MapContent={<MapContent userTitleList={titleList} />} />
+        <GoogleMap userTitleList={userTitleList} />
       </MapLayout>
     </SWRConfig>
   );

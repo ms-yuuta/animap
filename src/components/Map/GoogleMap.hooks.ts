@@ -1,4 +1,14 @@
 import { useMemo } from "react";
+import useSWRImmutable from "swr/immutable";
+import { Seichi } from "model";
+
+export const useFetchSeichiData = () => {
+  const { data, error } = useSWRImmutable<Seichi[], Error>(
+    `${process.env.NEXT_PUBLIC_API_URL}?type=seichiList`
+  );
+
+  return {data, error};
+}
 
 export const useMapSettings = () => {
 
