@@ -1,2 +1,1 @@
-export * from "./searchAnimeTitleModal";
-export * from "./TitleList";
+export * from "./Modal";

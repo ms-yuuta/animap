@@ -1,44 +1,7 @@
 import React, { VFC } from "react";
-import { Box, Button, Modal } from "@mui/material";
-import { List } from "@mui/material";
-
-type ModalProps = {
-  setIsShow: React.Dispatch<React.SetStateAction<boolean>>;
-  children: JSX.Element;
-  handleDisplay: () => void;
-};
-
-const style = {
-  maxWidth: 500,
-  width: "50%",
-  minWidth: 230,
-  maxHeight: "70%",
-  p: 4,
-  position: "absolute" as "absolute",
-  top: "54%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  bgcolor: "background.paper",
-  borderRadius: 1,
-  boxShadow: 24,
-};
-
-export const SearchAnimeTitleModal: VFC<ModalProps> = (props) => {
-  return (
-    <Modal
-      open={true}
-      onClose={props.handleDisplay}
-      aria-labelledby="seichi-modal"
-      aria-describedby="modal-search-seichi"
-    >
-      <Box sx={style}>{props.children}</Box>
-    </Modal>
-  );
-};
-
-import { InputAdornment, Stack, TextField } from "@mui/material";
+import { InputAdornment, Stack, TextField, List } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
-import { TitleList } from "./TitleList";
+import { TitleList } from "components/TitleList/TitleList";
 import { useSearchAnime } from "./searchAnimeTitle.hooks";
 
 type Props = {

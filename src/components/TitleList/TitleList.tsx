@@ -1,6 +1,7 @@
 import { memo, MouseEventHandler, useMemo } from "react";
 
-import { ListComponent, ListItemComponent } from "components/ListItem/ListItem";
+import { ListItemComponent } from "components/List/ListItem/ListItem";
+import { ListComponent } from "components/List/List";
 import {
   useFetchTitleList,
   useDefaultList,

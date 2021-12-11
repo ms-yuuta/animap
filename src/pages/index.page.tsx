@@ -8,8 +8,9 @@ import { useHandleDisplay, useHandleKeyEvent } from "hooks/useHandler";
 
 import { MapLayout } from "Layout";
 import { TitleListContainer } from "components/TitleChipListContainer";
-import { SearchAnimeTitleModal, SearchScreen } from "components/Modal";
+import { AniMapModal as SearchAnimeTitleModal } from "components/Modal";
 import { Map as GoogleMap } from "components/Map";
+import { SearchScreen } from "components/SearchScreen/searchScreen";
 
 export { getStaticProps };
 
@@ -25,7 +26,7 @@ export const App: NextPage<{ fallback: Fallback }> = (props) => {
     <SWRConfig value={{ fallback }}>
       <MapLayout>
         <TitleListContainer {...{ isShow, setUserTitleList, handleDisplay, userTitleList }}>
-          <SearchAnimeTitleModal setIsShow={setIsShow} handleDisplay={handleDisplay}>
+          <SearchAnimeTitleModal onClose={handleDisplay}>
             <SearchScreen setUserTitleList={setUserTitleList} setIsShow={setIsShow} />
           </SearchAnimeTitleModal>
         </TitleListContainer>

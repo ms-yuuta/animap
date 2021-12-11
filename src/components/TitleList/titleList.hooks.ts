@@ -1,6 +1,6 @@
 import { MouseEventHandler, useCallback, useEffect, useMemo, useState } from "react";
-import { useHandleDisplay } from "hooks/useHandler";
 import useSWRImmutable from "swr/immutable";
+import { useHandleDisplay } from "hooks/useHandler";
 import { Title } from "model";
 
 export const useFetchTitleList = () => {
