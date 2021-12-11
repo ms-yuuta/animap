@@ -23,7 +23,7 @@ const style = {
   boxShadow: 24,
 };
 
-export const ModalForSearch: VFC<ModalProps> = (props) => {
+export const SearchAnimeTitleModal: VFC<ModalProps> = (props) => {
   return (
     <Modal
       open={true}
@@ -39,7 +39,7 @@ export const ModalForSearch: VFC<ModalProps> = (props) => {
 import { InputAdornment, Stack, TextField } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import { TitleList } from "./TitleList";
-import { useSearchAnime } from "./useSearchAnime.hooks";
+import { useSearchAnime } from "./searchAnimeTitle.hooks";
 
 type Props = {
   setUserTitleList: React.Dispatch<React.SetStateAction<string[]>>;
