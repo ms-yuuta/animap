@@ -20,17 +20,17 @@ export const TitleList: React.VFC<Props> = (props) => {
   const { data, error } = useFetchTitleList();
   const clickData = useHandleClick(props.setIsShow, props.setUserTitleList);
   const filteredWork = useMemo(
-    () => data?.filter(({ work }) => props.regex?.test(work)),
+    () => data?.filter(({ title }) => props.regex?.test(title)),
     [data, props.regex]
   );
   const candidateList = useMemo(
     () => (
       <ListComponent title="anime title">
-        {filteredWork?.map(({ work, work_id }) => (
+        {filteredWork?.map(({ title, work_id }) => (
           <ListItemComponent
             key={work_id}
             type="search"
-            label={work}
+            label={title}
             onClick={clickData.handleClick}
           />
         ))}

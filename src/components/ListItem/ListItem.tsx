@@ -51,7 +51,6 @@ type ListProps = {
 };
 
 export const ListComponent: FC<ListProps> = (props) => {
-  console.log(props.children)
   return (
     <>
       <ListSubheader color="primary" disableSticky sx={{ height: "36px" }}>
