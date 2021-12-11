@@ -1,13 +1,14 @@
 import { memo, MouseEventHandler, useMemo } from "react";
-import { ListSubheader } from "@mui/material";
 
-import { ListItemComponent } from "components/ListItem/ListItem";
+import { ListComponent, ListItemComponent } from "components/ListItem/ListItem";
 import {
   useFetchTitleList,
   useDefaultList,
   useEffectStorage,
   useHandleClick,
 } from "./titleList.hooks";
+
+export type ListLabel = "trend" | "recent" | "search";
 
 type Props = {
   regex: RegExp | undefined;
@@ -18,20 +19,24 @@ type Props = {
 export const TitleList: React.VFC<Props> = (props) => {
   const { data, error } = useFetchTitleList();
   const clickData = useHandleClick(props.setIsShow, props.setUserTitleList);
-
+  const filteredWork = useMemo(
+    () => data?.filter(({ work }) => props.regex?.test(work)),
+    [data, props.regex]
+  );
   const candidateList = useMemo(
-    () =>
-      data?.map(({ work, work_id }) => {
-        return props.regex?.test(work) ? (
+    () => (
+      <ListComponent title="anime title">
+        {filteredWork?.map(({ work, work_id }) => (
           <ListItemComponent
             key={work_id}
-            type="normal"
+            type="search"
             label={work}
             onClick={clickData.handleClick}
           />
-        ) : null;
-      }),
-    [data, clickData.handleClick, props.regex]
+        ))}
+      </ListComponent>
+    ),
+    [filteredWork, clickData.handleClick]
   );
 
   if (!data && !error) {
@@ -42,13 +47,11 @@ export const TitleList: React.VFC<Props> = (props) => {
     return <h2>{error.message}</h2>;
   }
 
-  return (
-    <>{props.regex === undefined ? <MemorizedDefaultList {...clickData} /> : { candidateList }}</>
-  );
+  return <>{props.regex === undefined ? <MemorizedDefaultList {...clickData} /> : candidateList}</>;
 };
 
 type DefaultItem = {
-  label: string;
+  label: ListLabel;
   list: string[];
 };
 
@@ -66,30 +69,21 @@ export const DefaultList: React.VFC<DefaultProps> = (props) => {
     setHistoryList((prevList: string[]) => prevList.filter((item) => item !== name));
   };
 
-  console.log(historyList);
-
   return (
     <>
-      {defaultList.map(({ label, list }: DefaultItem) => {
-        return (
-          <div key={label}>
-            <ListSubheader color="primary" disableSticky sx={{ height: "36px" }}>
-              {label}
-            </ListSubheader>
-            {list.map((title) => {
-              return (
-                <ListItemComponent
-                  key={title}
-                  type={label}
-                  label={title}
-                  onClick={handleClick}
-                  onDelete={() => handleDelete(title)}
-                />
-              );
-            })}
-          </div>
-        );
-      })}
+      {defaultList.map(({ label, list }: DefaultItem) => (
+        <ListComponent key={label} title={label}>
+          {list.map((title) => (
+            <ListItemComponent
+              key={title}
+              type={label}
+              label={title}
+              onClick={handleClick}
+              onDelete={() => handleDelete(title)}
+            />
+          ))}
+        </ListComponent>
+      ))}
     </>
   );
 };
