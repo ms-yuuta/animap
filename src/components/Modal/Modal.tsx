@@ -1,5 +1,6 @@
 import React, { VFC } from "react";
 import { Box, Button, Modal } from "@mui/material";
+import { List } from "@mui/material";
 
 type ModalProps = {
   setIsShow: React.Dispatch<React.SetStateAction<boolean>>;
@@ -49,7 +50,7 @@ export const SearchScreen: VFC<Props> = (props) => {
   const { text, regex, handleChange } = useSearchAnime();
   return (
     <>
-      <Stack direction="row" spacing={2}>
+      <Stack direction="column" spacing={2}>
         <TextField
           variant="outlined"
           placeholder="Search Anime..."
@@ -71,10 +72,10 @@ export const SearchScreen: VFC<Props> = (props) => {
         {/* <Button variant="outlined" onClick={() => handleClick()}>
           保存
         </Button> */}
+        <List disablePadding sx={{ overflow: "auto", maxHeight: "50vh" }}>
+          <TitleList regex={regex} {...props} />
+        </List>
       </Stack>
-      <Box py={2}>
-        <TitleList regex={regex} {...props} />
-      </Box>
     </>
   );
 };

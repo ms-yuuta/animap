@@ -2,10 +2,9 @@ import React, { useCallback, useMemo } from "react";
 
 export const useDeleteChip = (setTitleList: React.Dispatch<React.SetStateAction<string[]>>) => {
   const handleDelete = useCallback(
-    (i: number) => {
-      setTitleList((prevList) => {
-        return prevList.filter((_, index) => index !== i);
-      });
+    (e: any) => {
+      const deleteTitle = e.target.parentNode.parentNode.innerText;
+      setTitleList((prevList) => prevList.filter((title) => title !== deleteTitle));
     },
     [setTitleList]
   );
@@ -14,7 +13,7 @@ export const useDeleteChip = (setTitleList: React.Dispatch<React.SetStateAction<
 };
 
 export const useChipBgColor = () => {
-  const chipBgColor =(index: number) => {
+  const chipBgColor = (index: number) => {
     switch (index) {
       case 0:
         return "pink";
