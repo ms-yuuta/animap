@@ -3,9 +3,11 @@ import { Box, Button, Chip, Stack, Theme, IconButton, ListItem } from "@mui/mate
 import SearchIcon from "@mui/icons-material/Search";
 import AddLocationAltIcon from "@mui/icons-material/AddLocationAlt";
 
-import { useHandleDisplay } from "hooks/useHandler";
+import { useHandleDisplay, useHandleKeyEvent } from "hooks/useHandler";
 import { useChipBgColor, useDeleteChip } from "./chip.hooks";
 import { AniMapModal as AddSeichiInfoModal } from "components/Modal";
+import { AniMapModal as SearchAnimeTitleModal } from "components/Modal";
+import { SearchScreen } from "components/SearchScreen/searchScreen";
 
 const boxStyle = {
   display: "inline-block",
@@ -44,40 +46,82 @@ const stackStyle = {
 } as const;
 
 type Props = {
-  isShow: boolean;
-  children: JSX.Element;
-  handleDisplay: () => void;
   userTitleList: string[];
   setUserTitleList: React.Dispatch<React.SetStateAction<string[]>>;
 };
 
 export const TitleListContainer: VFC<Props> = (props) => {
+  
   const { userTitleList, setUserTitleList } = props;
-  const [isFormOpen, setIsFromOpen] = useState(false);
-  const handleFormShow = useHandleDisplay(setIsFromOpen);
 
   return (
-    <div>
+    <>
       <Box sx={boxStyle}>
-        <Button variant="outlined" startIcon={<SearchIcon />} onClick={props.handleDisplay}>
-          Search...
-        </Button>
+        <TheSearchButtonSet setUserTitleList={setUserTitleList} />
       </Box>
       <Box sx={IconStyle}>
-        <IconButton onClick={handleFormShow}>
-          <AddLocationAltIcon />
-        </IconButton>
+        <TheAddSeichiButtonSet />
       </Box>
+      <Stack direction="row" spacing={2} sx={stackStyle}>
+        <UserTitleList {...{ userTitleList, setUserTitleList }} />
+      </Stack>
+    </>
+  );
+};
+
+type ButtonProps = {
+  setUserTitleList: React.Dispatch<React.SetStateAction<string[]>>;
+};
+
+const TheSearchButtonSet: VFC<ButtonProps> = (props) => {
+  const [isShow, setIsShow] = useState(false);
+  const { setUserTitleList } = props;
+  const handleSearchModal = useHandleDisplay(setIsShow);
+  useHandleKeyEvent(setIsShow);
+
+  return (
+    <>
+      <Button variant="outlined" startIcon={<SearchIcon />} onClick={handleSearchModal}>
+        Search...
+      </Button>
+      {isShow && (
+        <SearchAnimeTitleModal onClose={handleSearchModal}>
+          <SearchScreen setUserTitleList={setUserTitleList} setIsShow={setIsShow} />
+        </SearchAnimeTitleModal>
+      )}
+    </>
+  );
+};
+
+const TheAddSeichiButtonSet: VFC = () => {
+  const [isFormOpen, setIsFromOpen] = useState(false);
+  const handleFormShow = useHandleDisplay(setIsFromOpen);
+  return (
+    <>
+      <IconButton onClick={handleFormShow}>
+        <AddLocationAltIcon />
+      </IconButton>
       {isFormOpen && (
         <AddSeichiInfoModal onClose={handleFormShow}>
           <GuideToGoogleForm />
         </AddSeichiInfoModal>
       )}
-      <Stack direction="row" spacing={2} sx={stackStyle}>
-        <UserTitleList {...{ userTitleList, setUserTitleList }} />
-      </Stack>
-      {props.isShow && props.children}
-    </div>
+    </>
+  );
+};
+
+const GuideToGoogleForm = () => {
+  return (
+    <>
+      <h3>おぉ！、お主はAniMapの完成のために、聖地情報を提供してくれるのじゃな！？</h3>
+      <Button
+        variant="outlined"
+        target="_blank"
+        href="https://docs.google.com/forms/d/e/1FAIpQLSfKB1qmh6uJ1jaUKl-3cy9NSFoB0O2vHDEtM8F4hjlOR8-EkQ/viewform?usp=sf_link"
+      >
+        もちろん！！
+      </Button>
+    </>
   );
 };
 
@@ -101,21 +145,6 @@ export const UserTitleList: VFC<UserTitleListProps> = (props) => {
           />
         </ListItem>
       ))}
-    </>
-  );
-};
-
-const GuideToGoogleForm = () => {
-  return (
-    <>
-      <h3>おぉ！、お主はAniMapの完成のために、聖地情報を提供してくれるのじゃな！？</h3>
-      <Button
-        variant="outlined"
-        target="_blank"
-        href="https://docs.google.com/forms/d/e/1FAIpQLSfKB1qmh6uJ1jaUKl-3cy9NSFoB0O2vHDEtM8F4hjlOR8-EkQ/viewform?usp=sf_link"
-      >
-        もちろん！！
-      </Button>
     </>
   );
 };
