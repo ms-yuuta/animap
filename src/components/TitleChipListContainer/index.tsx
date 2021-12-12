@@ -1,5 +1,5 @@
 import React, { useState, VFC } from "react";
-import { Box, Button, Chip, Stack, Theme, IconButton, ListItem } from "@mui/material";
+import { Button, Chip, Theme, IconButton, ListItem } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import AddLocationAltIcon from "@mui/icons-material/AddLocationAlt";
 
@@ -9,71 +9,11 @@ import { AniMapModal as AddSeichiInfoModal } from "components/Modal";
 import { AniMapModal as SearchAnimeTitleModal } from "components/Modal";
 import { SearchScreen } from "components/SearchScreen/searchScreen";
 
-const boxStyle = {
-  display: "inline-block",
-  position: "absolute",
-  top: 0,
-  left: "14rem",
-  zIndex: "tooltip",
-  bgcolor: "background.paper",
-  marginTop: 1.6,
-  borderRadius: 1,
-} as const;
-
-const IconStyle = {
-  display: "inline-block",
-  position: "absolute",
-  top: 0,
-  right: "10px",
-  zIndex: "tooltip",
-  bgcolor: "background.paper",
-  marginTop: 1.0,
-  borderRadius: 0,
-  ":hover": {
-    bgcolor: "background.paper",
-  },
-};
-
-const stackStyle = {
-  height: 50,
-  maxWidth: "100%",
-  py: 0,
-  px: 2,
-  position: "absolute",
-  top: 60,
-  zIndex: "appBar",
-  overflow: "auto",
-} as const;
-
-type Props = {
-  userTitleList: string[];
-  setUserTitleList: React.Dispatch<React.SetStateAction<string[]>>;
-};
-
-export const TitleListContainer: VFC<Props> = (props) => {
-  
-  const { userTitleList, setUserTitleList } = props;
-
-  return (
-    <>
-      <Box sx={boxStyle}>
-        <TheSearchButtonSet setUserTitleList={setUserTitleList} />
-      </Box>
-      <Box sx={IconStyle}>
-        <TheAddSeichiButtonSet />
-      </Box>
-      <Stack direction="row" spacing={2} sx={stackStyle}>
-        <UserTitleList {...{ userTitleList, setUserTitleList }} />
-      </Stack>
-    </>
-  );
-};
-
 type ButtonProps = {
   setUserTitleList: React.Dispatch<React.SetStateAction<string[]>>;
 };
 
-const TheSearchButtonSet: VFC<ButtonProps> = (props) => {
+export const TheSearchButtonSet: VFC<ButtonProps> = (props) => {
   const [isShow, setIsShow] = useState(false);
   const { setUserTitleList } = props;
   const handleSearchModal = useHandleDisplay(setIsShow);
@@ -93,7 +33,7 @@ const TheSearchButtonSet: VFC<ButtonProps> = (props) => {
   );
 };
 
-const TheAddSeichiButtonSet: VFC = () => {
+export const TheAddSeichiButtonSet: VFC = () => {
   const [isFormOpen, setIsFromOpen] = useState(false);
   const handleFormShow = useHandleDisplay(setIsFromOpen);
   return (

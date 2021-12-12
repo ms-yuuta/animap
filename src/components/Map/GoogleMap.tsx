@@ -16,15 +16,9 @@ export const Map: VFC<Props> = (props) => {
   if (loadError) return <div>Map cannot be loaded right now, sorry.</div>;
 
   return (
-    <main>
-      <GoogleMap
-        mapContainerStyle={mapSettings.containerStyle}
-        center={mapSettings.center}
-        zoom={6}
-      >
-        <MapContent {...props} />
-      </GoogleMap>
-    </main>
+    <GoogleMap mapContainerStyle={mapSettings.containerStyle} center={mapSettings.center} zoom={6}>
+      <MapContent {...props} />
+    </GoogleMap>
   );
 };
 
