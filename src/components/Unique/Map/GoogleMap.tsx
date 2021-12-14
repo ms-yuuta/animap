@@ -48,13 +48,14 @@ export const MapContent = (props: { userTitleList: string[] }) => {
     [userTitleList, data]
   );
 
-  if (!data && !error) {
-    return <h2>Now Loading....</h2>;
-  }
-
   if (error) {
     return <h2>{error.message}</h2>;
   }
+
+  if (!data) {
+    return <h2>Now Loading....</h2>;
+  }
+
   return (
     <>
       {userTitleList.length > 0
