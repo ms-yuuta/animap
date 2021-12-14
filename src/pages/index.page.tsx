@@ -6,7 +6,7 @@ import { Fallback } from "./index.hooks";
 import { getStaticProps, useDisplayWelcomeToast } from "./index.hooks";
 import { MapLayout } from "Layout";
 import { TitleChipListBar } from "components/Unique/TitleChipListBar";
-import { TheAddSeichiButtonSet, TheSearchButtonSet } from "components/Unique/ButtonSet";
+import { AddSeichiButtonSet, SearchButtonSet } from "components/Unique/ButtonSet";
 import { Map as GoogleMap } from "components/Unique/Map";
 
 export { getStaticProps };
@@ -19,8 +19,8 @@ export const App: NextPage<{ fallback: Fallback }> = (props) => {
   return (
     <SWRConfig value={{ fallback }}>
       <MapLayout
-        TheSearchButtonSet={<TheSearchButtonSet setUserTitleList={setUserTitleList} />}
-        TheAddSeichiButtonSet={<TheAddSeichiButtonSet />}
+        SearchButtonSet={<SearchButtonSet setUserTitleList={setUserTitleList} />}
+        AddSeichiButtonSet={<AddSeichiButtonSet />}
         TitleChipListBar={<TitleChipListBar {...{ userTitleList, setUserTitleList }} />}
         GoogleMap={<GoogleMap userTitleList={userTitleList} />}
       />

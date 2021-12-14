@@ -11,7 +11,7 @@ type ButtonProps = {
   setUserTitleList: React.Dispatch<React.SetStateAction<string[]>>;
 };
 
-export const TheSearchButtonSet: VFC<ButtonProps> = (props) => {
+export const SearchButtonSet: VFC<ButtonProps> = (props) => {
   const { setUserTitleList } = props;
   const [isShow, setIsShow] = useState(false);
   const handleSearchModal = useHandleDisplay(setIsShow);
@@ -31,7 +31,7 @@ export const TheSearchButtonSet: VFC<ButtonProps> = (props) => {
   );
 };
 
-export const TheAddSeichiButtonSet: VFC = () => {
+export const AddSeichiButtonSet: VFC = () => {
   const [isFormOpen, setIsFromOpen] = useState(false);
   const handleFormShow = useHandleDisplay(setIsFromOpen);
   return (
