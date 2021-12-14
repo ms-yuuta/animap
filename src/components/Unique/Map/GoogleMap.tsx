@@ -1,5 +1,6 @@
 import { useMemo, VFC } from "react";
 import { GoogleMap, LoadScript, useLoadScript } from "@react-google-maps/api";
+import LinearProgress from "@mui/material/LinearProgress";
 import { useMarkerColor } from "./GoogleMap.hooks";
 
 const MAP_SETTINGS = {
@@ -22,8 +23,8 @@ export const Map: VFC<Props> = (props) => {
     googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAP_API_KEY,
   });
 
-  if (!isLoaded) return <div>loading....</div>;
-  if (loadError) return <div>Map cannot be loaded right now, sorry.</div>;
+  if (!isLoaded) return <LinearProgress />;
+  if (loadError) throw new Error("Map cannot be loaded right now, sorry.");
 
   return (
     <GoogleMap
@@ -48,22 +49,16 @@ export const MapContent = (props: { userTitleList: string[] }) => {
     [userTitleList, data]
   );
 
-  if (error) {
-    return <h2>{error.message}</h2>;
-  }
+  if (error) throw new Error("聖地に関するデータが取得できませんでした");
 
-  if (!data) {
-    return <h2>Now Loading....</h2>;
-  }
+  if (!data || userTitleList.length === 0) return null;
 
   return (
     <>
-      {userTitleList.length > 0
-        ? userSeichiData?.map((seichi) => {
-            const color = divideMarkerColor(seichi.title);
-            return <SeichiMarker key={seichi.id} {...{ seichi, color }} />;
-          })
-        : null}
+      {userSeichiData?.map((seichi) => {
+        const color = divideMarkerColor(seichi.title);
+        return <SeichiMarker key={seichi.id} {...{ seichi, color }} />;
+      })}
     </>
   );
 };
