@@ -1,14 +1,14 @@
 import { useCallback, useEffect } from "react";
 import { GetStaticProps } from "next";
 import toast from "react-hot-toast";
-import { Seichi, Title } from "model";
+import { Seichi, Work } from "model";
 
 export type Fallback = {
-  [url: string]: Seichi | Title;
+  [url: string]: Seichi | Work;
 };
 
 type Props = {
-  fallback: { [url: string]: Seichi | Title };
+  fallback: { [url: string]: Seichi | Work };
 };
 
 export const getStaticProps: GetStaticProps<Props> = async () => {
@@ -18,7 +18,7 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
 
   const TITLE_API_URL = `${process.env.NEXT_PUBLIC_API_URL}?type=workList`;
   const title = await fetch(TITLE_API_URL);
-  const titleData: Title = await title.json();
+  const titleData: Work = await title.json();
 
   return {
     props: {

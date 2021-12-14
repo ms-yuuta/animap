@@ -1,16 +1,16 @@
 import { MouseEventHandler, useCallback, useEffect, useMemo, useState } from "react";
 import useSWRImmutable from "swr/immutable";
 import { useHandleDisplay } from "hooks/useHandler";
-import { Title } from "model";
+import { Work } from "model";
 
 export const useFetchTitleList = () => {
-  const { data, error } = useSWRImmutable<Title[], Error>(
+  const { data, error } = useSWRImmutable<Work[], Error>(
     `${process.env.NEXT_PUBLIC_API_URL}?type=workList`
   );
   return { data, error };
 };
 
-export const useFilterWorkList = (data: Title[] | undefined, regex: RegExp) => {
+export const useFilterWorkList = (data: Work[] | undefined, regex: RegExp) => {
   const filteredWork = useMemo(
     () => data?.filter(({ title }) => regex.test(title)),
     [data, regex]
