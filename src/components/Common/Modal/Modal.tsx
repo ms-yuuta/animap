@@ -26,8 +26,8 @@ export const AniMapModal: FC<ModalProps> = (props) => {
     <Modal
       open={true}
       onClose={props.onClose}
-      aria-labelledby="seichi-modal"
-      aria-describedby="modal-search-seichi"
+      aria-labelledby="animap-modal"
+      aria-describedby="modal-modal-animap"
     >
       <Box sx={style}>{props.children}</Box>
     </Modal>

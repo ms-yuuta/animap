@@ -15,6 +15,7 @@ export const SearchScreen: VFC<Props> = (props) => {
     <>
       <Stack direction="column" spacing={2}>
         <TextField
+          id="open-modal"
           variant="outlined"
           placeholder="Search Anime..."
           fullWidth
