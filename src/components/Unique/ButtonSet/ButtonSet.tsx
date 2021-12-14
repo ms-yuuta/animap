@@ -1,11 +1,15 @@
 import React, { useState, VFC } from "react";
+import dynamic from "next/dynamic";
 import { Button, IconButton } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import AddLocationAltIcon from "@mui/icons-material/AddLocationAlt";
 
 import { useHandleDisplay, useHandleKeyEvent } from "hooks/useHandler";
 import { AniMapModal } from "components/Common/Modal";
-import { SearchScreen } from "components/Unique/SearchScreen";
+import { Loading } from "components/Common/Loading";
+const DynamicSearchScreen = dynamic(() => import("../SearchScreen/SearchScreen"), {
+  loading: () => <Loading />,
+});
 
 type ButtonProps = {
   setUserTitleList: React.Dispatch<React.SetStateAction<string[]>>;
@@ -24,7 +28,7 @@ export const SearchButtonSet: VFC<ButtonProps> = (props) => {
       </Button>
       {isShow && (
         <AniMapModal onClose={handleSearchModal}>
-          <SearchScreen setUserTitleList={setUserTitleList} setIsShow={setIsShow} />
+          <DynamicSearchScreen setUserTitleList={setUserTitleList} setIsShow={setIsShow} />
         </AniMapModal>
       )}
     </>

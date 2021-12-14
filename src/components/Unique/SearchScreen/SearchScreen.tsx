@@ -9,7 +9,7 @@ type Props = {
   setIsShow: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-export const SearchScreen: VFC<Props> = (props) => {
+const SearchScreen: VFC<Props> = (props) => {
   const { text, regex, handleChange } = useSearchAnime();
   return (
     <>
@@ -43,3 +43,5 @@ export const SearchScreen: VFC<Props> = (props) => {
     </>
   );
 };
+
+export default SearchScreen;
