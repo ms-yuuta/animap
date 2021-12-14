@@ -1,13 +1,23 @@
 import { useMemo, VFC } from "react";
 import { GoogleMap, LoadScript, useLoadScript } from "@react-google-maps/api";
-import { useMapSettings, useMarkerColor } from "./GoogleMap.hooks";
+import { useMarkerColor } from "./GoogleMap.hooks";
+
+const MAP_SETTINGS = {
+  CONTAINER_STYLE: {
+    width: "100%",
+    height: "100vh",
+  },
+  CENTER: {
+    lat: 38.2,
+    lng: 139.77521,
+  },
+};
 
 type Props = {
   userTitleList: string[];
 };
 
 export const Map: VFC<Props> = (props) => {
-  const mapSettings = useMapSettings();
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAP_API_KEY,
   });
@@ -16,7 +26,11 @@ export const Map: VFC<Props> = (props) => {
   if (loadError) return <div>Map cannot be loaded right now, sorry.</div>;
 
   return (
-    <GoogleMap mapContainerStyle={mapSettings.containerStyle} center={mapSettings.center} zoom={6}>
+    <GoogleMap
+      mapContainerStyle={MAP_SETTINGS.CONTAINER_STYLE}
+      center={MAP_SETTINGS.CENTER}
+      zoom={6}
+    >
       <MapContent {...props} />
     </GoogleMap>
   );
