@@ -10,6 +10,14 @@ export const useFetchTitleList = () => {
   return { data, error };
 };
 
+export const useFilterWorkList = (data: Title[] | undefined, regex: RegExp) => {
+  const filteredWork = useMemo(
+    () => data?.filter(({ title }) => regex.test(title)),
+    [data, regex]
+  );
+  return filteredWork;
+};
+
 const trendList = ["鬼滅の刃", "ソードアート・オンライン"];
 const trendData: { label: "trend"; list: string[] } = { label: "trend", list: [...trendList] };
 
@@ -24,7 +32,6 @@ export const useDefaultList = (list: string[]) => {
 
   return defaultList;
 };
-
 
 const addStorage = async (title: string, historyList: string[]) => {
   if (historyList.length > 0) {
@@ -70,7 +77,7 @@ export const useHandleClick = (
     },
     [setUserTitleList, historyList]
   );
-  
+
   const handleDisplay = useHandleDisplay(setIsShow);
   const handleClick: MouseEventHandler<HTMLDivElement> = useCallback(
     (e: any) => {
@@ -80,5 +87,9 @@ export const useHandleClick = (
     [handleSetTitle, handleDisplay]
   );
 
-  return { historyList, setHistoryList, handleClick };
+  const handleDelete = useCallback((name: string) => {
+    setHistoryList((prevList: string[]) => prevList.filter((item) => item !== name));
+  }, [setHistoryList]);
+
+  return { historyList, setHistoryList, handleClick, handleDelete };
 };

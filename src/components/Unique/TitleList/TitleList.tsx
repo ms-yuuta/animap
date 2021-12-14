@@ -1,4 +1,4 @@
-import { memo, MouseEventHandler, useMemo } from "react";
+import { memo, MouseEventHandler} from "react";
 
 import { ListItemBar } from "components/Common/ListTable/ListItemBar";
 import { ListTable } from "components/Common/ListTable";
@@ -7,6 +7,7 @@ import {
   useDefaultList,
   useEffectStorage,
   useHandleClick,
+  useFilterWorkList,
 } from "./titleList.hooks";
 
 export type ListLabel = "trend" | "recent" | "search";
@@ -18,37 +19,22 @@ type Props = {
 };
 
 export const TitleList: React.VFC<Props> = (props) => {
-  const { data, error } = useFetchTitleList();
-  const clickData = useHandleClick(props.setIsShow, props.setUserTitleList);
-  const filteredWork = useMemo(
-    () => data?.filter(({ title }) => props.regex?.test(title)),
-    [data, props.regex]
+  const { regex, setIsShow, setUserTitleList } = props;
+  const { historyList, setHistoryList, handleClick, handleDelete } = useHandleClick(
+    setIsShow,
+    setUserTitleList
   );
-  const candidateList = useMemo(
-    () => (
-      <ListTable title="anime title">
-        {filteredWork?.map(({ title, work_id }) => (
-          <ListItemBar
-            key={work_id}
-            type="search"
-            label={title}
-            onClick={clickData.handleClick}
-          />
-        ))}
-      </ListTable>
-    ),
-    [filteredWork, clickData.handleClick]
+  useEffectStorage(historyList, setHistoryList);
+
+  return (
+    <>
+      {regex === undefined ? (
+        <MemorizedDefaultList {...{ historyList, handleClick, handleDelete }} />
+      ) : (
+        <CandidateList {...{ regex, handleClick }} />
+      )}
+    </>
   );
-
-  if (!data && !error) {
-    return <h2>Now Loading....</h2>;
-  }
-
-  if (error) {
-    return <h2>{error.message}</h2>;
-  }
-
-  return <>{props.regex === undefined ? <MemorizedDefaultList {...clickData} /> : candidateList}</>;
 };
 
 type DefaultItem = {
@@ -58,17 +44,13 @@ type DefaultItem = {
 
 type DefaultProps = {
   historyList: string[];
-  setHistoryList: React.Dispatch<React.SetStateAction<string[]>>;
   handleClick: MouseEventHandler<HTMLDivElement>;
+  handleDelete: (title: string) => void;
 };
 
 export const DefaultList: React.VFC<DefaultProps> = (props) => {
-  const { historyList, setHistoryList, handleClick } = props;
+  const { historyList, handleClick, handleDelete } = props;
   const defaultList = useDefaultList(historyList);
-  useEffectStorage(historyList, setHistoryList);
-  const handleDelete = (name: string) => {
-    setHistoryList((prevList: string[]) => prevList.filter((item) => item !== name));
-  };
 
   return (
     <>
@@ -90,3 +72,28 @@ export const DefaultList: React.VFC<DefaultProps> = (props) => {
 };
 
 const MemorizedDefaultList = memo(DefaultList);
+
+type CandidateProps = {
+  regex: RegExp;
+  handleClick: MouseEventHandler<HTMLDivElement>;
+};
+const CandidateList: React.VFC<CandidateProps> = (props) => {
+  const { regex, handleClick } = props;
+  const { data, error } = useFetchTitleList();
+  const filteredWork = useFilterWorkList(data, regex);
+
+  if (error) {
+    return <h2>{error.message}</h2>;
+  }
+
+  if (!data) {
+    return <h2>Now Loading....</h2>;
+  }
+  return (
+    <ListTable title="anime title">
+      {filteredWork?.map(({ title, work_id }) => (
+        <ListItemBar key={work_id} type="search" label={title} onClick={handleClick} />
+      ))}
+    </ListTable>
+  );
+};
