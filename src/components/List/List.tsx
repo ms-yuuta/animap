@@ -6,13 +6,13 @@ type ListProps = {
   children: any;
 };
 
-export const ListComponent: FC<ListProps> = (props) => {
+export const ListComponent: FC<ListProps> = ({ title, children }) => {
   return (
     <>
       <ListSubheader color="primary" disableSticky sx={{ height: "36px" }}>
-        {props.title}
+        {title}
       </ListSubheader>
-      {props.children.length !== 0 ? props.children : <h3>検索結果なし</h3>}
+      {children.length !== 0 ? children : <h3>検索結果なし</h3>}
     </>
   );
 };

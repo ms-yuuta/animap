@@ -4,7 +4,7 @@ import { IconButton, ListItem, ListItemButton, ListItemIcon, ListItemText } from
 import HistoryIcon from "@mui/icons-material/History";
 import ClearIcon from "@mui/icons-material/Clear";
 import TrendingUpIcon from "@mui/icons-material/TrendingUp";
-import { ListLabel } from "components/TitleList/TitleList";
+import { ListLabel } from "components/Unique/TitleList";
 
 type ItemProps = {
   type: ListLabel;

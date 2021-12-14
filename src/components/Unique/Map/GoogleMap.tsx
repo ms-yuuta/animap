@@ -22,7 +22,7 @@ export const Map: VFC<Props> = (props) => {
   );
 };
 
-import { SeichiMarker } from "components/Map/SeichiMarker";
+import { SeichiMarker } from "components/Unique/Map/SeichiMarker";
 import { useFetchSeichiData } from "./GoogleMap.hooks";
 
 export const MapContent = (props: { userTitleList: string[] }) => {

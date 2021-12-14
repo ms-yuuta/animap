@@ -5,12 +5,9 @@ import { SWRConfig } from "swr";
 import { Fallback } from "./index.hooks";
 import { getStaticProps, useDisplayWelcomeToast } from "./index.hooks";
 import { MapLayout } from "Layout";
-import {
-  TheAddSeichiButtonSet,
-  TheSearchButtonSet,
-  UserTitleList,
-} from "components/TitleChipListContainer";
-import { Map as GoogleMap } from "components/Map";
+import { UserTitleList } from "components/Unique/TitleChipListContainer";
+import { TheAddSeichiButtonSet, TheSearchButtonSet } from "components/Unique/ButtonSet";
+import { Map as GoogleMap } from "components/Unique/Map";
 
 export { getStaticProps };
 

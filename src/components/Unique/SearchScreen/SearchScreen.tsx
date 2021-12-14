@@ -1,7 +1,7 @@
 import React, { VFC } from "react";
 import { InputAdornment, Stack, TextField, List } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
-import { TitleList } from "components/TitleList/TitleList";
+import { TitleList } from "components/Unique/TitleList";
 import { useSearchAnime } from "./searchAnimeTitle.hooks";
 
 type Props = {
