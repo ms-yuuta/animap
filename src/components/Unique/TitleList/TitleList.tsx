@@ -1,14 +1,9 @@
-import { memo, MouseEventHandler} from "react";
+import { memo, MouseEventHandler } from "react";
 
 import { ListItemBar } from "components/Common/ListTable/ListItemBar";
 import { ListTable } from "components/Common/ListTable";
-import {
-  useFetchTitleList,
-  useDefaultList,
-  useEffectStorage,
-  useHandleClick,
-  useFilterWorkList,
-} from "./titleList.hooks";
+import { CandidateList } from "./CandidateList";
+import { useDefaultList, useEffectStorage, useHandleClick } from "./titleList.hooks";
 
 export type ListLabel = "trend" | "recent" | "search";
 
@@ -72,28 +67,3 @@ export const DefaultList: React.VFC<DefaultProps> = (props) => {
 };
 
 const MemorizedDefaultList = memo(DefaultList);
-
-type CandidateProps = {
-  regex: RegExp;
-  handleClick: MouseEventHandler<HTMLDivElement>;
-};
-const CandidateList: React.VFC<CandidateProps> = (props) => {
-  const { regex, handleClick } = props;
-  const { data, error } = useFetchTitleList();
-  const filteredWork = useFilterWorkList(data, regex);
-
-  if (error) {
-    return <h2>{error.message}</h2>;
-  }
-
-  if (!data) {
-    return <h2>Now Loading....</h2>;
-  }
-  return (
-    <ListTable title="anime title">
-      {filteredWork?.map(({ title, work_id }) => (
-        <ListItemBar key={work_id} type="search" label={title} onClick={handleClick} />
-      ))}
-    </ListTable>
-  );
-};
