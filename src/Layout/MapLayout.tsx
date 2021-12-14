@@ -5,7 +5,7 @@ import { LayoutErrorBoundary } from "./LayoutErrorBoundary";
 
 type Props = {
   GoogleMap: JSX.Element;
-  UserTitleList: JSX.Element;
+  TitleChipListBar: JSX.Element;
   TheSearchButtonSet: JSX.Element;
   TheAddSeichiButtonSet: JSX.Element;
 };
@@ -47,7 +47,7 @@ const stackStyle = {
 } as const;
 
 export const MapLayout: VFC<Props> = (props) => {
-  const { TheSearchButtonSet, TheAddSeichiButtonSet, UserTitleList, GoogleMap } = props;
+  const { TheSearchButtonSet, TheAddSeichiButtonSet, TitleChipListBar, GoogleMap } = props;
   return (
     <LayoutErrorBoundary>
       <Box height="100vh" width="100%">
@@ -55,7 +55,7 @@ export const MapLayout: VFC<Props> = (props) => {
           <Box sx={boxStyle}>{TheSearchButtonSet}</Box>
           <Box sx={IconStyle}>{TheAddSeichiButtonSet}</Box>
           <Stack direction="row" spacing={2} sx={stackStyle}>
-            {UserTitleList}
+            {TitleChipListBar}
           </Stack>
           {GoogleMap}
         </main>

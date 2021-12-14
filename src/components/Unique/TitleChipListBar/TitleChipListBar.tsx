@@ -3,12 +3,12 @@ import { Chip, Theme, ListItem } from "@mui/material";
 
 import { useChipBgColor, useDeleteChip } from "./chip.hooks";
 
-type UserTitleListProps = {
+type Props = {
   userTitleList: string[];
   setUserTitleList: React.Dispatch<React.SetStateAction<string[]>>;
 };
 
-export const UserTitleList: VFC<UserTitleListProps> = (props) => {
+export const TitleChipListBar: VFC<Props> = (props) => {
   const handleDelete = useDeleteChip(props.setUserTitleList);
   const chipBgColor = useChipBgColor();
 

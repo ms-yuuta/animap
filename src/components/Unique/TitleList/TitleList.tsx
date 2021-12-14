@@ -1,7 +1,7 @@
 import { memo, MouseEventHandler, useMemo } from "react";
 
-import { ListItemBar } from "components/ListTable/ListItemBar";
-import { ListTable } from "components/ListTable";
+import { ListItemBar } from "components/Common/ListTable/ListItemBar";
+import { ListTable } from "components/Common/ListTable";
 import {
   useFetchTitleList,
   useDefaultList,

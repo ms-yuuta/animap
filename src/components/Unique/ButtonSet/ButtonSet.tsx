@@ -4,7 +4,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import AddLocationAltIcon from "@mui/icons-material/AddLocationAlt";
 
 import { useHandleDisplay, useHandleKeyEvent } from "hooks/useHandler";
-import { AniMapModal } from "components/Modal";
+import { AniMapModal } from "components/Common/Modal";
 import { SearchScreen } from "components/Unique/SearchScreen";
 
 type ButtonProps = {
