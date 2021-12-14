@@ -13,7 +13,7 @@ type ItemProps = {
   onDelete?: () => void;
 };
 
-export const ListItemComponent: VFC<ItemProps> = (props) => {
+export const ListItemBar: VFC<ItemProps> = (props) => {
   const { type, label, onClick } = props;
   const Icon = { search: undefined, trend: <TrendingUpIcon />, recent: <HistoryIcon /> }[type];
 

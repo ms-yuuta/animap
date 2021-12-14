@@ -6,7 +6,7 @@ type ListProps = {
   children: any;
 };
 
-export const ListComponent: FC<ListProps> = ({ title, children }) => {
+export const ListTable: FC<ListProps> = ({ title, children }) => {
   return (
     <>
       <ListSubheader color="primary" disableSticky sx={{ height: "36px" }}>

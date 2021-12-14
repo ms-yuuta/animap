@@ -1,7 +1,7 @@
 import { memo, MouseEventHandler, useMemo } from "react";
 
-import { ListItemComponent } from "components/List/ListItem";
-import { ListComponent } from "components/List";
+import { ListItemBar } from "components/ListTable/ListItemBar";
+import { ListTable } from "components/ListTable";
 import {
   useFetchTitleList,
   useDefaultList,
@@ -26,16 +26,16 @@ export const TitleList: React.VFC<Props> = (props) => {
   );
   const candidateList = useMemo(
     () => (
-      <ListComponent title="anime title">
+      <ListTable title="anime title">
         {filteredWork?.map(({ title, work_id }) => (
-          <ListItemComponent
+          <ListItemBar
             key={work_id}
             type="search"
             label={title}
             onClick={clickData.handleClick}
           />
         ))}
-      </ListComponent>
+      </ListTable>
     ),
     [filteredWork, clickData.handleClick]
   );
@@ -73,9 +73,9 @@ export const DefaultList: React.VFC<DefaultProps> = (props) => {
   return (
     <>
       {defaultList.map(({ label, list }: DefaultItem) => (
-        <ListComponent key={label} title={label}>
+        <ListTable key={label} title={label}>
           {list.map((title) => (
-            <ListItemComponent
+            <ListItemBar
               key={title}
               type={label}
               label={title}
@@ -83,7 +83,7 @@ export const DefaultList: React.VFC<DefaultProps> = (props) => {
               onDelete={() => handleDelete(title)}
             />
           ))}
-        </ListComponent>
+        </ListTable>
       ))}
     </>
   );
