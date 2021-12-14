@@ -1,7 +1,7 @@
-import { useMemo, VFC } from "react";
+import { VFC } from "react";
 import { GoogleMap, LoadScript, useLoadScript } from "@react-google-maps/api";
 import LinearProgress from "@mui/material/LinearProgress";
-import { useMarkerColor } from "./GoogleMap.hooks";
+import { useFilterSeichi, useMarkerColor } from "./GoogleMap.hooks";
 
 const MAP_SETTINGS = {
   CONTAINER_STYLE: {
@@ -42,12 +42,9 @@ import { useFetchSeichiData } from "./GoogleMap.hooks";
 
 export const MapContent = (props: { userTitleList: string[] }) => {
   const { userTitleList } = props;
-  const divideMarkerColor = useMarkerColor(userTitleList);
   const { data, error } = useFetchSeichiData();
-  const userSeichiData = useMemo(
-    () => data?.filter(({ title }) => userTitleList.includes(title)),
-    [userTitleList, data]
-  );
+  const userSeichiData = useFilterSeichi(data, userTitleList);
+  const divideMarkerColor = useMarkerColor(userTitleList);
 
   if (error) throw new Error("聖地に関するデータが取得できませんでした");
 
@@ -55,9 +52,9 @@ export const MapContent = (props: { userTitleList: string[] }) => {
 
   return (
     <>
-      {userSeichiData?.map((seichi) => {
-        const color = divideMarkerColor(seichi.title);
-        return <SeichiMarker key={seichi.id} {...{ seichi, color }} />;
+      {userSeichiData?.map(({ id, place, latitude, longitude, ...other }) => {
+        const color = divideMarkerColor(other.title);
+        return <SeichiMarker key={id} {...{ id, place, latitude, longitude, color }} />;
       })}
     </>
   );

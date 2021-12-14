@@ -1,9 +1,9 @@
 import { useMemo } from "react";
 
-export const useFormalizePosition = (seichi: any) => {
+export const useFormalizePosition = (latitude: string, longitude: string) => {
   const position = useMemo(
-    () => ({ lat: parseFloat(seichi.latitude), lng: parseFloat(seichi.longitude) }),
-    [seichi.latitude, seichi.longitude]
+    () => ({ lat: parseFloat(latitude), lng: parseFloat(longitude) }),
+    [latitude, longitude]
   );
   return position;
 };

@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import useSWRImmutable from "swr/immutable";
 import { Seichi } from "model";
 
@@ -16,3 +17,11 @@ export const useMarkerColor = (userTitleList: string[]) => {
   };
   return divideMarkerColor;
 };
+
+export const useFilterSeichi = (data: Seichi[] | undefined, userTitleList: string[]) => {
+  const userSeichiData = useMemo(
+    () => data?.filter(({ title }) => userTitleList.includes(title)),
+    [userTitleList, data]
+  );
+  return userSeichiData;
+}
