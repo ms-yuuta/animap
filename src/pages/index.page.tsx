@@ -1,14 +1,18 @@
 import { useState } from "react";
 import type { NextPage } from "next";
 import Head from "next/head";
+import dynamic from "next/dynamic";
 import { SWRConfig } from "swr";
 
+import { LinearProgress } from "@mui/material";
 import { Fallback } from "./index.hooks";
 import { getStaticProps, useDisplayWelcomeToast } from "./index.hooks";
 import { MapLayout } from "Layout";
 import { TitleChipListBar } from "components/Unique/TitleChipListBar";
 import { AddSeichiButtonSet, SearchButtonSet } from "components/Unique/ButtonSet";
-import { Map as GoogleMap } from "components/Unique/Map";
+const DynamicGoogleMap = dynamic(() => import("components/Unique/Map/GoogleMap"), {
+  loading: () => <LinearProgress />,
+});
 
 const title = "アニメ聖地AniMap";
 const description = "アニメタイトルからアニメ聖地情報を地図上にマッピング。";
@@ -33,7 +37,7 @@ export const App: NextPage<{ fallback: Fallback }> = (props) => {
           SearchButtonSet={<SearchButtonSet setUserTitleList={setUserTitleList} />}
           AddSeichiButtonSet={<AddSeichiButtonSet />}
           TitleChipListBar={<TitleChipListBar {...{ userTitleList, setUserTitleList }} />}
-          GoogleMap={<GoogleMap userTitleList={userTitleList} />}
+          GoogleMap={<DynamicGoogleMap userTitleList={userTitleList} />}
         />
       </SWRConfig>
     </>
