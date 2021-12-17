@@ -18,7 +18,7 @@ type Props = {
   userTitleList: string[];
 };
 
-export const Map: VFC<Props> = (props) => {
+const Map: VFC<Props> = (props) => {
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAP_API_KEY,
   });
@@ -59,3 +59,5 @@ export const MapContent = (props: { userTitleList: string[] }) => {
     </>
   );
 };
+
+export default Map;
