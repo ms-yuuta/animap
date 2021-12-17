@@ -40,7 +40,7 @@ export const AddSeichiButtonSet: VFC = () => {
   const handleFormShow = useHandleDisplay(setIsFromOpen);
   return (
     <>
-      <IconButton onClick={handleFormShow}>
+      <IconButton aria-label="open-modal" onClick={handleFormShow}>
         <AddLocationAltIcon />
       </IconButton>
       {isFormOpen && (

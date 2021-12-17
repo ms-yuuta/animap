@@ -10,12 +10,12 @@ import { fetcher } from "./_app.hooks";
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <ThemeProvider theme={theme}>
-      <div>
+      <>
         <SWRConfig value={{ fetcher }}>
           <Component {...pageProps} />
         </SWRConfig>
         <Toaster toastOptions={{ duration: 4000, style: { border: "1px solid #3460AB" } }} />
-      </div>
+      </>
     </ThemeProvider>
   );
 }

@@ -27,10 +27,10 @@ export const SeichiMarker: React.VFC<Props> = (props) => {
     >
       {selectedMarker && selectedMarker == id && (
         <InfoWindow onCloseClick={() => setMarker("")}>
-          <div>
+          <>
             {/* <Link href={"/seichi/" + seichi.id}></Link> */}
             <h5 style={{ margin: 0 }}>{place}</h5>
-          </div>
+          </>
         </InfoWindow>
       )}
     </Marker>
