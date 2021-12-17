@@ -23,7 +23,7 @@ export const TitleList: React.VFC<Props> = (props) => {
 
   return (
     <>
-      {regex === undefined ? (
+      {!regex ? (
         <MemorizedDefaultList {...{ historyList, handleClick, handleDelete }} />
       ) : (
         <CandidateList {...{ regex, handleClick }} />

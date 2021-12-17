@@ -16,7 +16,7 @@ export const useSearchAnime = (): AnimeInfo => {
 
   // 検索エンジン
   useEffect(() => {
-    text === "" ? setRegex(undefined) : setRegex(new RegExp(`.*${text}.*`));
+    !text ? setRegex(undefined) : setRegex(new RegExp(`.*${text}.*`));
   }, [text]);
 
   return { regex, text, handleChange };

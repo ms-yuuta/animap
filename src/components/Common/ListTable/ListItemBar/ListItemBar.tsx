@@ -31,7 +31,7 @@ export const ListItemBar: VFC<ItemProps> = (props) => {
       }
     >
       <ListItemButton onClick={onClick}>
-        {Icon === undefined ? null : <ListItemIcon>{Icon}</ListItemIcon>}
+        {!Icon ? null : <ListItemIcon>{Icon}</ListItemIcon>}
         <ListItemText primary={label} />
       </ListItemButton>
     </ListItem>
