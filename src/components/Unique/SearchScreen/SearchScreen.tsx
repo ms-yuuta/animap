@@ -37,7 +37,7 @@ const SearchScreen: VFC<Props> = (props) => {
         {/* <Button variant="outlined" onClick={() => handleClick()}>
           保存
         </Button> */}
-        <List disablePadding sx={{ overflow: "auto", maxHeight: "50vh" }}>
+        <List disablePadding sx={{ overflow: "auto", maxHeight: "54vh" }}>
           <TitleList regex={regex} {...props} />
         </List>
       </Stack>
