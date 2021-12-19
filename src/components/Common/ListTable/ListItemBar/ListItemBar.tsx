@@ -7,15 +7,15 @@ import TrendingUpIcon from "@mui/icons-material/TrendingUp";
 import { ListLabel } from "components/Unique/TitleList";
 
 type ItemProps = {
-  type: ListLabel;
+  iconType?: ListLabel;
   label: string;
   onClick: MouseEventHandler<HTMLDivElement>;
-  onDelete?: () => void;
+  onDelete?: (() => void) | undefined;
 };
 
 export const ListItemBar: VFC<ItemProps> = (props) => {
-  const { type, label, onClick } = props;
-  const Icon = { search: undefined, trend: <TrendingUpIcon />, recent: <HistoryIcon /> }[type];
+  const { iconType = "no", label, onClick } = props;
+  const Icon = { no: undefined, trend: <TrendingUpIcon />, history: <HistoryIcon /> }[iconType];
 
   return (
     <ListItem
@@ -23,7 +23,7 @@ export const ListItemBar: VFC<ItemProps> = (props) => {
       key={label}
       sx={{ borderRadius: 1, ":hover": { bgcolor: "#9bc0ff" } }}
       secondaryAction={
-        type === "recent" && (
+        !!props.onDelete && (
           <IconButton edge="end" aria-label="delete" onClick={props.onDelete}>
             <ClearIcon />
           </IconButton>

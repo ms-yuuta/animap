@@ -5,7 +5,7 @@ import { ListTable } from "components/Common/ListTable";
 import { CandidateList } from "./CandidateList";
 import { useDefaultList, useEffectStorage, useHandleClick } from "./titleList.hooks";
 
-export type ListLabel = "trend" | "recent" | "search";
+export type ListLabel = "trend" | "history" | "no";
 
 type Props = {
   regex: RegExp | undefined;
@@ -54,10 +54,10 @@ export const DefaultList: React.VFC<DefaultProps> = (props) => {
           {list.map((title) => (
             <ListItemBar
               key={title}
-              type={label}
+              iconType={label}
               label={title}
               onClick={handleClick}
-              onDelete={() => handleDelete(title)}
+              onDelete={label === "history" ? () => handleDelete(title) : undefined}
             />
           ))}
         </ListTable>

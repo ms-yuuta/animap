@@ -22,7 +22,7 @@ export const CandidateList: React.VFC<CandidateProps> = (props) => {
   return (
     <ListTable title="anime title">
       {filteredWork?.map(({ title, work_id }) => (
-        <ListItemBar key={work_id} type="search" label={title} onClick={handleClick} />
+        <ListItemBar key={work_id} label={title} onClick={handleClick} />
       ))}
     </ListTable>
   );

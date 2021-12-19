@@ -21,12 +21,12 @@ export const useFilterWorkList = (data: Work[] | undefined, regex: RegExp) => {
 const trendList = ["鬼滅の刃", "ソードアート・オンライン"];
 const trendData: { label: "trend"; list: string[] } = { label: "trend", list: [...trendList] };
 
-type DefaultList = Array<{ label: "recent" | "trend"; list: string[] }>;
+type DefaultList = Array<{ label: "history" | "trend"; list: string[] }>;
 
 export const useDefaultList = (list: string[]) => {
   const defaultList: DefaultList = useMemo(() => {
     return list.length > 0
-      ? [{ ...trendData }, { label: "recent", list: [...list] }]
+      ? [{ ...trendData }, { label: "history", list: [...list] }]
       : [{ ...trendData }];
   }, [list]);
 
