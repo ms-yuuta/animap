@@ -1,5 +1,5 @@
-import React, { VFC, FC } from "react";
-import { Box, Button, Modal } from "@mui/material";
+import React, { FC } from "react";
+import { Box, Modal } from "@mui/material";
 
 type ModalProps = {
   children: JSX.Element;
@@ -21,15 +21,15 @@ const style = {
   boxShadow: 24,
 };
 
-export const AniMapModal: FC<ModalProps> = (props) => {
+export const AniMapModal: FC<ModalProps> = ({ onClose, children }) => {
   return (
     <Modal
       open={true}
-      onClose={props.onClose}
+      onClose={onClose}
       aria-labelledby="animap-modal"
       aria-describedby="modal-modal-animap"
     >
-      <Box sx={style}>{props.children}</Box>
+      <Box sx={style}>{children}</Box>
     </Modal>
   );
 };
