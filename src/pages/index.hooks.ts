@@ -1,5 +1,6 @@
 import { useCallback, useEffect } from "react";
 import { GetStaticProps } from "next";
+import { useJsApiLoader } from "@react-google-maps/api";
 import toast from "react-hot-toast";
 import { Seichi, Work } from "model";
 
@@ -32,6 +33,10 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
 };
 
 export const useDisplayWelcomeToast = () => {
+  const { isLoaded, loadError } = useJsApiLoader({
+    googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAP_API_KEY,
+  });
+
   const notify = useCallback(() => {
     toast("やほー！ 上のボタンからアニメタイトルを検索してみて！", {
       style: { position: "relative", top: "40px" },
@@ -40,6 +45,6 @@ export const useDisplayWelcomeToast = () => {
   }, []);
 
   useEffect(() => {
-    notify();
-  }, [notify]);
+    if (isLoaded && !loadError) notify();
+  }, [notify, isLoaded, loadError]);
 };
