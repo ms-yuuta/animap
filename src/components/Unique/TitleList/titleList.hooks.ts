@@ -1,10 +1,10 @@
 import { MouseEventHandler, useCallback, useEffect, useMemo, useState } from "react";
-import useSWRImmutable from "swr/immutable";
+import useSWR from "swr";
 import { useHandleDisplay } from "hooks/useHandler";
 import { Work } from "model";
 
 export const useFetchTitleList = () => {
-  const { data, error } = useSWRImmutable<Work[], Error>(
+  const { data, error } = useSWR<Work[], Error>(
     `${process.env.NEXT_PUBLIC_API_URL}?type=workList`
   );
   return { data, error };
