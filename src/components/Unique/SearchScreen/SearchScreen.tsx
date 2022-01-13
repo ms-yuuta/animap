@@ -5,6 +5,7 @@ import { TitleList } from "components/Unique/TitleList";
 import { useSearchAnime } from "./searchAnimeTitle.hooks";
 
 type Props = {
+  userTitleList: string[];
   setUserTitleList: React.Dispatch<React.SetStateAction<string[]>>;
   setIsShow: React.Dispatch<React.SetStateAction<boolean>>;
 };

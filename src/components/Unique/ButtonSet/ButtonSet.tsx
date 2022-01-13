@@ -12,11 +12,12 @@ const DynamicSearchScreen = dynamic(() => import("../SearchScreen/SearchScreen")
 });
 
 type ButtonProps = {
+  userTitleList: string[];
   setUserTitleList: React.Dispatch<React.SetStateAction<string[]>>;
 };
 
 export const SearchButtonSet: VFC<ButtonProps> = (props) => {
-  const { setUserTitleList } = props;
+  const { userTitleList, setUserTitleList } = props;
   const [isShow, setIsShow] = useState(false);
   const handleSearchModal = useHandleDisplay(setIsShow);
   useHandleKeyEvent(setIsShow);
@@ -28,7 +29,7 @@ export const SearchButtonSet: VFC<ButtonProps> = (props) => {
       </Button>
       {isShow && (
         <AniMapModal onClose={handleSearchModal}>
-          <DynamicSearchScreen setUserTitleList={setUserTitleList} setIsShow={setIsShow} />
+          <DynamicSearchScreen {...{ setUserTitleList, setIsShow, userTitleList }} />
         </AniMapModal>
       )}
     </>

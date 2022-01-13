@@ -10,13 +10,15 @@ export type ListLabel = "trend" | "history" | "no";
 type Props = {
   regex: RegExp | undefined;
   setIsShow: React.Dispatch<React.SetStateAction<boolean>>;
+  userTitleList: string[];
   setUserTitleList: React.Dispatch<React.SetStateAction<string[]>>;
 };
 
 export const TitleList: React.VFC<Props> = (props) => {
-  const { regex, setIsShow, setUserTitleList } = props;
+  const { regex, setIsShow, userTitleList, setUserTitleList } = props;
   const { historyList, setHistoryList, handleClick, handleDelete } = useHandleClick(
     setIsShow,
+    userTitleList,
     setUserTitleList
   );
   useEffectStorage(historyList, setHistoryList);

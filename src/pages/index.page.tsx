@@ -34,7 +34,7 @@ export const App: NextPage<{ fallback: Fallback }> = (props) => {
       </Head>
       <SWRConfig value={{ fallback }}>
         <MapLayout
-          SearchButtonSet={<SearchButtonSet setUserTitleList={setUserTitleList} />}
+          SearchButtonSet={<SearchButtonSet {...{ userTitleList, setUserTitleList }} />}
           AddSeichiButtonSet={<AddSeichiButtonSet />}
           TitleChipListBar={<TitleChipListBar {...{ userTitleList, setUserTitleList }} />}
           GoogleMap={<DynamicGoogleMap userTitleList={userTitleList} />}

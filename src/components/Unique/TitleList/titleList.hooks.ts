@@ -4,17 +4,12 @@ import { useHandleDisplay } from "hooks/useHandler";
 import { Work } from "model";
 
 export const useFetchTitleList = () => {
-  const { data, error } = useSWR<Work[], Error>(
-    `${process.env.NEXT_PUBLIC_API_URL}?type=workList`
-  );
+  const { data, error } = useSWR<Work[], Error>(`${process.env.NEXT_PUBLIC_API_URL}?type=workList`);
   return { data, error };
 };
 
 export const useFilterWorkList = (data: Work[] | undefined, regex: RegExp) => {
-  const filteredWork = useMemo(
-    () => data?.filter(({ title }) => regex.test(title)),
-    [data, regex]
-  );
+  const filteredWork = useMemo(() => data?.filter(({ title }) => regex.test(title)), [data, regex]);
   return filteredWork;
 };
 
@@ -64,6 +59,7 @@ export const useEffectStorage = (
 
 export const useHandleClick = (
   setIsShow: React.Dispatch<React.SetStateAction<boolean>>,
+  userTitleList: string[],
   setUserTitleList: React.Dispatch<React.SetStateAction<string[]>>
 ) => {
   const [historyList, setHistoryList] = useState<string[]>([]);
@@ -81,15 +77,18 @@ export const useHandleClick = (
   const handleDisplay = useHandleDisplay(setIsShow);
   const handleClick: MouseEventHandler<HTMLDivElement> = useCallback(
     (e: any) => {
-      handleSetTitle(e.target.innerText);
+      if (!userTitleList.includes(e.target.innerText)) handleSetTitle(e.target.innerText);
       handleDisplay();
     },
-    [handleSetTitle, handleDisplay]
+    [userTitleList, handleSetTitle, handleDisplay]
   );
 
-  const handleDelete = useCallback((name: string) => {
-    setHistoryList((prevList: string[]) => prevList.filter((item) => item !== name));
-  }, [setHistoryList]);
+  const handleDelete = useCallback(
+    (name: string) => {
+      setHistoryList((prevList: string[]) => prevList.filter((item) => item !== name));
+    },
+    [setHistoryList]
+  );
 
   return { historyList, setHistoryList, handleClick, handleDelete };
 };
