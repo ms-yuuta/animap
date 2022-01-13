@@ -11,7 +11,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <ThemeProvider theme={theme}>
       <>
-        <SWRConfig value={{ fetcher }}>
+        <SWRConfig value={{ refreshInterval: 5000, fetcher }}>
           <Component {...pageProps} />
         </SWRConfig>
         <Toaster toastOptions={{ duration: 4000, style: { border: "1px solid #3460AB" } }} />
