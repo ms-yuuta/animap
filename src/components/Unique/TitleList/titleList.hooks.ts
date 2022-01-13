@@ -1,5 +1,6 @@
 import { MouseEventHandler, useCallback, useEffect, useMemo, useState } from "react";
 import useSWR from "swr";
+import toast from "react-hot-toast";
 import { useHandleDisplay } from "hooks/useHandler";
 import { Work } from "model";
 
@@ -77,8 +78,11 @@ export const useHandleClick = (
   const handleDisplay = useHandleDisplay(setIsShow);
   const handleClick: MouseEventHandler<HTMLDivElement> = useCallback(
     (e: any) => {
-      if (!userTitleList.includes(e.target.innerText)) handleSetTitle(e.target.innerText);
-      handleDisplay();
+      if (userTitleList.includes(e.target.innerText)) toast.error("既に登録されてるよ！");
+      else {
+        handleSetTitle(e.target.innerText);
+        handleDisplay();
+      }
     },
     [userTitleList, handleSetTitle, handleDisplay]
   );
